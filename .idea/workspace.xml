@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Simpletest-html 'en' removed.">
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="2 comment lines added at line 4, 5">
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +172,7 @@
       <workItem from="1617008847573" duration="16861000" />
       <workItem from="1617026087949" duration="1101000" />
       <workItem from="1617032504385" duration="2506000" />
-      <workItem from="1617053219224" duration="5357000" />
+      <workItem from="1617053219224" duration="5432000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -195,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617059669793</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2 comment lines added at line 4, 5">
+      <created>1617059731114</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617059731114</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +222,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First add" />
     <MESSAGE value="Simpletest-html 'en' removed." />
-    <option name="LAST_COMMIT_MESSAGE" value="Simpletest-html 'en' removed." />
+    <MESSAGE value="2 comment lines added at line 4, 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="2 comment lines added at line 4, 5" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1615022834170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
