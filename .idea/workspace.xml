@@ -170,7 +170,7 @@
       <workItem from="1617008847573" duration="16861000" />
       <workItem from="1617026087949" duration="1101000" />
       <workItem from="1617032504385" duration="2506000" />
-      <workItem from="1617053219224" duration="5840000" />
+      <workItem from="1617053219224" duration="6155000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617059812647</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Test comment lines reverted back.">
+      <created>1617060333684</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617060333684</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +236,8 @@
     <MESSAGE value="Simpletest-html 'en' removed." />
     <MESSAGE value="2 comment lines added at line 4, 5" />
     <MESSAGE value="Test comment lines reverted back." />
-    <option name="LAST_COMMIT_MESSAGE" value="Test comment lines reverted back." />
+    <MESSAGE value="Created a yml file for conda environment." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a yml file for conda environment." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1615022834170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
