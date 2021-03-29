@@ -21,3 +21,6 @@ Activate the virtual environment<br>
 Also,<br>
 `pip install -r requirements_INTERFACE.txt`<br>
 `python manage runserver`
+
+<br>
+In-case of any queries, please create an issue. Will try resolving ASAP. 
