@@ -1,0 +1,636 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>L1 filtering</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		body{
+		  /*background: rgba(82, 154, 239, 0.9);*/
+		  /*background: linear-gradient(90deg, rgb(54, 160, 217) 0%, rgba(64, 110, 232, 0.78) 43%, rgb(18, 127, 212) 100%);*/
+		}
+
+
+		h1, h2, h3, h4, h5, p, span, strike{
+		  font-family: 'Montserrat', sans-serif;
+
+		}
+
+
+		#task-container{
+
+		  max-width:1000px;
+		  {#margin:0 auto;#}
+            margin-left: 0px;
+		  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		  background-color: #fff;
+            {#opacity: 0.90;#}
+
+		  margin-top:15px;
+		  margin-bottom:15px;
+
+		  justify-content: space-around;
+		  align-items: flex-start;
+			overflow-y: scroll;
+
+		}
+
+		#result-container{
+
+		  max-width:1000px;
+		  {#margin:0 auto;#}
+            margin-left: 0px;
+		  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		  background-color: #fff;
+            {#opacity: 0.90;#}
+
+		  margin-top:15px;
+		  margin-bottom:15px;
+
+		  justify-content: space-around;
+		  align-items: flex-start;
+			overflow-y: hidden;
+
+
+
+		}
+
+		#resource-container{
+
+		  max-width:1000px;
+		  {#margin:0 auto;#}
+            margin-left: 0px;
+		  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+		  background-color: #fff;
+            {#opacity: 0.90;#}
+
+		  margin-top:15px;
+		  margin-bottom:15px;
+
+		  justify-content: space-around;
+		  align-items: flex-start;
+
+		}
+		.abc-container{
+			display: flex;
+			flex-direction: column;
+		}
+		.container{
+			display:flex;
+		}
+
+		div.ex1 {
+		  background-color: lightblue;
+		  height:300px;
+		  width: 600px;
+		  overflow-y: scroll;
+		}
+
+		div.ex2 {
+		  background-color: lightblue;
+		  height:300px;
+		  width: 250px;
+		  overflow-y: auto;
+			font-family: 'Montserrat', sans-serif;
+          /*{#background-color: #3058ee;#}*/
+		/*background: linear-gradient(90deg, rgb(54, 160, 217) 0%, rgba(64, 110, 232, 0.78) 43%, rgb(18, 127, 212) 100%);*/
+          padding: 2px;
+          font-size: 20px;
+		}
+		div.ex3 {
+		  background-color: lightblue;
+		  height:300px;
+		  width: 1000px;
+		  overflow-y: auto;
+			font-family: 'Montserrat', sans-serif;
+          /*{#background-color: #3058ee;#}*/
+		/*background: linear-gradient(90deg, rgb(54, 160, 217) 0%, rgba(64, 110, 232, 0.78) 43%, rgb(18, 127, 212) 100%);*/
+          padding: 20px;
+          font-size: 20px;
+		}
+
+
+
+		.flex-item-left {
+		  background-color: #f1f1f1;
+		  padding: 10px;
+		  flex: 70%;
+			overflow-y: scroll;
+
+		}
+		.flex-item-right {
+		  background-color: #f1f1f1;
+		  padding: 10px;
+		  flex: 30%;
+			overflow-y: hidden;
+		}
+        {#.frame2{#}
+        {#    margin-right: 0px;#}
+        {#}#}
+
+		{##form-wrapper{#}
+		{#  position: -webkit-sticky;#}
+		{#  position: sticky;#}
+		{#  top: 0rem;#}
+		{#  border-bottom: 1px solid  #e9e9e9;#}
+		{#  background-color: #fff;#}
+		{#  box-shadow: 0 3px 8px rgba(0,0,0,0.25);#}
+ 		{#  padding:40px;#}
+		{#}#}
+        {##}
+		{##submit{#}
+		{#  background-color: #36d9b6;#}
+		{#  border-radius: 0;#}
+		{#  border:0;#}
+		{#  color: #fff;#}
+		{#}#}
+        {##}
+		{#.flex-wrapper{#}
+		{#	display: flex;#}
+		{#}#}
+        {##}
+		.task_wrapper{
+            margin:10px;
+		  	padding: 5px;
+		  	{#padding:20px;#}
+		  	cursor: pointer;
+		  	border-bottom: 1px solid  #e9e9e9;
+		  	color: #686868;
+			}
+        {#.con0{#}
+        {#    display: inline-block;#}
+        {#}#}
+        {#.con1{#}
+        {#    float: left;#}
+        {#    margin-left: 0px;#}
+        {#}#}
+        {#.con2{#}
+        {#    float: right;#}
+        {#    margin-right: 0px;#}
+        {#}#}
+
+        div.sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 0;
+            font-family: 'Montserrat', sans-serif;
+          {#background-color: #3058ee;#}
+            background: linear-gradient(90deg, rgb(54, 160, 217) 0%, rgba(64, 110, 232, 0.78) 43%, rgb(18, 127, 212) 100%);
+          padding: 2px;
+          font-size: 10px;
+            text-align: center;
+            align-content: center;
+}
+
+	</style>
+
+</head>
+<body>
+<div class="abc-container">
+	<div class="container">
+        <!--<div class="sticky"><strong>Live Twitter Streaming</strong> <input type="text" value="Final Verdict?" id="verd_box"></div> -->
+{#        <p align="center"></p>#}
+
+		<div id="task-container" class="flex-item-left" >
+			<div class="ex1">
+<!--			<div class="scroll-container">-->
+				<h1 class="sticky" align="center">Live twitter streaming</h1>
+				<div id="list-wrapper">
+
+
+	<!--            </div>-->
+				</div>
+			</div>
+		</div>
+		<div id = "result-container" class="flex-item-right">
+			<div class="ex2">
+				<h2 class="sticky" align="center">The Verdict</h2>
+				<br>
+				<p>Tweet</p>
+				<p id="tweet"></p>
+				<h1 id="tweet_res" align="center" style="color: red; font-weight: bold">Fake or not fake</h1>
+			</div>
+		</div>
+	</div>
+<!--		Iteratively pushing HTML content using the following-->
+<!--		<div id="task-container2">-->
+<!--			<div id="list-wrapper2">-->
+
+<!--			</div>-->
+<!--		</div>-->
+
+		<div id="url_div">
+
+
+			<!--				<table id="URL">-->
+<!--					<tr>-->
+<!--						  <th>S. No</th>-->
+<!--						  <th>URL</th>-->
+<!--						  <th>Result</th>-->
+<!--						</tr>-->
+<!--				  </table>-->
+		</div>
+
+<!--		<div id ="resource-container" class="ex3" class="sticky">-->
+<!--			<h2 id="div3_head" align="center"></h2>-->
+<!--			<p id="url_res"></p>-->
+<!--		</div>-->
+	</div>
+{#    <input style="font-size: xx-large" type="text" value={{ loc }}>#}
+    <input type="hidden" id="loc_element" value={{ loc }}>
+
+
+
+	<script type="text/javascript">
+		/*
+			KEY COMPONENTS:
+			"activeItem" = null until an edit button is clicked. Will contain object of item we are editing
+			"list_snapshot" = Will contain previous state of list. Used for removing extra rows on list update
+
+			PROCESS:
+			1 - Fetch Data and build rows "buildList()"
+			2 - Create Item on form submit
+			3 - Edit Item click - Prefill form and change submit URL
+			4 - Delete Item - Send item id to delete URL
+			5 - Cross out completed task - Event handle updated item
+
+			NOTES:
+			-- Add event handlers to "edit", "delete", "title"
+			-- Render with strike through items completed
+			-- Remove extra data on re-render
+			-- CSRF Token
+		*/
+		function checkTweet(in_text){
+			var cur_opt;
+			if (document.activeElement.id == "cls_btn"){
+				cur_opt=1;
+				url1 = 'http://127.0.0.1:8000/frontend/contact_F2B_CLS/'
+				// document.getElementById("div3_head").innerText='';
+				// document.getElementById('url_res').innerText=''
+				document.getElementById('tweet').innerText = '';
+				document.getElementById('tweet_res').innerText = '';
+				// console.log('Classification option selected')
+			}
+			else {
+				cur_opt=2;
+				url1 = 'http://127.0.0.1:8000/frontend/contact_F2B_ENT/'
+				// document.getElementById('list-wrapper2').innerText=''
+				document.getElementById('tweet').innerText = '';
+				document.getElementById('tweet_res').innerText = '';
+				// console.log('Entailment option selected')
+			}
+
+			// in_text = "intensive #lockdown in tamil nadu to begin from june 19 watch: https://t.co/1bwvev1pdf"
+			in_text1 = in_text.replace('#', '');
+			// in_text1 = in_text;
+			// in_text3 = "Hi_Passing text"
+			regexp1 = "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+			// regexp2 = "/https?:\/\/t.co\/[a-zA-Z0-9]*/g"
+			// regexp2 = "https?:\/\/t\.co\/[-a-zA-Z0-9@:%._+~#=]+"
+			// in_text2 = in_text1.replace(regexp1, '')
+			in_text3 = in_text1.replace(regexp1, '')
+			// console.log("-----Passed tweet: ", in_text3)
+			fetch(url1.concat(in_text3))
+			.then((resp) => resp.json())
+			.then(function(data){
+				// console.log('Returened data:', data['Tweet'])
+				// console.log('Returened data:', data['Result'])
+				// document.getElementById('verd_box').value = data;
+				document.getElementById('tweet').innerText = data['Tweet'];
+				document.getElementById('tweet_res').innerText = data['Result'];
+				// document.getElementById('url_res').innerHTML = data['o_lst'][0];
+				if (cur_opt==2){
+					// document.getElementById("div3_head").innerText='Resources to be shown';
+					let items = data['url_info'];
+					var wrapper = document.getElementById('list-wrapper2')
+					var cnt=1;
+					var div_url = document.getElementById('url_div');
+					tb = document.createElement('table');
+					tb.id='URLtable'
+					title = document.createElement('tr');
+					headline = document.createElement('td');
+					headline.colSpan=3;
+					var msg = "Reference documents to be used to verify facts";
+					var final_msg = msg.bold();
+					headline.innerHTML= final_msg;
+					title.appendChild(headline)
+					tb.appendChild(title)
+					h1 = document.createElement('th');
+					h1.innerHTML='S No.'
+					h2 = document.createElement('th');
+					h2.innerHTML='URL'
+					h3 = document.createElement('th');
+					h3.innerHTML='Result'
+					var trh = document.createElement('tr');
+					trh.appendChild(h1);
+					trh.appendChild(h2);
+					trh.appendChild(h3);
+					tb.appendChild(trh)
+					div_url.appendChild(tb);
+
+					items.forEach(function (item) {
+							var tr = document.createElement('tr');
+							var td1 = document.createElement('td');
+							td1.innerHTML=cnt;
+							var td2 = document.createElement('td');
+							var u = document.createElement('a');
+							u.href=item['url']
+							u.innerHTML=item['url']
+							td2.appendChild(u)
+							var td3 = document.createElement('td');
+							td3.innerHTML=item['Result']
+							tr.appendChild(td1);
+						    tr.appendChild(td2);
+							tr.appendChild(td3);
+							document.getElementById('URLtable').appendChild(tr)
+							cnt=cnt+1
+					});
+					cnt=0
+
+					// wrapper.insertAdjacentHTML('afterbegin', `
+                    // <div id="data-row" class="task_wrapper">
+                    //     <table style="width:100%">
+                    //         <tr>
+                    //             <td colspan="2" align="center"><strong>Reference documents to be used to verify facts</strong></td>
+                    //       </tr>`);
+					//
+					//
+					// items.forEach(function (item) {
+					// 	wrapper.insertAdjacentHTML('beforeend', `
+					// 		<tr>
+                    //             <td colspan="2"><a href="${item['url']}">${item['url']}</a> - ${item['Result']}</td>
+                    //       </tr>`);
+					// });
+					// wrapper.insertAdjacentHTML('beforeend', `
+					// </table>
+                    // </div>`);
+
+					// Method 1
+					// var out_item = `
+                    // <div id="data-row" class="task_wrapper">
+                    //     <table style="width:100%">
+                    //         <tr>
+                    //             <td colspan="2" align="center"><strong>Reference documents to be used to verify facts</strong></td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">1. <a href="${items[0]['url']}">${items[0]['url']}</a> - ${items[0]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">2. <a href="${items[1]['url']}">${items[1]['url']}</a> - ${items[1]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">3. <a href="${items[2]['url']}">${items[2]['url']}</a> - ${items[2]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">4. <a href="${items[3]['url']}">${items[3]['url']}</a> - ${items[3]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">5. <a href="${items[4]['url']}">${items[4]['url']}</a> - ${items[4]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">6. <a href="${items[5]['url']}">${items[5]['url']}</a> - ${items[5]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">7. <a href="${items[6]['url']}">${items[6]['url']}</a> - ${items[6]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">8. <a href="${items[7]['url']}">${items[7]['url']}</a> - ${items[7]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">9. <a href="${items[8]['url']}">${items[8]['url']}</a> - ${items[8]['Result']}</td>
+                    //       </tr>
+                    //         <tr>
+                    //             <td colspan="2">10. <a href="${items[9]['url']}">${items[9]['url']}</a> - ${items[9]['Result']}</td>
+                    //       </tr>
+                    //     </table>
+                    // </div>`
+					// wrapper.insertAdjacentHTML('afterbegin', out_item);
+
+					// Method 2
+					// ul = document.createElement('ul');
+					// document.getElementById('url_res').appendChild(ul);
+					// items.forEach(function (item) {
+					// 		let li = document.createElement('li');
+					// 		ul.appendChild(li);
+					// 		li.innerHTML += item['url']+'-'+item['Result'];
+					// });
+				}
+
+
+			})
+			// fetch(url1.concat(in_text3))
+			// .then((resp) => resp.json())
+			// .then(function(data){
+			// 	console.log('Returened data:', data)
+			// 	// document.getElementById('verd_box').value = data;
+			// 	document.getElementById('tweet_res').innerHTML = data;
+			// })
+		}
+
+		function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+
+		var activeItem = null
+		var list_snapshot = []
+        /*console.log({'Proc Status': document.getElementById('proc_status').value})
+        if (document.getElementById('proc_status').value){
+            buildList()
+        }*/
+        buildList()
+        var wrapper = document.getElementById('list-wrapper')
+
+
+
+        function rend(i, list, l_var) {
+            setTimeout(function () {
+                try {
+                    document.getElementById(`data-row-${i}`).remove()
+                } catch (err) {
+
+                }
+
+                var dc_tag = list[i].direct_claim
+                var idc_tag = list[i].indirect_claim
+                var op_tag = list[i].opinion
+                var qt_tag = list[i].quote
+                var nc_tag = list[i].not_claim
+
+                final_disp = []
+
+                var tag_list = [dc_tag, idc_tag, op_tag, qt_tag, nc_tag];
+                var tag_names = ["Direct Claim", "Indirect Claim", "Opinion", "Quote", "Not Claim"];
+
+                var cnt = 0;
+                var j;
+                for (j=0; j<5; j++ ){
+                    if (tag_list[j]=='yes'){
+                        final_disp.push(tag_names[j])
+                    }
+                }
+
+                {#console.log({'Cur List': list[i]});#}
+                var tag_str = [];
+
+                if (final_disp.length===0){
+                    tag_str.push(`<span style="background-color: palevioletred;font-weight:bold">Unknown </span>`)
+                }
+                else{
+                    for (var k = 0; k<final_disp.length; k++){
+                    {#console.log({'Tag': final_disp[k]})#}
+                        var cur_tag = final_disp[k]
+                        if (cur_tag=="Direct Claim"){
+                            tag_str.push(`<span style="background-color: deepskyblue;font-weight:bold">${cur_tag} ${list[i].direct_claim_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Indirect Claim"){
+                            tag_str.push(`<span style="background-color: sandybrown;font-weight:bold">${cur_tag} ${list[i].indirect_claim_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Opinion"){
+                            tag_str.push(`<span style="background-color:greenyellow;font-weight:bold">${cur_tag} ${list[i].opinion_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Quote"){
+                            tag_str.push(`<span style="background-color:yellow;font-weight:bold">${cur_tag} ${list[i].quote_probability.toFixed(2)}</span>`)
+                        }
+                        else {
+                            tag_str.push(`<span style="background-color:palevioletred;font-weight:bold">${cur_tag} ${list[i].not_claim_probability.toFixed(2)}</span>`)
+                        }
+                    }
+                }
+
+
+                var img_name = list[i].iids
+
+                var file_name = `/static/frontend/`+l_var+`/`+img_name
+                // console.log({'IMG con': file_name})
+				// console.log("Tweet: ", list[i].tweets)
+				var cur_tweet = list[i].tweets;
+                // console.log("Tweet: ", cur_tweet)
+                var cur_var = list[i].tweets;
+                var im_con = `<img src="${file_name}" width="50px" />`
+                var title = `<span class="title">${list[i].tweets} - ${tag_str}</span>`
+                var item = `
+                    <div id="data-row-${i}" class="task_wrapper">
+                        <table style="width:100%">
+                          <tr>
+                            <td>${im_con}</td>
+                            <td>${title} <button type="button" id="cls_btn" onclick="checkTweet('${cur_var}')">Check (CLS)</button> <button type="button" id="ent_btn" onclick="checkTweet('${cur_var}')">Check (ENT)</button> </td>
+                          </tr>
+                        </table>
+                    </div>
+                `
+                {#var item = `#}
+				{#		<div id="data-row-${i}" class="task_wrapper">#}
+                {#            ${im_con}#}
+                {#            <div style="flex:7" class="con2">#}
+				{#				${title}#}
+				{#			</div>#}
+				{#		</div>#}
+				{#	`#}
+                //wrapper.innerHTML += item
+                wrapper.insertAdjacentHTML('afterbegin', item);
+            }, 1000 * i);
+        }
+
+		function buildList(){
+			{#var wrapper = document.getElementById('list-wrapper')#}
+			//wrapper.innerHTML = ''
+            var url;
+            var loc_var = document.getElementById('loc_element').value
+			{% comment %}var url = 'http://127.0.0.1:8000/api/task-L3-list/'{% endcomment %}
+            if (loc_var === 'DEMO'){
+                url = 'http://127.0.0.1:8000/api/task-L3-list/'
+            }
+            {% comment %}if (loc_var === 'AMD'){
+                url = 'http://127.0.0.1:8000/api/data_amd_list/'
+            }
+            else if (loc_var === 'AMR'){
+                url = 'http://127.0.0.1:8000/api/data_amr_list/'
+            }
+            else if (loc_var === 'BLR'){
+                url = 'http://127.0.0.1:8000/api/data_blr_list/'
+            }
+            else if (loc_var === 'CHN'){
+                url = 'http://127.0.0.1:8000/api/data_chn_list/'
+            }{% endcomment %}
+            else if (loc_var === 'DLI'){
+                url = 'http://127.0.0.1:8000/api/data_dli_list/'
+            }
+            {% comment %}
+            else if (loc_var === 'GWT'){
+                url = 'http://127.0.0.1:8000/api/data_gwt_list/'
+            }
+            else if (loc_var === 'HBD'){
+                url = 'http://127.0.0.1:8000/api/data_hbd_list/'
+            }
+            else if (loc_var === 'IDR'){
+                url = 'http://127.0.0.1:8000/api/data_idr_list/'
+            }
+            else if (loc_var === 'JPR'){
+                url = 'http://127.0.0.1:8000/api/data_jpr_list/'
+            }
+            else if (loc_var === 'KPR'){
+                url = 'http://127.0.0.1:8000/api/data_kpr_list/'
+            }
+            else if (loc_var === 'KTA'){
+                url = 'http://127.0.0.1:8000/api/data_kta_list/'
+            }
+            else if (loc_var === 'LKO'){
+                url = 'http://127.0.0.1:8000/api/data_lko_list/'
+            }
+            else if (loc_var === 'MBI'){
+                url = 'http://127.0.0.1:8000/api/data_mbi_list/'
+            }
+            else if (loc_var === 'PNE'){
+                url = 'http://127.0.0.1:8000/api/data_pne_list/'
+            }
+            else if (loc_var === 'RCH'){
+                url = 'http://127.0.0.1:8000/api/data_rch_list/'
+            }
+            else if (loc_var === 'SNR'){
+                url = 'http://127.0.0.1:8000/api/data_snr_list/'
+            }
+            else if (loc_var === 'VNS'){
+                url = 'http://127.0.0.1:8000/api/data_vns_list/'
+            }{% endcomment %}
+
+            {#console.log({'URL': url})#}
+
+			fetch(url)
+			.then((resp) => resp.json())
+			.then(function(data){
+				{#console.log('Data:', data)#}
+
+				var list = data
+				for (var i in list){
+                    rend(i, list, loc_var);
+				}
+
+				if (list_snapshot.length > list.length){
+					for (var i = list.length; i < list_snapshot.length; i++){
+						document.getElementById(`data-row-${i}`).remove()
+					}
+				}
+				list_snapshot = list
+			})
+
+		}
+	</script>
+</body>
+</html>

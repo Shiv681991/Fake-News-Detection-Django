@@ -1,0 +1,417 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/layout.css' %}">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <style type="text/css">
+        h1, h2, h3, h4, h5, p, span, strike{
+              font-family: 'Montserrat', sans-serif;
+            margin-left: 1cm;
+
+            }
+        #form-wrapper{
+		  position: -webkit-sticky;
+		  position: sticky;
+		  top: 0rem;
+		  border-bottom: 1px solid  #e9e9e9;
+		  background-color: #fff;
+		  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+ 		  {#padding:40px;#}
+		}
+        {#.column {#}
+        {#  horiz-align: center;#}
+        {#  width: 50%;#}
+        {#  padding: 5px;#}
+        {#}#}
+
+        /* Clear floats after image containers */
+        {#.row::after {#}
+        {#  content: "";#}
+        {#  clear: both;#}
+        {#    margin-left: auto;#}
+        {#    margin-right: auto;#}
+        {#    display: block;#}
+        {#}#}
+        {#.center {#}
+        {#    display: block;#}
+        {#    border-radius: 8px;#}
+        {#    margin-left: auto;#}
+        {#    margin-right: auto;#}
+        {#}#}
+
+        .head_rule{
+            display: inline-block;
+            width: 100%;
+        }
+        .head_rule0{
+            float: left;
+            margin-left: 500px;
+            margin-top: 10px;
+        }
+        .head_rule1{
+            float: left;
+            margin-left: 400px;
+            margin-top: 5px;
+        }
+        .head_rule2{
+            float: right;
+            margin-right: 50px;
+            margin-top: 40px;
+        }
+
+        .top_rule{
+            display: inline-block;
+            width: 100%;
+        }
+        .top_rule1{
+            float: left;
+            margin-left: 38px;
+        }
+        .top_rule2{
+            float: right;
+            margin-right: 38px;
+        }
+        .stat_bar{
+            display: inline-block;
+            width: 100%;
+        }
+        {#top_rulea, top_ruleb, top_rulec, top_ruled, top_rulee, top_rulef{#}
+            {#float: left;#}
+            {#margin-left: 0px;#}
+        {#}#}
+
+
+        /* Style the tab */
+        .tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border: 1px solid #ccc;
+          border-top: none;
+        }
+    </style>
+    <title>FACTDEMIC: Wipro AI</title>
+
+</head>
+<body>
+{#<h2 align="center">FACTDEMIC DASHBOARD</h2>#}
+{#width="927" height="240"#}
+{#<img src="/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/factdemic_img_V1.png" alt="Img not found"/>#}
+
+<div class="head_rule">
+    <div class="head_rule1">
+    <img src="{% static "frontend/factdemic_img_V1.png" %}" alt="Factdemic" height="200">
+    </div>
+
+    <div class="head_rule2">
+    <img src="{% static "frontend/wipro.png" %}" alt="Wipro" height="100">
+    </div>
+</div>
+<div align="center" style="font-size: large; color: red">
+    <p><strong>Fake Claim Detection and Meta Fact Checking through Textual Entailment based Validation </strong></p>
+</div>
+
+{#<div class="tab">#}
+{#  <button class="tablinks" onclick="openCity(event, 'London')">London</button>#}
+{#  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>#}
+{#  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>#}
+{#</div>#}
+{#<div id="London" class="tabcontent">#}
+{#  <h3>London</h3>#}
+{#  <p>London is the capital city of England.</p>#}
+{#</div>#}
+{##}
+{#<div id="Paris" class="tabcontent">#}
+{#  <h3>Paris</h3>#}
+{#  <p>Paris is the capital of France.</p>#}
+{#</div>#}
+{##}
+{#<div id="Tokyo" class="tabcontent">#}
+{#  <h3>Tokyo</h3>#}
+{#  <p>Tokyo is the capital of Japan.</p>#}
+{#</div>#}
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <nav>
+      <ul>
+        <li><a href="{% url "frontend:start_disp" %}">Stream & Check</a></li>
+          <li><a href="{% url "frontend:frame_4" %}">Monitor Web</a></li>
+        <li><a href="{% url "frontend:dashboard_index" %}">Dashboard</a></li>
+        <li><a href="http://projects.flowingdata.com/tut/interactive_network_demo">Tracing Fake News</a></li>
+        <li><a href="https://223895.8b.io/page1.html">Manual Check</a></li>
+
+      </ul>
+    </nav>
+  </header>
+</div>
+{#<!--<p>You can use the height and width attributes to specify the size of the iframe:</p>-->#}
+{#<h5>Select a city to begin streaming.</h5>#}
+{#<div id="form-wrapper">#}
+{#    <form action="{% url 'frontend:start_disp' %}" method="post">#}
+{#    {% csrf_token %}#}
+{#        <div align="left" style="margin-left: 35px">#}
+{##}
+{#    <!--        <input type="submit" class='btn btn-primary' value="Start" style="margin-left:5px;margin-top: 20px;border-radius:5px;width:100px">-->#}
+{#        </div>#}
+{#    <div class="top_rule">#}
+{#        <div class="top_rule1">#}
+{#            {{ form.location }}#}
+{#            <button type="submit" name="start_btn" value="1">#}
+{#                <i class="fa fa-thumb-tack"></i> START#}
+{#            </button>#}
+{#        </div>#}
+{#        <div class="top_rule2">#}
+{#    <!--        <input type="submit" class='btn btn-primary' value="Start" style="margin-left:5px;margin-top: 20px;border-radius:5px;width:100px">-->#}
+{#            <button type="submit" name="stop_btn" value="1">#}
+{#                <i class="fa fa-thumb-tack"></i> STOP#}
+{#            </button>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="stat_bar">#}
+{#        <table align="center">#}
+{#            <tr>#}
+{#                <td align="center">#}
+{#                    <span>Total Tweets: </span>#}
+{#                </td>#}
+{#                <td align="center">#}
+{#                    <input style="text-align: center" type="text" id="V1" readonly size="3" value="0">#}
+{#                </td>#}
+{#                <td align="center">#}
+{#                    <span>Tweet/Sec.: </span>#}
+{#                </td>#}
+{#                <td align="center">#}
+{#                    <input style="text-align: center" type="text" id="V2" readonly size="3" value="0">#}
+{#                </td>#}
+{#                <td align="center">#}
+{#                    <span>Total RT: </span>#}
+{#                </td>#}
+{#                <td align="center">#}
+{#                    <input style="text-align: center" type="text" id="V3" readonly size="3" value="0">#}
+{#                </td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td  align="center">#}
+{#                    <span>RT Rate: </span>#}
+{#                </td>#}
+{#                <td  align="center">#}
+{#                    <input style="text-align: center" type="text" id="V4" readonly size="3" value="0">#}
+{#                </td>#}
+{#                <td>#}
+{#                    <span>Fact-check worthy tweet rate: </span>#}
+{#                </td>#}
+{#                <td  align="center">#}
+{#                    <input style="text-align: center" type="text" id="V5" readonly size="3" value="0">#}
+{#                </td>#}
+{#                <td  align="center">#}
+{#                    <span>Possible fake-news rate: </span>#}
+{#                </td>#}
+{#                <td  align="center">#}
+{#                    <input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#                </td>#}
+{#            </tr>#}
+{#        </table>#}
+{#        <div class="top_rulea">#}
+{#            <span>Total Tweets: </span><input style="text-align: center" type="text" id="V1" readonly size="3" value="0"><span>Tweet/Sec.: </span><input style="text-align: center" type="text" id="V2" readonly size="3" value="0"><span>Total RT: </span><input style="text-align: center" type="text" id="V3" readonly size="3" value="0">#}
+{#        </div>#}
+{#        <div class="top_ruleb">#}
+{#            <span>RT Rate: </span><input style="text-align: center" type="text" id="V4" readonly size="3" value="0"><span>Fact-check worthy tweet rate: </span><input style="text-align: center" type="text" id="V5" readonly size="3" value="0"><span>Possible fake-news rate: </span><input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#        <hr style="height:0.5mm;border-width:0;color:gray;background-color:gray">#}
+{#        <div align="center">#}
+{#            {% if loc_flag %}#}
+{#                <iframe src="{% url 'frontend:frame_1' uri%}" height="200" width="500"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_2' uri%}" height="200" width="700"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_3' uri%}" height="200" width="305"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_4' uri%}" height="200" width="1010"></iframe>#}
+{#                <div class="stat_bar">#}
+{#                    <table align="center">#}
+{#                        <tr>#}
+{#                            <td align="center">#}
+{#                                <span>Rumor </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V1" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <span>Authorities </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V2" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <span>Fake Cure </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V3" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td  align="center">#}
+{#                                <span>Religious </span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V4" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                <span>Panic </span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V5" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <span>Others</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td  align="center">#}
+{#                                <span>Political</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V4" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                <span>Racist</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V5" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <span>Xenophobic</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                    </table>#}
+{#                </div>#}
+{##}
+{#                <iframe src="{% url 'frontend:frame_5' uri%}" height="200" width="1010"></iframe>#}
+{#            {% else %}#}
+{#                <iframe src="{% url 'frontend:frame_1_blank' f1%}" height="200" width="500"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_2_blank' f2%}" height="200" width="700"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_3_blank' f3%}" height="200" width="305"></iframe>#}
+{#                <iframe src="{% url 'frontend:frame_4_blank' f4%}" height="200" width="1010"></iframe>#}
+{#                <div class="stat_bar">#}
+{#                    <table align="center">#}
+{#                        <tr>#}
+{#                            <td align="center">#}
+{#                                <span>Rumor </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V1" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <span>Authorities </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V2" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <span>Fake Cure </span>#}
+{#                            </td>#}
+{#                            <td align="center">#}
+{#                                <input style="text-align: center" type="text" id="V3" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td  align="center">#}
+{#                                <span>Religious </span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V4" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                <span>Panic </span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V5" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <span>Others</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                        <tr>#}
+{#                            <td  align="center">#}
+{#                                <span>Political</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V4" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td>#}
+{#                                <span>Racist</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V5" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <span>Xenophobic</span>#}
+{#                            </td>#}
+{#                            <td  align="center">#}
+{#                                <input style="text-align: center" type="text" id="V6" readonly size="3" value="0">#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                    </table>#}
+{#                </div>#}
+{#                <iframe src="{% url 'frontend:frame_5_blank' f5%}" height="200" width="1010"></iframe>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <input type="hidden" name="f_disp" value={{first_disp}}>#}
+{#    </form>#}
+{#</div>#}
+{#<script type="text/javascript">#}
+{#    function openCity(evt, cityName) {#}
+{#    var i, tabcontent, tablinks;#}
+{#    tabcontent = document.getElementsByClassName("tabcontent");#}
+{#    for (i = 0; i < tabcontent.length; i++) {#}
+{#    tabcontent[i].style.display = "none";#}
+{#    }#}
+{#    tablinks = document.getElementsByClassName("tablinks");#}
+{#    for (i = 0; i < tablinks.length; i++) {#}
+{#    tablinks[i].className = tablinks[i].className.replace(" active", "");#}
+{#    }#}
+{#    document.getElementById(cityName).style.display = "block";#}
+{#    evt.currentTarget.className += " active";#}
+{#    }#}
+{#</script>#}
+
+</body>
+</html>

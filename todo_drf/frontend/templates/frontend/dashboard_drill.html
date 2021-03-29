@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/in/in-all.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+    <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/layout.css' %}">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>
+        /* Add some padding on document's body to prevent the content
+        to go underneath the header and footer */
+
+        .head_rule{
+            display: inline-block;
+            width: 100%;
+        }
+        .head_rule0{
+            float: left;
+            margin-left: 500px;
+            margin-top: 10px;
+        }
+        .head_rule1{
+            float: left;
+            margin-left: 400px;
+            margin-top: 5px;
+        }
+        .head_rule2{
+            float: right;
+            margin-right: 50px;
+            margin-top: 40px;
+        }
+
+        .top_rule{
+            display: inline-block;
+            width: 100%;
+        }
+        .top_rule1{
+            float: left;
+            margin-left: 38px;
+        }
+        .top_rule2{
+            float: right;
+            margin-right: 38px;
+        }
+        .stat_bar{
+            display: inline-block;
+            width: 100%;
+        }
+
+
+        body{
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        .fake_div{
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+            width: 90%;
+            margin: 0 auto; /* Center the DIV horizontally */
+        }
+        .fixed-header, .fixed-footer{
+            width: 100%;
+            position: fixed;
+            background: #333;
+            padding: 10px 0;
+            color: #fff;
+        }
+        .fixed-header{
+            top: 0;
+        }
+        .fixed-footer{
+            bottom: 0;
+        }
+        .container{
+            width: 80%;
+            margin: 0 auto; /* Center the DIV horizontally */
+        }
+        nav a{
+            color: #fff;
+            text-decoration: none;
+            padding: 7px 25px;
+            display: inline-block;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="head_rule">
+        <div class="head_rule1">
+            <img src="{% static "frontend/factdemic_img_V1.png" %}" alt="Factdemic" height="200">
+        </div>
+        <div class="head_rule2">
+            <img src="{% static "frontend/wipro.png" %}" alt="Wipro" height="100">
+        </div>
+    </div>
+    <div align="center" style="font-size: large; color: red">
+        <p><strong>Fake Claim Detection and Meta Fact Checking through Textual Entailment based Validation </strong></p>
+    </div>
+    <div class="wrapper row1">
+      <header id="header" class="clear">
+        <nav>
+          <ul>
+            <li><a href="{% url "frontend:start_disp" %}">Stream & Check</a></li>
+            <li><a href="{% url "frontend:frame_4" %}">Monitor Web</a></li>
+            <li><a href="{% url "frontend:dashboard_index" %}">Dashboard</a></li>
+            <li><a href="http://projects.flowingdata.com/tut/interactive_network_demo">Tracing Fake News</a></li>
+            <li><a href="https://223895.8b.io/page1.html">Manual Check</a></li>
+
+            </ul>
+        </nav>
+      </header>
+    </div>
+    <div id="chart_div">
+        <div class="col-lg-3" style="float: left;  max-height: 650px;max-width:400px;overflow: scroll; overflow-x:hidden;">
+            <div style="background-color: rgb(41,41,40);">
+
+                <span style="color: rgb(255,255,255); text-align: center;"><p>Total Fake Count: {{overallFakeCount}}</p></span>
+            </div>
+            <div class="col-lg-12">
+                <form method="post" enctype="multipart/form-data" action="selectState">
+                {% csrf_token %}
+                <div class="col-lg-4" style="float: left;">
+                    {% for stat in s_name_sort_list %}
+                    <table style="border-width: 2px; border: #333;">
+                    <tr>
+                        <input type="submit" value={{stat}} name="stateName" style="width:100px;">
+                    </tr>
+                </table>
+                    {% endfor %}
+                </div>
+                <div style="float: left;">
+                    <canvas id="myChart" style="height: 1255px; width: 218px;"></canvas>
+                </div>
+                </form>
+
+            </div>
+        </div>
+            <br>
+            <br>
+{#            <div class="col-lg-6" style="float: left;">#}
+{#            <br>#}
+{#            <br>#}
+{#                <h2 style="text-align: center;">Hourly Fake-Tweet stats - {{stateName}}</h2><br>#}
+{#                    <canvas id="lineChart_h" style="height: 450px;"></canvas>#}
+{#            </div>#}
+            <div class="col-lg-6" style="float: left;">
+            <br>
+            <br>
+                <p align="center"><strong>Daily Fake-Tweet stats - {{stateName}}</strong></p>
+<!--                <h2 style="text-align: center;">Daily Fake-Tweet stats - {{stateName}}</h2><br>-->
+                    <canvas id="lineChart" style="height: 400px;"></canvas>
+            </div>
+            <br>
+            <br>
+             <div class="col-lg-6" style="float: left;">
+                <br>
+                <br>
+                <p align="center"><strong>Monthly Fake-Tweet stats - {{stateName}}</strong></p>
+<!--                <h2 style="text-align: center;">Monthly Fake-Tweet stats - {{stateName}}</h2><br>-->
+                    <canvas id="lineChart_m" style="height: 400px;"></canvas>
+            </div>
+            <div class="col-lg-3" style="float: left;max-width: 300px;  max-height: 650px;overflow: scroll; overflow-x:hidden;">
+                
+            </div>
+            </div>
+
+        </div>
+        <br>
+        
+            
+    </body>
+
+<script>
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chartOptions = {
+                            legend: {
+                                display: false
+                                    },
+                            scales: {
+                                xAxes: [{
+                                    barPercentage:1
+                                    }],
+                                yAxes: [
+                                        // {barPercentage: 1},
+                                        // {gridLines:{drawBorder: false}},
+                                        {ticks: {display:false}},
+                                        // {ticks: {mirror: true}},
+                                        {display: false},
+                                        
+                                        ],
+                            elements: {
+                                rectangle: {
+                                borderSkipped: 'left',
+                                }
+                            }
+                            }
+                        };
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+
+        // The data for our dataset
+        data: {
+            labels: {{ s_name_sort_list|safe }},
+            datasets: [{
+                data: {{ totals_sort_list|safe }},
+                label: 'Total Fake Counts',
+                barThickness:'flex',
+                backgroundColor:'#03a9fc',  
+                
+            }]
+        },
+
+        
+
+        // Configuration options go here
+        options: chartOptions
+});
+</script>
+
+{#<script>#}
+{#    var data_h={{data_tweet_h|safe}};#}
+{#    var chartOptions_h = {#}
+{#            legend: {#}
+{#                display: true#}
+{#                    },#}
+{#                    scales: {#}
+{#                        xAxes: [{#}
+{#                            display: true,#}
+{#                            ticks: {#}
+{#                                    autoSkip: true,#}
+{#                                    maxTicksLimit: 20#}
+{#                                },#}
+{#                            scaleLabel: {#}
+{#                                display: true,#}
+{#                                labelString: 'Timestamp'#}
+{#                            }#}
+{#                        }],#}
+{#                        yAxes: [{#}
+{#                            display: true,#}
+{#                            scaleLabel: {#}
+{#                                display: true,#}
+{#                                labelString: 'Counts'#}
+{#                            }#}
+{#                        }]#}
+{#                    }#}
+{#        };#}
+{#    var ctx_h = document.getElementById('lineChart_h').getContext('2d');#}
+{#	var myLineChart_h = new Chart(ctx_h, {#}
+{#        type: 'line',#}
+{#        data: {labels:{{axisvalues_h|safe}},datasets:data_h,},#}
+{#        options: chartOptions_h#}
+{#        });#}
+{#</script>#}
+
+<script>
+    var data2={{data_tweet|safe}};
+    var chartOptions2 = {
+            legend: {
+                display: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Timestamp'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Counts'
+                            }
+                        }]
+                    }
+        };
+    var ctx2 = document.getElementById('lineChart').getContext('2d');  
+	var myLineChart = new Chart(ctx2, {
+        type: 'line',
+        data: {labels:{{axisvalues|safe}},datasets:data2,},
+        options: chartOptions2
+        });
+</script>
+
+<script>
+    var data_m={{data_tweet_m|safe}};
+    var chartOptions_m = {
+            legend: {
+                display: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Timestamp'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Counts'
+                            }
+                        }]
+                    }
+        };
+    var ctx_m = document.getElementById('lineChart_m').getContext('2d');
+	var myLineChart_m = new Chart(ctx_m, {
+        type: 'line',
+        data: {labels:{{axisvalues_m|safe}},datasets:data_m,},
+        options: chartOptions_m
+        });
+</script>
+</html>
