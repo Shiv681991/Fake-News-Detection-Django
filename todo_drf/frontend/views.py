@@ -270,7 +270,7 @@ def drillDownAState(request):
 
 
     # =========================================================================
-    # Monthly Aspects
+    # Monthly Aspects for visualization
     # =========================================================================
     df2_m = df1.groupby(by=['year', 'month', 'label']).size().to_frame(name='count').sort_values(
         by=['year', 'month']).reset_index()
