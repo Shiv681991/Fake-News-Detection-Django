@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Test comment lines reverted back." />
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Removing a redundant conda environment file.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Shivam Sharma &lt;shiv.code6891@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1lklPG2osEFNJxWkjFzI04tGRmA" />
@@ -170,7 +177,12 @@
       <workItem from="1617008847573" duration="16861000" />
       <workItem from="1617026087949" duration="1101000" />
       <workItem from="1617032504385" duration="2506000" />
-      <workItem from="1617053219224" duration="6155000" />
+      <workItem from="1617053219224" duration="6944000" />
+      <workItem from="1617082294247" duration="710000" />
+      <workItem from="1617370578485" duration="118000" />
+      <workItem from="1617775242984" duration="929000" />
+      <workItem from="1617799809607" duration="1814000" />
+      <workItem from="1617955754453" duration="320000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -214,7 +226,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617060333684</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adding a conda environment file.">
+      <created>1617060723364</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617060723364</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Removing a redundant conda environment file.">
+      <created>1617060833321</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617060833321</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +256,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First add" />
@@ -237,11 +264,13 @@
     <MESSAGE value="2 comment lines added at line 4, 5" />
     <MESSAGE value="Test comment lines reverted back." />
     <MESSAGE value="Created a yml file for conda environment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created a yml file for conda environment." />
+    <MESSAGE value="Adding a conda environment file." />
+    <MESSAGE value="Removing a redundant conda environment file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing a redundant conda environment file." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1615022834170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
-    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$text_ml.coverage" NAME="text_ml Coverage Results" MODIFIED="1615118265872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$demo_Fakenews_test14mar21.coverage" NAME="demo_Fakenews_test14mar21 Coverage Results" MODIFIED="1616703994952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
+    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$text_ml.coverage" NAME="text_ml Coverage Results" MODIFIED="1615118265872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
+    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1615022834170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
   </component>
 </project>
