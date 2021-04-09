@@ -18,7 +18,7 @@ import dateutil
 from api.models import Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
 
 # Create your views here.
-
+# State-wise codes
 s_Code = {'in-py': "Puducherry",
          'in-ld': "Lakshadweep",
          'in-wb': "West_Bengal",

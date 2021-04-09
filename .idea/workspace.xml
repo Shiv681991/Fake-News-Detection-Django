@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Added a comment">
-      <change afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
