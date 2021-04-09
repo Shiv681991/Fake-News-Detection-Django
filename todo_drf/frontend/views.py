@@ -224,7 +224,7 @@ def drillDownAState(request):
 
 
     # =========================================================================
-    # Daily Aspects
+    # Daily Aspects for visualization
     # =========================================================================
     df2 = df1.groupby(by=['year', 'month', 'day', 'label']).size().to_frame(name='count').sort_values(
         by=['year', 'month', 'day']).reset_index()
