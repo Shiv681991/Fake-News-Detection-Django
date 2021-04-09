@@ -8,6 +8,7 @@ urlpatterns = [
 	path('', views.index, name="index"),
 	path('dashboard_index', views.dashboard_index, name="dashboard_index"),
 	path('selectState',views.drillDownAState,name='drillDown'),
+	path('trace_1',views.trace_1,name='trace_1'),
 	path('about', views.about, name="aboutus"),
 	# path('top_img/', settings.STATIC+'/frontend/factdemic_img_V1.png', name="top_img"),
 	path('start_disp', views.start_disp, name='start_disp'),

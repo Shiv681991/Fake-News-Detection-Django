@@ -18,7 +18,7 @@ import dateutil
 from api.models import Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
 
 # Create your views here.
-
+# State-wise codes
 s_Code = {'in-py': "Puducherry",
          'in-ld': "Lakshadweep",
          'in-wb': "West_Bengal",
@@ -103,6 +103,24 @@ def dashboard_index(request):
                'last_date': last_date, 'feku_list_pred': feku_list_pred, 'feku_list_RT': feku_list_RT}
 
     return render(request,'frontend/dashboard_index.html',context)
+
+
+def trace_1(request):
+    top_10_feku_pred, top_10_feku_RT = getIndiaTopFakers()
+    int_lst = np.arange(1, 8)
+    feku_list_RT = []
+    for feku in top_10_feku_RT:
+        feku_dict = {}
+        feku_dict["time"] = feku[0]
+        feku_dict["uname"] = feku[1]
+        feku_dict["tweet"] = feku[2]
+        feku_dict["label"] = feku[3]
+        feku_dict["RT"] = feku[4]
+        feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
+            random.choices(int_lst, k=1)[0]) + ".png"
+        feku_list_RT.append(feku_dict)
+    context = {'feku_list_RT': feku_list_RT}
+    return render(request, 'frontend/trace_1.html', context)
 
 def get_city_df():
     lab_lst = ['real', 'fake']
