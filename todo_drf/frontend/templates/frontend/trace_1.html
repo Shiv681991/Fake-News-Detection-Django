@@ -115,29 +115,28 @@
 </div>
 <!--	<hr style="height:0.5mm;border-width:0;color:gray;background-color:gray">-->
 	<div class="container">
-        <br>
-        <div align="center" class="sticky"><strong>Monitor Incoming Tweet Stream</strong></div>
-{#        <p align="center"><strong>Monitor Incoming Tweet Stream</strong></p>#}
-
-		<br>
-
-            <table id="faketable_monitor" align="center" width="100%">
-					<col style="width:7%">
-					<col style="width:70%">
-					<col style="width:10%">
-					<col style="width:2%">
+        <div id="top10fakers_RT" class="fake_div">
+            <p align="center"><strong>Top 10 fake tweets by Retweet-Counts</strong></p>
+                <table id="faketable_RT" align="center" width="100%">
                 <tr>
-                    <th colspan="2" style="text-align: center">Tweet</th>
-                    <th style="text-align: center">Label</th>
-                    <th style="text-align: right">Probability</th>
+                    <th colspan="2"><center>Twitter_User</center></th>
+                    <th><center>Time Stamp</center></th>
+                    <th><center>Tweet</center></th>
+                    <th><center>Label</center></th>
+                    <th><center>RT_Count</center></th>
                 </tr>
-            </table>
-        <hr>
-        <div id="task-container">
-			<div id="list-wrapper">
-
-			</div>	
-		</div>
+                    {% for feku in feku_list_RT %}
+                       <tr>
+                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>
+                           <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>
+                           <td align="center">{{ feku.time }}</td>
+                           <td>{{ feku.tweet }}</td>
+                           <td align="center" style="color: red">{{ feku.label }}</td>
+                           <td align="center">{{ feku.RT }}</td>
+                       </tr>
+                    {% endfor %}
+                </table>
+        </div>
 {#        <input type="hidden" id='proc_status' value={{ proc_status }}>#}
         <input type="hidden" id="loc_element" value={{ loc }}>
 	</div>
