@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .forms import locationForm, UploadFileForm
+from .forms import locationForm, UploadFileForm, in_textForm
 from .apps import FrontendConfig
 import sys
 sys.path.append("/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf")
@@ -111,14 +111,26 @@ def trace_1(request):
     feku_list_RT = []
     for feku in top_10_feku_RT:
         feku_dict = {}
-        feku_dict["time"] = feku[0]
-        feku_dict["uname"] = feku[1]
-        feku_dict["tweet"] = feku[2]
-        feku_dict["label"] = feku[3]
-        feku_dict["RT"] = feku[4]
+        feku_dict["id"] = feku[0]
+        feku_dict["time"] = feku[1]
+        feku_dict["uname"] = feku[2]
+        feku_dict["tweet"] = feku[3]
+        feku_dict["label"] = feku[4]
+        feku_dict["RT"] = feku[5]
         feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
+        feku_dict["feku_retweeters"] = ['RTweeter1', 'RTweeter2', 'RTweeter3', 'RTweeter4', 'RTweeter5']
         feku_list_RT.append(feku_dict)
+    # for feku in top_10_feku_RT:
+    #     feku_dict = {}
+    #     feku_dict["time"] = feku[0]
+    #     feku_dict["uname"] = feku[1]
+    #     feku_dict["tweet"] = feku[2]
+    #     feku_dict["label"] = feku[3]
+    #     feku_dict["RT"] = feku[4]
+    #     feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
+    #         random.choices(int_lst, k=1)[0]) + ".png"
+    #     feku_list_RT.append(feku_dict)
     context = {'feku_list_RT': feku_list_RT}
     return render(request, 'frontend/trace_1.html', context)
 
@@ -164,7 +176,7 @@ def get_city_df():
 def getIndiaTopFakers():
     df1 = get_city_df()
     top_10_feku_pred = df1[df1['label']=='fake'][['date', 'username', 'tweet', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
-    top_10_feku_RT = df1[df1['label'] == 'fake'][['date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
+    top_10_feku_RT = df1[df1['label'] == 'fake'][['id', 'date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
     return top_10_feku_pred, top_10_feku_RT
 
 def getIndiaGeoData(sHist_df):
@@ -185,6 +197,15 @@ def getIndiaBarData(sHist_df):
     overallFakeCount = np.sum(totals_sort_list)
     return (s_name_sort_list, totals_sort_list, overallFakeCount)
 
+def showRT(request):
+    print(request.POST.dict())
+    # Line chart data for Indian scenario
+    source_id = request.POST.get('trace')
+    if source_id:
+        # populate the RT list
+        RT_list = ['RTweeter1', 'RTweeter2', 'RTweeter3', 'RTweeter4', 'RTweeter5']
+    context = {'rt_people_list': RT_list, 'source': source_id}
+    return render(request,'frontend/trace_2.html',context)
 
 def drillDownAState(request):
     print (request.POST.dict())
@@ -606,6 +627,15 @@ def start_disp(request):
     # print(response)
     return render(request, temp, response)
 
+def proc_classification(in_text):
+    result = FrontendConfig.text_FNF_classify(in_text)
+    return result
+
+def proc_entailment(in_text):
+    print("===========>Entailment module called")
+    result = PredictorConfig.fake_verdict(in_text)
+    print(result)
+    return result
 
 # On button click backend module to be called, for each tweet in stream and check
 @api_view(['GET'])
@@ -617,7 +647,7 @@ def contact_F2B_CLS(request, in_text):
     # -------Result_class = get_classification_results()
     # -------Result_ent = get_entailment_results()
 
-    Result = FrontendConfig.text_FNF_classify(in_text)
+    Result = proc_classification(in_text)
     # out_list = ["URL1", "URL2", "URL3", "URL4", "URL5", "URL6", "URL7", "URL8", "URL9","URL10"]
     Res_Json = {'Tweet': in_text, 'Result': Result}
     return Response(Res_Json)
@@ -631,9 +661,50 @@ def contact_F2B_ENT(request, in_text):
     # Logic for Fake news detection/entailment
     # -------Result_class = get_classification_results()
     # -------Result_ent = get_entailment_results()
-    Result = PredictorConfig.fake_verdict(in_text)
+    Result = proc_entailment(in_text)
     print(f"==========>Returned updated final entailment verdict: {Result}")
     # out_list = Result[2:]
     # Res_Json = {'Tweet': in_text, 'Result': Result[0], 'o_lst': out_list}
     # Res_Json = {'Tweet': in_text, 'Result': Result, 'o_lst': out_list}
     return Response(Result)
+
+
+def render_manual_page(request):
+    form = in_textForm(request.POST)
+    context = {'proc_done': False, 'form': form}
+    return render(request, 'frontend/manual.html', context)
+
+def manual_check_now(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and popclassificationulate it with data from the request:
+        form = in_textForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            in_text = form.cleaned_data['in_text']
+            choice = form.cleaned_data['check_fields']
+            print("=============>The choice is : ", choice)
+            ent_flag = False
+            fake_flag = False
+            if choice=="1":
+                ent_flag = True
+                Res = proc_entailment(in_text)
+                if Res['Result'] == 'Fake':
+                    fake_flag = True
+            else:
+                Res = proc_classification(in_text)
+                if Res == 'Fake':
+                    fake_flag = True
+            out_info = Res
+            form = in_textForm()
+            context = {'proc_done': True, 'out_info': out_info, 'form': form, 'in_text': in_text, 'ent_flag': ent_flag, 'fake_flag': fake_flag}
+            # redirect to a new URL:
+            return render(request, 'frontend/manual.html', context)
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = in_textForm()
+
+    return render(request, 'frontend/manual.html', {'form': form})

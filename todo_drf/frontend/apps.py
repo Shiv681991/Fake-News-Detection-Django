@@ -92,7 +92,7 @@ def define_text_model(length, vocabulary_size, embedding_matrix):
     output = Dense(2, activation='softmax')(dense)
     model = Model(inputs=[input1], outputs=output)
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.summary()
+    # model.summary()
     return model
 
 
@@ -108,7 +108,7 @@ class FrontendConfig(AppConfig):
         prd_dev = np.argmax(pred_dev, axis=1)
         # print(prd_dev)
         if prd_dev[0] == 1:
-            lab = 'real'
+            lab = 'Not-Fake'
         else:
-            lab = 'fake'
+            lab = 'Fake'
         return lab

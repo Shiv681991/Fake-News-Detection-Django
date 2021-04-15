@@ -28,3 +28,10 @@ class locationForm(forms.Form):
 
 class UploadFileForm(forms.Form):
     file = forms.FileField(required=False)
+
+check_choices = (("1", "ENT"),
+                 ("2", "CLS"))
+
+class in_textForm(forms.Form):
+    in_text = forms.CharField(widget=forms.Textarea(attrs={'rows': 2, 'cols': 70}))
+    check_fields = forms.ChoiceField(choices = check_choices, widget=forms.RadioSelect)
