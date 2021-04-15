@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Comment check after trace update">
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Updated the Trace and Manual check pages.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/static/frontend/layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/static/frontend/layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/webcontent_google_search.csv" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/webcontent_google_search.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +25,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Branch_V2" />
+        <entry key="$PROJECT_DIR$" value="Comment_check_after_trace_update" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -205,7 +193,7 @@
       <workItem from="1617955754453" duration="6452000" />
       <workItem from="1618428307327" duration="3819000" />
       <workItem from="1618433548266" duration="3745000" />
-      <workItem from="1618496073100" duration="16413000" />
+      <workItem from="1618496073100" duration="17067000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -298,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618006133809</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Updated the Trace and Manual check pages.">
+      <created>1618513402869</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1618513402869</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +334,8 @@
     <MESSAGE value="Added a comment" />
     <MESSAGE value="Code comment for statewise setting." />
     <MESSAGE value="Comment check after trace update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comment check after trace update" />
+    <MESSAGE value="Updated the Trace and Manual check pages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the Trace and Manual check pages." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$demo_Fakenews_test14mar21.coverage" NAME="demo_Fakenews_test14mar21 Coverage Results" MODIFIED="1616703994952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
