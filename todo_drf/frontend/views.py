@@ -176,7 +176,7 @@ def get_city_df():
 def getIndiaTopFakers():
     df1 = get_city_df()
     top_10_feku_pred = df1[df1['label']=='fake'][['date', 'username', 'tweet', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
-    top_10_feku_RT = df1[df1['label'] == 'fake'][['id', 'date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
+    top_10_feku_RT = df1[df1['label'] == 'fake'][['date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
     return top_10_feku_pred, top_10_feku_RT
 
 def getIndiaGeoData(sHist_df):
