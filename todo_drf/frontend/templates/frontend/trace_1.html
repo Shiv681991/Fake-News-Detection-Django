@@ -4,9 +4,47 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/layout.css' %}">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <style type="text/css">
+        ul, #myUL {
+          list-style-type: none;
+        }
+
+        #myUL {
+          margin: 0;
+          padding: 0;
+        }
+
+        .caret {
+          cursor: pointer;
+          -webkit-user-select: none; /* Safari 3.1+ */
+          -moz-user-select: none; /* Firefox 2+ */
+          -ms-user-select: none; /* IE 10+ */
+          user-select: none;
+        }
+
+        .caret::before {
+          content: "\25B6";
+          color: black;
+          display: inline-block;
+          margin-right: 6px;
+        }
+
+        .caret-down::before {
+          -ms-transform: rotate(90deg); /* IE 9 */
+          -webkit-transform: rotate(90deg); /* Safari */'
+          transform: rotate(90deg);
+        }
+
+        .nested {
+          display: none;
+        }
+
+        .active {
+          display: block;
+        }
         h1, h2, h3, h4, top_text, p, span, strike{
               font-family: 'Montserrat', sans-serif;
             margin-left: 1cm;
@@ -107,7 +145,7 @@
         <li><a href="{% url "frontend:frame_4" %}">Monitor Web</a></li>
         <li><a href="{% url "frontend:dashboard_index" %}">Dashboard</a></li>
         <li><a href="{% url "frontend:trace_1" %}">Tracing Fake News</a></li>
-        <li><a href="https://223895.8b.io/page1.html">Manual Check</a></li>
+        <li><a href="{% url "frontend:render_manual_page" %}">Manual Check</a></li>
 
       </ul>
     </nav>
@@ -115,32 +153,58 @@
 </div>
 <!--	<hr style="height:0.5mm;border-width:0;color:gray;background-color:gray">-->
 	<div class="container">
-        <div id="top10fakers_RT" class="fake_div">
-            <p align="center"><strong>Top 10 fake tweets by Retweet-Counts</strong></p>
-                <table id="faketable_RT" align="center" width="100%">
-                <tr>
-                    <th colspan="2"><center>Twitter_User</center></th>
-                    <th><center>Time Stamp</center></th>
-                    <th><center>Tweet</center></th>
-                    <th><center>Label</center></th>
-                    <th><center>RT_Count</center></th>
-                </tr>
-                    {% for feku in feku_list_RT %}
-                       <tr>
-                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>
-                           <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>
-                           <td align="center">{{ feku.time }}</td>
-                           <td>{{ feku.tweet }}</td>
-                           <td align="center" style="color: red">{{ feku.label }}</td>
-                           <td align="center">{{ feku.RT }}</td>
-                       </tr>
-                    {% endfor %}
-                </table>
-        </div>
-{#        <input type="hidden" id='proc_status' value={{ proc_status }}>#}
-        <input type="hidden" id="loc_element" value={{ loc }}>
+<!--        <form method="post" enctype="multipart/form-data" action="showRT">-->
+<!--            {% csrf_token %}-->
+            <div id="top10fakers_RT" class="fake_div">
+                <p align="center"><strong>Top 10 fake tweets by Retweet-Counts</strong></p>
+                    <table id="faketable_RT" align="center" width="100%">
+                        <tr>
+                            <th width="15%" colspan="2"><center>Twitter_User</center></th>
+                            <th width="10%"><center>Time Stamp</center></th>
+                            <th width="50%"><center>Tweet</center></th>
+                            <th width="5%"><center>Label</center></th>
+                            <th width="5%"><center>RT_Count</center></th>
+                        </tr>
+                    </table>
+
+                            <ul id="myUL">
+                                {% for feku in feku_list_RT %}
+                                <li><span class="caret"><table align="center" width="100%">
+                                       <tr>
+                                           <td width="5%"><img align="center" width="60px" src={{ feku.src }} alt=""></td>
+                                           <td width="10%" align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>
+                                           <td width="5%" align="center">{{ feku.time }}</td>
+                                           <td width="50%">{{ feku.tweet }}</td>
+                                           <td width="5%" align="center" style="color: red">{{ feku.label }}</td>
+                                           <td width="5%" align="center">{{ feku.RT }}</td>
+<!--                                           <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
+<!--                                            <input type="hidden" id="tweet_id" value={{ feku.id }} name="trace"></td>-->
+                                        </tr>
+                                    </table></span>
+                                    <ul class="nested">
+                                        {% for feku_retweeter in feku.feku_retweeters %}
+                                            <li>feku_retweeter</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% endfor %}
+                            </ul>
+<!--                           <tr>-->
+<!--                               <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>-->
+<!--                               <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>-->
+<!--                               <td align="center">{{ feku.time }}</td>-->
+<!--                               <td>{{ feku.tweet }}</td>-->
+<!--                               <td align="center" style="color: red">{{ feku.label }}</td>-->
+<!--                               <td align="center">{{ feku.RT }}</td>-->
+<!--                               <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
+<!--                                <input type="hidden" id="tweet_id" value={{ feku.id }} name="trace"></td>-->
+<!--                           </tr>-->
+
+
+
+            </div>
+<!--        </form>-->
 	</div>
-    <h2>Further processing needs to be done</h2>
 </body>
 </html>
 
@@ -163,6 +227,16 @@
 			-- Remove extra data on re-render
 			-- CSRF Token
 		*/
+
+        var toggler = document.getElementsByClassName("caret");
+        var i;
+
+        for (i = 0; i < toggler.length; i++) {
+          toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+          });
+        }
 
 		function getCookie(name) {
 		    var cookieValue = null;
