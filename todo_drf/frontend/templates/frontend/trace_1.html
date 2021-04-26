@@ -2,6 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <script src="https://code.highcharts.com/mapdata/countries/in/in-all.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+    <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/layout.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -183,7 +197,7 @@
                                     </table></span>
                                     <ul class="nested">
                                         {% for feku_retweeter in feku.feku_retweeters %}
-                                            <li>feku_retweeter</li>
+                                            <li><a href="https://twitter.com/{{ feku_retweeter.rt_user_scrname }}">{{feku_retweeter.rt_user_name}}</a>, {{feku_retweeter.rt_toc}}</li>
                                         {% endfor %}
                                     </ul>
                                 </li>
@@ -205,6 +219,13 @@
             </div>
 <!--        </form>-->
 	</div>
+    <hr>
+    <h3 align="center">Normalized spread rate</h3>
+    <div align="center">
+        <div class="col-lg-offset-1" style="width: 1000px">
+                <canvas id="myChart" style="height: 80pt; width: 400pt;"></canvas>
+        </div>
+    </div>
 </body>
 </html>
 
@@ -238,200 +259,248 @@
           });
         }
 
-		function getCookie(name) {
-		    var cookieValue = null;
-		    if (document.cookie && document.cookie !== '') {
-		        var cookies = document.cookie.split(';');
-		        for (var i = 0; i < cookies.length; i++) {
-		            var cookie = cookies[i].trim();
-		            // Does this cookie string begin with the name we want?
-		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-		                break;
-		            }
-		        }
-		    }
-		    return cookieValue;
-		}
-		var csrftoken = getCookie('csrftoken');
+		// function getCookie(name) {
+		//     var cookieValue = null;
+		//     if (document.cookie && document.cookie !== '') {
+		//         var cookies = document.cookie.split(';');
+		//         for (var i = 0; i < cookies.length; i++) {
+		//             var cookie = cookies[i].trim();
+		//             // Does this cookie string begin with the name we want?
+		//             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		//                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		//                 break;
+		//             }
+		//         }
+		//     }
+		//     return cookieValue;
+		// }
+		// var csrftoken = getCookie('csrftoken');
+        //
+		// var activeItem = null
+		// var list_snapshot = []
+        // /*console.log({'Proc Status': document.getElementById('proc_status').value})
+        // if (document.getElementById('proc_status').value){
+        //     buildList()
+        // }*/
+        // buildList()
+        // var wrapper = document.getElementById('list-wrapper')
+        // function rend(i, list, l_var) {
+        //     setTimeout(function () {
+        //         try {
+        //             document.getElementById(`data-row-${i}`).remove()
+        //         } catch (err) {
+        //
+        //         }
+        //         {#var img_name = list[i].iids#}
+        //
+        //         {#var file_name = `/static/frontend/Pictures_Delhi/`+img_name#}
+        //         {#var im_con = `<img src="${file_name}" width="50px" />`#}
+        //         var tweet = list[i].tweet
+        //         var FNF = list[i].FNF
+        //         var prob = list[i].prob
+        //         var u1 = list[i].u1.split(',')[0]
+        //         var u1_prob = list[i].u1.split(',')[1]
+        //         var u2 = list[i].u2.split(',')[0]
+        //         var u2_prob = list[i].u2.split(',')[1]
+        //         var u3 = list[i].u3.split(',')[0]
+        //         var u3_prob = list[i].u3.split(',')[1]
+        //         var u4 = list[i].u4.split(',')[0]
+        //         var u4_prob = list[i].u4.split(',')[1]
+        //         var u5 = list[i].u5.split(',')[0]
+        //         var u5_prob = list[i].u5.split(',')[1]
+        //         var u6 = list[i].u6.split(',')[0]
+        //         var u6_prob = list[i].u6.split(',')[1]
+        //         var u7 = list[i].u7.split(',')[0]
+        //         var u7_prob = list[i].u7.split(',')[1]
+        //         var u8 = list[i].u8.split(',')[0]
+        //         var u8_prob = list[i].u8.split(',')[1]
+        //         var u9 = list[i].u9.split(',')[0]
+        //         var u9_prob = list[i].u9.split(',')[1]
+        //         var u10 = list[i].u10.split(',')[0]
+        //         var u10_prob = list[i].u10.split(',')[1]
+        //
+        //         var tag_str = [];
+        //         if (FNF=="Fake"){
+        //             tag_str.push(`<span style="background-color: red;font-weight:bold; color: white">${FNF}</span>`)
+        //         }
+        //         else {
+        //             tag_str.push(`<span style="background-color: limegreen;font-weight:bold">${FNF}</span>`)
+        //         }
+        //
+        //
+        //         var img_name = list[i].iids
+        //         var file_name = `/static/frontend/`+l_var+`/`+img_name
+        //         // console.log({'img con': file_name})
+        //         var im_con = `<img src="${file_name}" width="50px" />`
+        //
+        //         // var title = `<span class="title"><strong>Tweet: </strong>${tweet} - ${tag_str} - ${prob}</span>`
+        //
+        //
+        //         {#console.log({"Frame 4 data": title})#}
+        //         {#console.log({"Img data": file_name})#}
+        //
+        //         // // Without URLs using table
+		// 		// var tr = document.createElement('tr');
+		// 		// var td1 = document.createElement('td');
+		// 		// td1.style.textAlign='center';
+		// 		// td1.innerHTML=im_con;
+		// 		// var td2 = document.createElement('td');
+		// 		// td2.innerHTML = tweet
+		// 		// var td3 = document.createElement('td');
+		// 		// td3.style.textAlign='center';
+		// 		// td3.innerHTML=tag_str
+		// 		// var td4 = document.createElement('td');
+		// 		// td4.style.textAlign='center';
+		// 		// td4.innerHTML=prob
+		// 		// tr.appendChild(td1);
+		// 		// tr.appendChild(td2);
+		// 		// tr.appendChild(td3);
+		// 		// tr.appendChild(td4);
+		// 		// document.getElementById('faketable_monitor').appendChild(tr)
+        //
+		// 		// FULL TABLE CONTENT PUSH
+		// 		// Without URL
+        //         var item = `
+        //             <div id="data-row-${i}" class="task_wrapper">
+        //                 <table align="center" width="100%">
+        //                 <col style="width:7%">
+        //                 <col style="width:60%">
+        //                 <col style="width:13%">
+        //                 <col style="width:6%">
+        //                   <tr>
+        //                         <td align="center">${im_con}</td>
+        //                         <td>${tweet}</td>
+        //                         <td align="center">${tag_str}</td>
+        //                         <td align="center">${prob}</td>
+        //                   </tr>
+        //                 </table>
+        //             </div>
+        //             <hr>
+        //         `
+        //         // With URLs
+        //         // var item = `
+        //         //     <div id="data-row-${i}" class="task_wrapper">
+        //         //         <table style="width:100%">
+        //         //           <tr>
+        //         //                 <td>${im_con}</td>
+        //         //                 <td>${title}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2" align="center"><strong>Reference documents to be used to verify facts</strong></td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">1. <a href="${u1}">${u1}</a> - ${u1_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">2. <a href="${u2}">${u2}</a> - ${u2_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">3. <a href="${u3}">${u3}</a> - ${u3_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">4. <a href="${u4}">${u4}</a> - ${u4_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">5. <a href="${u5}">${u5}</a> - ${u5_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">6. <a href="${u6}">${u6}</a> - ${u6_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">7. <a href="${u7}">${u7}</a> - ${u7_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">8. <a href="${u8}">${u8}</a> - ${u8_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">9. <a href="${u9}">${u9}</a> - ${u9_prob}</td>
+        //         //           </tr>
+        //         //             <tr>
+        //         //                 <td colspan="2">10. <a href="${u10}">${u10}</a> - ${u10_prob}</td>
+        //         //           </tr>
+        //         //         </table>
+        //         //     </div>
+        //         // `
+        //         //wrapper.innerHTML += item
+        //         wrapper.insertAdjacentHTML('afterbegin', item);
+        //     }, 2000 * i);
+        // }
+        //
+		// function buildList(){
+		// 	{#var wrapper = document.getElementById('list-wrapper')#}
+		// 	//wrapper.innerHTML = ''
+        //     var loc_var = document.getElementById('loc_element').value
+		// 	if (loc_var === 'DEMO'){
+        //         url = 'http://127.0.0.1:8000/api/entaillist/'
+        //     }
+		// 	else if (loc_var === 'DLI'){
+        //         url = 'http://127.0.0.1:8000/api/entail_dli_list/'
+        //     }
+        //
+		// 	fetch(url)
+		// 	.then((resp) => resp.json())
+		// 	.then(function(data){
+		// 		{#console.log('Data:', data)#}
+        //
+		// 		var list = data
+		// 		for (var i in list){
+        //             rend(i, list, loc_var);
+		// 		}
+        //
+		// 		if (list_snapshot.length > list.length){
+		// 			for (var i = list.length; i < list_snapshot.length; i++){
+		// 				document.getElementById(`data-row-${i}`).remove()
+		// 			}
+		// 		}
+		// 		list_snapshot = list
+		// 	})
+		// }
 
-		var activeItem = null
-		var list_snapshot = []
-        /*console.log({'Proc Status': document.getElementById('proc_status').value})
-        if (document.getElementById('proc_status').value){
-            buildList()
-        }*/
-        buildList()
-        var wrapper = document.getElementById('list-wrapper')
-        function rend(i, list, l_var) {
-            setTimeout(function () {
-                try {
-                    document.getElementById(`data-row-${i}`).remove()
-                } catch (err) {
-
-                }
-                {#var img_name = list[i].iids#}
-
-                {#var file_name = `/static/frontend/Pictures_Delhi/`+img_name#}
-                {#var im_con = `<img src="${file_name}" width="50px" />`#}
-                var tweet = list[i].tweet
-                var FNF = list[i].FNF
-                var prob = list[i].prob
-                var u1 = list[i].u1.split(',')[0]
-                var u1_prob = list[i].u1.split(',')[1]
-                var u2 = list[i].u2.split(',')[0]
-                var u2_prob = list[i].u2.split(',')[1]
-                var u3 = list[i].u3.split(',')[0]
-                var u3_prob = list[i].u3.split(',')[1]
-                var u4 = list[i].u4.split(',')[0]
-                var u4_prob = list[i].u4.split(',')[1]
-                var u5 = list[i].u5.split(',')[0]
-                var u5_prob = list[i].u5.split(',')[1]
-                var u6 = list[i].u6.split(',')[0]
-                var u6_prob = list[i].u6.split(',')[1]
-                var u7 = list[i].u7.split(',')[0]
-                var u7_prob = list[i].u7.split(',')[1]
-                var u8 = list[i].u8.split(',')[0]
-                var u8_prob = list[i].u8.split(',')[1]
-                var u9 = list[i].u9.split(',')[0]
-                var u9_prob = list[i].u9.split(',')[1]
-                var u10 = list[i].u10.split(',')[0]
-                var u10_prob = list[i].u10.split(',')[1]
-
-                var tag_str = [];
-                if (FNF=="Fake"){
-                    tag_str.push(`<span style="background-color: red;font-weight:bold; color: white">${FNF}</span>`)
-                }
-                else {
-                    tag_str.push(`<span style="background-color: limegreen;font-weight:bold">${FNF}</span>`)
-                }
 
 
-                var img_name = list[i].iids
-                var file_name = `/static/frontend/`+l_var+`/`+img_name
-                // console.log({'img con': file_name})
-                var im_con = `<img src="${file_name}" width="50px" />`
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chartOptions = {
+                            legend: {
+                                display: false
+                                    },
+                            scales: {
+                                xAxes: [{
+                                    barPercentage:1
+                                    }],
+                                yAxes: [
+                                        // {barPercentage: 1},
+                                        // {gridLines:{drawBorder: false}},
+                                        // {ticks: {display:true}},
+                                        // {ticks: {mirror: true}},
+                                        {display: true},
 
-                // var title = `<span class="title"><strong>Tweet: </strong>${tweet} - ${tag_str} - ${prob}</span>`
+                                        ],
+                            elements: {
+                                rectangle: {
+                                borderSkipped: 'left',
+                                }
+                            }
+                            }
+                        };
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+
+        // The data for our dataset
+        data: {
+            labels: {{ uname_med_sec_list_dict.uname|safe }},
+            datasets: [{
+                data: {{ uname_med_sec_list_dict.med_sec_sort_list|safe }},
+                label: 'Virality index',
+                // barThickness:'flex',
+                backgroundColor:'#03a9fc',
+
+            }]
+        },
 
 
-                {#console.log({"Frame 4 data": title})#}
-                {#console.log({"Img data": file_name})#}
 
-                // // Without URLs using table
-				// var tr = document.createElement('tr');
-				// var td1 = document.createElement('td');
-				// td1.style.textAlign='center';
-				// td1.innerHTML=im_con;
-				// var td2 = document.createElement('td');
-				// td2.innerHTML = tweet
-				// var td3 = document.createElement('td');
-				// td3.style.textAlign='center';
-				// td3.innerHTML=tag_str
-				// var td4 = document.createElement('td');
-				// td4.style.textAlign='center';
-				// td4.innerHTML=prob
-				// tr.appendChild(td1);
-				// tr.appendChild(td2);
-				// tr.appendChild(td3);
-				// tr.appendChild(td4);
-				// document.getElementById('faketable_monitor').appendChild(tr)
-
-				// FULL TABLE CONTENT PUSH
-				// Without URL
-                var item = `
-                    <div id="data-row-${i}" class="task_wrapper">
-                        <table align="center" width="100%">
-                        <col style="width:7%">
-                        <col style="width:60%">
-                        <col style="width:13%">
-                        <col style="width:6%">
-                          <tr>
-                                <td align="center">${im_con}</td>
-                                <td>${tweet}</td>
-                                <td align="center">${tag_str}</td>
-                                <td align="center">${prob}</td>
-                          </tr>
-                        </table>
-                    </div>
-                    <hr>
-                `
-                // With URLs
-                // var item = `
-                //     <div id="data-row-${i}" class="task_wrapper">
-                //         <table style="width:100%">
-                //           <tr>
-                //                 <td>${im_con}</td>
-                //                 <td>${title}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2" align="center"><strong>Reference documents to be used to verify facts</strong></td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">1. <a href="${u1}">${u1}</a> - ${u1_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">2. <a href="${u2}">${u2}</a> - ${u2_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">3. <a href="${u3}">${u3}</a> - ${u3_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">4. <a href="${u4}">${u4}</a> - ${u4_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">5. <a href="${u5}">${u5}</a> - ${u5_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">6. <a href="${u6}">${u6}</a> - ${u6_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">7. <a href="${u7}">${u7}</a> - ${u7_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">8. <a href="${u8}">${u8}</a> - ${u8_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">9. <a href="${u9}">${u9}</a> - ${u9_prob}</td>
-                //           </tr>
-                //             <tr>
-                //                 <td colspan="2">10. <a href="${u10}">${u10}</a> - ${u10_prob}</td>
-                //           </tr>
-                //         </table>
-                //     </div>
-                // `
-                //wrapper.innerHTML += item
-                wrapper.insertAdjacentHTML('afterbegin', item);
-            }, 2000 * i);
-        }
-
-		function buildList(){
-			{#var wrapper = document.getElementById('list-wrapper')#}
-			//wrapper.innerHTML = ''
-            var loc_var = document.getElementById('loc_element').value
-			if (loc_var === 'DEMO'){
-                url = 'http://127.0.0.1:8000/api/entaillist/'
-            }
-			else if (loc_var === 'DLI'){
-                url = 'http://127.0.0.1:8000/api/entail_dli_list/'
-            }
-
-			fetch(url)
-			.then((resp) => resp.json())
-			.then(function(data){
-				{#console.log('Data:', data)#}
-
-				var list = data
-				for (var i in list){
-                    rend(i, list, loc_var);
-				}
-
-				if (list_snapshot.length > list.length){
-					for (var i = list.length; i < list_snapshot.length; i++){
-						document.getElementById(`data-row-${i}`).remove()
-					}
-				}
-				list_snapshot = list
-			})
-		}
+        // Configuration options go here
+        options: chartOptions
+});
 	</script>

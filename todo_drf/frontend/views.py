@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 import random
 import dateutil
-
+from twython import Twython
 
 from api.models import Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
 
@@ -109,17 +109,81 @@ def trace_1(request):
     top_10_feku_pred, top_10_feku_RT = getIndiaTopFakers()
     int_lst = np.arange(1, 8)
     feku_list_RT = []
-    for feku in top_10_feku_RT:
+    fake_med_sec_list = []
+    uname_med_sec_dict = dict()
+    for ind, feku in enumerate(top_10_feku_RT):
+        print(f"Printing for user {ind}")
         feku_dict = {}
         feku_dict["id"] = feku[0]
         feku_dict["time"] = feku[1]
         feku_dict["uname"] = feku[2]
         feku_dict["tweet"] = feku[3]
         feku_dict["label"] = feku[4]
-        feku_dict["RT"] = feku[5]
+        # feku_dict["RT"] = feku[5]
         feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
-        feku_dict["feku_retweeters"] = ['RTweeter1', 'RTweeter2', 'RTweeter3', 'RTweeter4', 'RTweeter5']
+        # print("Top RT feku Dictionary populated for this user, checking for retweeter IDs...")
+        in_id = feku_dict["id"]
+        # print(f"Checking for the tweet: {in_id} with type {type(in_id)}")
+        CONSUMER_KEY = "Vw1I28kAqmtlR6bxxWC4XRotQ"
+        CONSUMER_SECRET = "5BWJpsp7I7flL7A2s6UHKbfkc1CNcJun0oTcBQLpbbAYf5bLux"
+        OAUTH_TOKEN = "2457738439-exMpEGlgXiCGMIkdPZ55UzjYZnTDUMWQjJGo6at"
+        OAUTH_TOKEN_SECRET = "AYG1URNodgVYONyCXyIgsPBiuwWRLCzy7D29WO0kRNFQE"
+        # CONSUMER_KEY = "cM593dZzYf2E5iWAWAY5DLYh1"
+        # CONSUMER_SECRET = "mtbmruUaGbyct7E1gE9jFBiosL0IoLHsvDCVhnfFru3I8oBRFA"
+        # OAUTH_TOKEN = "4827039441-TGPGL0EOa0Eflp2LoEGgelaIhd5IijBzYi4A5aL"
+        # OAUTH_TOKEN_SECRET = "T9M1ynlEW89mqlolZjbcHo08InzLbKgcqPNxMd0UFg7Aj"
+        # CONSUMER_KEY = "gp8cEMcGZafEqB9RfOiHrLEod"
+        # CONSUMER_SECRET = "uo78v5nFF3cjc2gSjkpPDL3XpIqUvXZ5qJ7FIMx3VNVOkIJPRX"
+        # OAUTH_TOKEN = "4827125495-Ujpubs7jfxyDanohxq2PtpeRXFnqladYBNuMdEd"
+        # OAUTH_TOKEN_SECRET = "0FMAcYWtLJvQYzf7LJjKQwbzrKEJDtLEa99iyRNGUNBWK"
+        twitter = Twython(
+            CONSUMER_KEY, CONSUMER_SECRET,
+            OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
+
+        retweets = twitter.get_retweets(id=in_id, count=100)
+        username_time_list = []
+        if len(retweets):
+            if len(retweets)==1:
+                # Dummy value for now, need to update using the difference from the priginal tweet
+                cur_fake_med_sec = (dateutil.parser.parse(retweets[0]['created_at'])-dateutil.parser.parse(feku_dict["time"])).total_seconds()
+                uname_med_sec_dict[feku_dict["uname"]] = cur_fake_med_sec
+            else:
+                tot_secdiff_list=[]
+                for i, rt in enumerate(retweets):
+                    rt_toc = rt['created_at']
+                    # rt_id = rt['id']
+                    # rt_user_id = rt['user']['id']
+                    rt_user_name = rt['user']['name']
+                    rt_user_scrname = rt['user']['screen_name']
+                    # rt_user_loc = rt['user']['location']
+                    username_time_list.append({'rt_user_scrname': rt_user_scrname, 'rt_user_name': rt_user_name, 'rt_toc': rt_toc})
+                    if i < len(retweets) - 1:
+                        cur_tot_sec = (dateutil.parser.parse(retweets[i]['created_at']) - dateutil.parser.parse(
+                            retweets[i + 1]['created_at'])).total_seconds()
+                        # print(cur_tot_sec)
+                        tot_secdiff_list.append(cur_tot_sec)
+                cur_fake_med_sec = np.median(tot_secdiff_list)
+                uname_med_sec_dict[feku_dict["uname"]] = cur_fake_med_sec
+            feku_dict["feku_retweeters"] = username_time_list
+            fake_med_sec_list.append(cur_fake_med_sec)
+        else:
+            feku_dict["feku_retweeters"] = ['No Retweet details found']
+        # rt_ids = twitter.get_retweeters_ids(id=in_id, count=100)
+        # print(f"A total of {len(rt_ids['ids'])} ids found.\n{rt_ids}\nChecking for screen names...")
+        # if len(rt_ids['ids']):
+        #     sampleids = [str(i) for i in rt_ids['ids']]
+        #     comma_separated_string = ",".join(sampleids)
+        #     output = twitter.lookup_user(user_id=comma_separated_string)
+        #     # print(f"Retweeter details list shown below: \n{output}")
+        #     username_time_list = []
+        #     for user in output:
+        #         username_time_list.append({'screen_name': user['screen_name'], 'rt_time': user['created_at']})
+        #     feku_dict["feku_retweeters"] = username_time_list
+        #     print(f"Retweeter names list shown below: \n{username_time_list}")
+        # else:
+        #     feku_dict["feku_retweeters"] = ['No Retweet details found']
+        feku_dict["RT"] = len(retweets)
         feku_list_RT.append(feku_dict)
     # for feku in top_10_feku_RT:
     #     feku_dict = {}
@@ -131,12 +195,32 @@ def trace_1(request):
     #     feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
     #         random.choices(int_lst, k=1)[0]) + ".png"
     #     feku_list_RT.append(feku_dict)
-    context = {'feku_list_RT': feku_list_RT}
+    print(f"=====>Median for seconds diff for this session: \n{fake_med_sec_list}")
+    uname_med_sec_dict_sort = {k: v for k, v in sorted(uname_med_sec_dict.items(), key=lambda item: item[1])}
+    # print("=======>uname_med_sec_dict_sort")
+    uname_sort_list=[]
+    med_sec_sort_list=[]
+    for k,v in uname_med_sec_dict_sort.items():
+        uname_sort_list.append(k)
+        med_sec_sort_list.append(v)
+        print(k,v)
+    m_max = max(med_sec_sort_list)
+    med_sec_sort_list_norm = [float(i) / m_max for i in med_sec_sort_list]
+    # med_sec_sort_list_norm_inv = np.round(list(np.log(1/np.array(med_sec_sort_list_norm))+sys.float_info.epsilon), 2)
+    med_sec_sort_list_norm_inv = list(np.log(1 / np.array(med_sec_sort_list_norm)) + sys.float_info.epsilon)
+    print(f"norm: {med_sec_sort_list_norm}")
+    print(f"norm inv: {med_sec_sort_list_norm_inv}")
+    # print(f"norm: {med_sec_sort_list_norm}")
+    # # Dummy variables
+    # uname_sort_list = ['name1', 'name2', 'name3', 'name4']
+    # med_sec_sort_list_norm_inv = [0.6, 0.3, 0.2, 0.1]
+    uname_med_sec_list_dict = {'uname': uname_sort_list, 'med_sec_sort_list': med_sec_sort_list_norm_inv}
+    context = {'feku_list_RT': feku_list_RT, 'uname_med_sec_list_dict': uname_med_sec_list_dict}
     return render(request, 'frontend/trace_1.html', context)
 
 def get_city_df():
     lab_lst = ['real', 'fake']
-    base_df_city = pd.read_csv('/home/shivam/Downloads/delhi_result.csv')
+    base_df_city = pd.read_csv('delhi_result.csv')
     N = len(base_df_city)
     df1 = base_df_city
     df1['label'] = random.choices(lab_lst, weights=(0.7, 0.3), k=N)
@@ -176,7 +260,7 @@ def get_city_df():
 def getIndiaTopFakers():
     df1 = get_city_df()
     top_10_feku_pred = df1[df1['label']=='fake'][['date', 'username', 'tweet', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
-    top_10_feku_RT = df1[df1['label'] == 'fake'][['date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
+    top_10_feku_RT = df1[df1['label'] == 'fake'][['id', 'date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
     return top_10_feku_pred, top_10_feku_RT
 
 def getIndiaGeoData(sHist_df):
