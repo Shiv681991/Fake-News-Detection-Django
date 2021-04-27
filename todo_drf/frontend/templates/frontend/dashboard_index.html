@@ -171,9 +171,9 @@
                     {% for feku in feku_list_pred %}
                        <tr>
                            <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>
-                           <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>
-                           <td align="center">{{ feku.time }}</td>
-                           <td>{{ feku.tweet }}</td>
+                           <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
+                           <td align="center">{{ feku.Time_created }}</td>
+                           <td>{{ feku.description }}</td>
                            <td align="center" style="color: red">{{ feku.label }}</td>
                            <td align="center">{{ feku.prob }}</td>
                        </tr>
@@ -196,11 +196,11 @@
 <!--                    {% for feku in feku_list_RT %}-->
 <!--                       <tr>-->
 <!--                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>-->
-<!--                           <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>-->
+<!--                           <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>-->
 <!--                           <td align="center">{{ feku.time }}</td>-->
-<!--                           <td>{{ feku.tweet }}</td>-->
+<!--                           <td>{{ feku.description }}</td>-->
 <!--                           <td align="center" style="color: red">{{ feku.label }}</td>-->
-<!--                           <td align="center">{{ feku.RT }}</td>-->
+<!--                           <td align="center">{{ feku.retweetcount }}</td>-->
 <!--                       </tr>-->
 <!--                    {% endfor %}-->
 <!--                </table>-->

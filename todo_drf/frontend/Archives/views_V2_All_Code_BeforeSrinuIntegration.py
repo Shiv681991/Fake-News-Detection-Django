@@ -61,7 +61,7 @@ def index(request):
 
 def dashboard_index(request):
     # Get the visualization "fake" counts data for Indian cities
-    sHist_df = pd.read_csv('/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/statewise_tweets/stat_numbers_scraped.csv', index_col=[0])
+    sHist_df = pd.read_csv('statewise_180days_fake_india.csv', index_col=[0])
     # Get the last day "fake" counts for Indian cities
     state_lstday_array, last_date = getIndiaGeoData(sHist_df)
     # Get the total "fake" counts for Indian cities and overall
@@ -74,9 +74,9 @@ def dashboard_index(request):
     int_lst=np.arange(1,8)
     for feku in top_10_feku_pred:
         feku_dict={}
-        feku_dict["Time_created"] = feku[0]
-        feku_dict["username"] = feku[1]
-        feku_dict["description"] = feku[2]
+        feku_dict["time"] = feku[0]
+        feku_dict["uname"] = feku[1]
+        feku_dict["tweet"] = feku[2]
         feku_dict["label"] = feku[3]
         feku_dict["prob"] = feku[4]
         feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar"+str(random.choices(int_lst, k=1)[0])+".png"
@@ -85,11 +85,11 @@ def dashboard_index(request):
     feku_list_RT = []
     for feku in top_10_feku_RT:
         feku_dict = {}
-        feku_dict["Time_created"] = feku[0]
-        feku_dict["username"] = feku[1]
-        feku_dict["description"] = feku[2]
+        feku_dict["time"] = feku[0]
+        feku_dict["uname"] = feku[1]
+        feku_dict["tweet"] = feku[2]
         feku_dict["label"] = feku[3]
-        feku_dict["retweetcount"] = feku[4]
+        feku_dict["RT"] = feku[4]
         feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
         feku_list_RT.append(feku_dict)
@@ -114,16 +114,16 @@ def trace_1(request):
     for ind, feku in enumerate(top_10_feku_RT):
         print(f"Printing for user {ind}")
         feku_dict = {}
-        feku_dict["Tweet_ID"] = feku[0]
-        feku_dict["Time_created"] = feku[1]
-        feku_dict["username"] = feku[2]
-        feku_dict["description"] = feku[3]
+        feku_dict["id"] = feku[0]
+        feku_dict["time"] = feku[1]
+        feku_dict["uname"] = feku[2]
+        feku_dict["tweet"] = feku[3]
         feku_dict["label"] = feku[4]
-        feku_dict["retweetcount"] = feku[5]
-        feku_dict[" src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
+        # feku_dict["RT"] = feku[5]
+        feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
         # print("Top RT feku Dictionary populated for this user, checking for retweeter IDs...")
-        in_id = feku_dict["Tweet_ID"]
+        in_id = feku_dict["id"]
         # print(f"Checking for the tweet: {in_id} with type {type(in_id)}")
         CONSUMER_KEY = "Vw1I28kAqmtlR6bxxWC4XRotQ"
         CONSUMER_SECRET = "5BWJpsp7I7flL7A2s6UHKbfkc1CNcJun0oTcBQLpbbAYf5bLux"
@@ -146,14 +146,14 @@ def trace_1(request):
         if len(retweets):
             if len(retweets)==1:
                 # Dummy value for now, need to update using the difference from the priginal tweet
-                cur_fake_med_sec = (dateutil.parser.parse(retweets[0]['created_at'])-dateutil.parser.parse(feku_dict["Time_created"])).total_seconds()
-                uname_med_sec_dict[feku_dict["username"]] = cur_fake_med_sec
+                cur_fake_med_sec = (dateutil.parser.parse(retweets[0]['created_at'])-dateutil.parser.parse(feku_dict["time"])).total_seconds()
+                uname_med_sec_dict[feku_dict["uname"]] = cur_fake_med_sec
             else:
                 tot_secdiff_list=[]
                 for i, rt in enumerate(retweets):
                     rt_toc = rt['created_at']
-                    # rt_id = rt['Tweet_ID']
-                    # rt_user_id = rt['user']['Tweet_ID']
+                    # rt_id = rt['id']
+                    # rt_user_id = rt['user']['id']
                     rt_user_name = rt['user']['name']
                     rt_user_scrname = rt['user']['screen_name']
                     # rt_user_loc = rt['user']['location']
@@ -164,7 +164,7 @@ def trace_1(request):
                         # print(cur_tot_sec)
                         tot_secdiff_list.append(cur_tot_sec)
                 cur_fake_med_sec = np.median(tot_secdiff_list)
-                uname_med_sec_dict[feku_dict["username"]] = cur_fake_med_sec
+                uname_med_sec_dict[feku_dict["uname"]] = cur_fake_med_sec
             feku_dict["feku_retweeters"] = username_time_list
             fake_med_sec_list.append(cur_fake_med_sec)
         else:
@@ -183,15 +183,15 @@ def trace_1(request):
         #     print(f"Retweeter names list shown below: \n{username_time_list}")
         # else:
         #     feku_dict["feku_retweeters"] = ['No Retweet details found']
-        # feku_dict["RT"] = len(retweets)
+        feku_dict["RT"] = len(retweets)
         feku_list_RT.append(feku_dict)
     # for feku in top_10_feku_RT:
     #     feku_dict = {}
-    #     feku_dict["Time_created"] = feku[0]
-    #     feku_dict["username"] = feku[1]
-    #     feku_dict["description"] = feku[2]
+    #     feku_dict["time"] = feku[0]
+    #     feku_dict["uname"] = feku[1]
+    #     feku_dict["tweet"] = feku[2]
     #     feku_dict["label"] = feku[3]
-    #     feku_dict["retweetcount"] = feku[4]
+    #     feku_dict["RT"] = feku[4]
     #     feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
     #         random.choices(int_lst, k=1)[0]) + ".png"
     #     feku_list_RT.append(feku_dict)
@@ -214,23 +214,20 @@ def trace_1(request):
     # # Dummy variables
     # uname_sort_list = ['name1', 'name2', 'name3', 'name4']
     # med_sec_sort_list_norm_inv = [0.6, 0.3, 0.2, 0.1]
-    uname_med_sec_list_dict = {'username': uname_sort_list, 'med_sec_sort_list': med_sec_sort_list_norm_inv}
+    uname_med_sec_list_dict = {'uname': uname_sort_list, 'med_sec_sort_list': med_sec_sort_list_norm_inv}
     context = {'feku_list_RT': feku_list_RT, 'uname_med_sec_list_dict': uname_med_sec_list_dict}
     return render(request, 'frontend/trace_1.html', context)
-# id	date	username	tweet
-# Tweet_ID	username	description	location	following	followers	totaltweets	Time_created	Likes Count	retweetcount	text	hashtags	Link
 
-def get_city_df(in_state = None):
+def get_city_df():
     lab_lst = ['real', 'fake']
-    base_df = pd.read_csv('~/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/statewise_tweets/'+in_state+'_Tweets.csv')
-    N = len(base_df)
-    base_df_city = base_df[['Tweet_ID', 'Time_created', 'username', 'description', 'retweetcount']]
+    base_df_city = pd.read_csv('delhi_result.csv')
+    N = len(base_df_city)
     df1 = base_df_city
     df1['label'] = random.choices(lab_lst, weights=(0.7, 0.3), k=N)
-    hour_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).hour).tolist()
-    day_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).day).tolist()
-    month_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).month).tolist()
-    year_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).year).tolist()
+    hour_list = df1['date'].transform(lambda x: dateutil.parser.parse(x).hour).tolist()
+    day_list = df1['date'].transform(lambda x: dateutil.parser.parse(x).day).tolist()
+    month_list = df1['date'].transform(lambda x: dateutil.parser.parse(x).month).tolist()
+    year_list = df1['date'].transform(lambda x: dateutil.parser.parse(x).year).tolist()
     df1['hour'] = hour_list
     df1['day'] = day_list
     df1['month'] = month_list
@@ -254,19 +251,16 @@ def get_city_df(in_state = None):
     new_rt_list = zeros + rt_list
     random.shuffle(new_rt_list)
     random.shuffle(new_rt_list)
-
-    # # Random RT generation list
-    # new_rt_list = [int(x) for x in new_rt_list]
-    # # print(new_rt_list[:20])
-    # df1['RT'] = new_rt_list
+    new_rt_list = [int(x) for x in new_rt_list]
+    # print(new_rt_list[:20])
+    df1['RT'] = new_rt_list
     return df1
 
 
 def getIndiaTopFakers():
-    stateName = 'Delhi'
-    df1 = get_city_df(stateName)
-    top_10_feku_pred = df1[df1['label']=='fake'][['Time_created', 'username', 'description', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
-    top_10_feku_RT = df1[df1['label'] == 'fake'][['Tweet_ID', 'Time_created', 'username', 'description', 'label', 'retweetcount']].sort_values(by='retweetcount', ascending=False)[:10].values.tolist()
+    df1 = get_city_df()
+    top_10_feku_pred = df1[df1['label']=='fake'][['date', 'username', 'tweet', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
+    top_10_feku_RT = df1[df1['label'] == 'fake'][['id', 'date', 'username', 'tweet', 'label', 'RT']].sort_values(by='RT', ascending=False)[:10].values.tolist()
     return top_10_feku_pred, top_10_feku_RT
 
 def getIndiaGeoData(sHist_df):
@@ -301,7 +295,7 @@ def drillDownAState(request):
     print (request.POST.dict())
     # Line chart data for Indian scenario
     stateName=request.POST.get('stateName')
-    df1 = get_city_df(stateName)
+    df1 = get_city_df()
     # =========================================================================
     # Hourly Aspects
     # =========================================================================
@@ -447,7 +441,7 @@ def drillDownAState(request):
                    'backgroundColor': '#03a9fc', 'fill': 'false'},
                   {'label': 'Monthly Fake Tweets', 'data': monthly_df['fake'].values.tolist(), 'borderColor': '#ff6384',
                    'backgroundColor': '#ff6384', 'fill': 'false'}]
-    sHist_df = pd.read_csv('/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/statewise_tweets/stat_numbers_scraped.csv', index_col=[0])
+    sHist_df = pd.read_csv('statewise_180days_fake_india.csv', index_col=[0])
     s_name_sort_list, totals_sort_list, overallFakeCount = getIndiaBarData(sHist_df)
     context={'axisvalues':daily_df['timestamp'].values.tolist(),
              'axisvalues_m':monthly_df['timestamp'].values.tolist(), 'axisvalues_h':hourly_df['timestamp'].values.tolist(),
