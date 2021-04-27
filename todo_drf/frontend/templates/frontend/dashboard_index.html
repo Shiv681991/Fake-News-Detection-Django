@@ -117,7 +117,7 @@
             <li><a href="{% url "frontend:start_disp" %}">Stream & Check</a></li>
             <li><a href="{% url "frontend:frame_4" %}">Monitor Web</a></li>
             <li><a href="{% url "frontend:dashboard_index" %}">Dashboard</a></li>
-            <li><a href="{% url "frontend:trace_1" %}">Tracing Fake News</a></li>
+            <li><a href="{% url "frontend:trace_landing" %}">Tracing Fake News</a></li>
             <li><a href="{% url "frontend:render_manual_page" %}">Manual Check</a></li>
 
             </ul>
@@ -157,31 +157,31 @@
     <br>
     <hr>
     <br>
-    <div id="tab_id">
-        <div id="top10fakers_pred" class="fake_div">
-            <p align="center"><strong>Top 10 fake tweets by Prediction-Probability</strong></p>
-                <table id="faketable_pred" align="center" width="100%">
-                <tr>
-                    <th colspan="2"><center>Twitter_User</center></th>
-                    <th><center>Time Stamp</center></th>
-                    <th><center>Tweet</center></th>
-                    <th><center>Label</center></th>
-                    <th><center>Confidence</center></th>
-                </tr>
-                    {% for feku in feku_list_pred %}
-                       <tr>
-                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>
-                           <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
-                           <td align="center">{{ feku.Time_created }}</td>
-                           <td>{{ feku.description }}</td>
-                           <td align="center" style="color: red">{{ feku.label }}</td>
-                           <td align="center">{{ feku.prob }}</td>
-                       </tr>
-                    {% endfor %}
-                </table>
-        </div>
-        <br>
-        <hr>
+<!--    <div id="tab_id">-->
+<!--        <div id="top10fakers_pred" class="fake_div">-->
+<!--            <p align="center"><strong>Top 10 fake tweets by Prediction-Probability</strong></p>-->
+<!--                <table id="faketable_pred" align="center" width="100%">-->
+<!--                <tr>-->
+<!--                    <th colspan="2"><center>Twitter_User</center></th>-->
+<!--                    <th><center>Time Stamp</center></th>-->
+<!--                    <th><center>Tweet</center></th>-->
+<!--                    <th><center>Label</center></th>-->
+<!--                    <th><center>Confidence</center></th>-->
+<!--                </tr>-->
+<!--                    {% for feku in feku_list_pred %}-->
+<!--                       <tr>-->
+<!--                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>-->
+<!--                           <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>-->
+<!--                           <td align="center">{{ feku.Time_created }}</td>-->
+<!--                           <td>{{ feku.description }}</td>-->
+<!--                           <td align="center" style="color: red">{{ feku.label }}</td>-->
+<!--                           <td align="center">{{ feku.prob }}</td>-->
+<!--                       </tr>-->
+<!--                    {% endfor %}-->
+<!--                </table>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <hr>-->
         <br>
 <!--        <div id="top10fakers_RT" class="fake_div">-->
 <!--            <p align="center"><strong>Top 10 fake tweets by Retweet-Counts</strong></p>-->

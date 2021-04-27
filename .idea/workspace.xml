@@ -1,49 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Updating the Retweet display (trace)">
-      <change afterPath="$PROJECT_DIR$/todo_drf/frontend/Archives/views_V2_All_Code_BeforeSrinuIntegration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/AP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Arunachal_Pradesh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Assam_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Bihar_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Chandigarh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Chattisgarh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Dadra_and_Nagar_Haveli_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Daman_and_Diu_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Delhi_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Goa_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Gujrat_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/HP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Haryana_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/J&amp;K_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Jharkhand_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Karnataka_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Kerela_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Lakshadweep_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/MP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Maharashtra_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Manipur_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Meghalaya_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Mizoram_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Nagaland_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Orissa_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Puducherry_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Punjab_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Rajasthan_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Sikkim_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/TN_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Tripura_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/UP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Uttaranchal_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/West_Bengal_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/mptweets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/pipeline_stats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/stat_numbers_scraped.csv" afterDir="false" />
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Integration-1 state-wise data (Sai Srinivas (Wipro))">
+      <change afterPath="$PROJECT_DIR$/mptweets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pipeline_stats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/mptweets.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/pipeline_stats.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +217,7 @@
       <workItem from="1619088947635" duration="13983000" />
       <workItem from="1619266569036" duration="22255000" />
       <workItem from="1619434391387" duration="2115000" />
-      <workItem from="1619501634154" duration="8112000" />
+      <workItem from="1619501634154" duration="21534000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -365,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619439434136</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Integration-1 state-wise data (Sai Srinivas (Wipro))">
+      <created>1619533647757</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1619533647757</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +390,8 @@
     <MESSAGE value="Updated the Trace and Manual check pages." />
     <MESSAGE value="Adding the manual.html page." />
     <MESSAGE value="Updating the Retweet display (trace)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating the Retweet display (trace)" />
+    <MESSAGE value="Integration-1 state-wise data (Sai Srinivas (Wipro))" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integration-1 state-wise data (Sai Srinivas (Wipro))" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$demo_Fakenews_test14mar21.coverage" NAME="demo_Fakenews_test14mar21 Coverage Results" MODIFIED="1616703994952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />

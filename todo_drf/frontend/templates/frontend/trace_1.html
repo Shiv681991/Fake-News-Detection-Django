@@ -158,7 +158,7 @@
         <li><a href="{% url "frontend:start_disp" %}">Stream & Check</a></li>
         <li><a href="{% url "frontend:frame_4" %}">Monitor Web</a></li>
         <li><a href="{% url "frontend:dashboard_index" %}">Dashboard</a></li>
-        <li><a href="{% url "frontend:trace_1" %}">Tracing Fake News</a></li>
+        <li><a href="{% url "frontend:trace_landing" %}">Tracing Fake News</a></li>
         <li><a href="{% url "frontend:render_manual_page" %}">Manual Check</a></li>
 
       </ul>
@@ -166,43 +166,95 @@
   </header>
 </div>
 <!--	<hr style="height:0.5mm;border-width:0;color:gray;background-color:gray">-->
-	<div class="container">
+
+
+
 <!--        <form method="post" enctype="multipart/form-data" action="showRT">-->
 <!--            {% csrf_token %}-->
-            <div id="top10fakers_RT" class="fake_div">
-                <p align="center"><strong>Top 10 fake tweets by Retweet-Counts</strong></p>
-                    <table id="faketable_RT" align="center" width="100%">
-                        <tr>
-                            <th width="15%" colspan="2"><center>Twitter_User</center></th>
-                            <th width="10%"><center>Time Stamp</center></th>
-                            <th width="50%"><center>Tweet</center></th>
-                            <th width="5%"><center>Label</center></th>
-                            <th width="5%"><center>RT_Count</center></th>
-                        </tr>
-                    </table>
+    {% if stateFlag %}
+    <div class="top_text">
+    <p style="font-size: large">Select a state to monitor trace.</p>
+    </div>
+    <div id="form-wrapper">
+        <form action="{% url 'frontend:trace_1' %}" method="post">
+        {% csrf_token %}
+            <div align="left" style="margin-left: 35px">
 
-                            <ul id="myUL">
-                                {% for feku in feku_list_RT %}
-                                <li><span class="caret"><table align="center" width="100%">
-                                       <tr>
-                                           <td width="5%"><img align="center" width="60px" src={{ feku.src }} alt=""></td>
-                                           <td width="10%" align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
-                                           <td width="5%" align="center">{{ feku.Time_created }}</td>
-                                           <td width="50%">{{ feku.description }}</td>
-                                           <td width="5%" align="center" style="color: red">{{ feku.label }}</td>
-                                           <td width="5%" align="center">{{ feku.retweetcount }}</td>
+        <!--        <input type="submit" class='btn btn-primary' value="Start" style="margin-left:5px;margin-top: 20px;border-radius:5px;width:100px">-->
+            </div>
+        <div class="top_rule">
+            <div class="top_rule1">
+                {{ state_form.stateName }}
+                <button type="submit" name="start_btn" value="1">
+                    <i class="fa fa-thumb-tack"></i> Proceed
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <br>
+    <hr>
+    <div class="container">
+        <p align="center" style="font-size: x-large">Monitoring Trace for <strong>{{location}}</strong></p>
+        <div id="tab_id">
+        <div id="top10fakers_pred" class="fake_div">
+            <p align="center" style="font-size: large">Top 10 fake tweets by <strong>Prediction-Probability</strong></p>
+                <table id="faketable_pred" align="center" width="100%">
+                <tr>
+                    <th colspan="2"><center>Twitter_User</center></th>
+                    <th><center>Time Stamp</center></th>
+                    <th><center>Tweet</center></th>
+                    <th><center>Label</center></th>
+                    <th><center>Confidence</center></th>
+                </tr>
+                    {% for feku in feku_list_pred %}
+                       <tr>
+                           <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>
+                           <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
+                           <td align="center">{{ feku.Time_created }}</td>
+                           <td>{{ feku.description }}</td>
+                           <td align="center" style="color: red">{{ feku.label }}</td>
+                           <td align="center">{{ feku.prob }}</td>
+                       </tr>
+                    {% endfor %}
+                </table>
+        </div>
+        <br>
+        <hr>
+        <div id="top10fakers_RT" class="fake_div">
+            <p align="center" style="font-size: large">Top 10 fake tweets by <strong>Retweet-Counts</strong></p>
+                <table id="faketable_RT" align="center" width="100%">
+                    <tr>
+                        <th width="15%" colspan="2"><center>Twitter_User</center></th>
+                        <th width="10%"><center>Time Stamp</center></th>
+                        <th width="50%"><center>Tweet</center></th>
+                        <th width="5%"><center>Label</center></th>
+                        <th width="5%"><center>RT_Count</center></th>
+                    </tr>
+                </table>
+
+                        <ul id="myUL">
+                            {% for feku in feku_list_RT %}
+                            <li><span class="caret"><table align="center" width="100%">
+                                   <tr>
+                                       <td width="5%"><img align="center" width="60px" src={{ feku.src }} alt=""></td>
+                                       <td width="10%" align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
+                                       <td width="5%" align="center">{{ feku.Time_created }}</td>
+                                       <td width="50%">{{ feku.description }}</td>
+                                       <td width="5%" align="center" style="color: red">{{ feku.label }}</td>
+                                       <td width="5%" align="center">{{ feku.retweetcount }}</td>
 <!--                                           <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
 <!--                                            <input type="hidden" id="tweet_id" value={{ feku.Tweet_ID }} name="trace"></td>-->
-                                        </tr>
-                                    </table></span>
-                                    <ul class="nested">
-                                        {% for feku_retweeter in feku.feku_retweeters %}
-                                            <li><a href="https://twitter.com/{{ feku_retweeter.rt_user_scrname }}">{{feku_retweeter.rt_user_name}}</a>, {{feku_retweeter.rt_toc}}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                {% endfor %}
-                            </ul>
+                                    </tr>
+                                </table></span>
+                                <ul class="nested">
+                                    {% for feku_retweeter in feku.feku_retweeters %}
+                                        <li><a href="https://twitter.com/{{ feku_retweeter.rt_user_scrname }}">{{feku_retweeter.rt_user_name}}</a>, {{feku_retweeter.rt_toc}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+                        </ul>
 <!--                           <tr>-->
 <!--                               <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>-->
 <!--                               <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>-->
@@ -213,19 +265,41 @@
 <!--                               <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
 <!--                                <input type="hidden" id="tweet_id" value={{ feku.Tweet_ID }} name="trace"></td>-->
 <!--                           </tr>-->
-
-
-
-            </div>
+        </div>
 <!--        </form>-->
 	</div>
     <hr>
-    <h3 align="center">Normalized spread rate</h3>
+    <h3 align="center">Normalized spread rate: <math>log(1/median(t<sub>i</sub>))</math></h3>
+
     <div align="center">
         <div class="col-lg-offset-1" style="width: 1000px">
                 <canvas id="myChart" style="height: 80pt; width: 400pt;"></canvas>
         </div>
     </div>
+    {% else %}
+        <div class="top_text">
+    <p style="font-size: large">Select a state to monitor trace.</p>
+    </div>
+    <div id="form-wrapper">
+        <form action="{% url 'frontend:trace_1' %}" method="post">
+        {% csrf_token %}
+            <div align="left" style="margin-left: 35px">
+
+        <!--        <input type="submit" class='btn btn-primary' value="Start" style="margin-left:5px;margin-top: 20px;border-radius:5px;width:100px">-->
+            </div>
+        <div class="top_rule">
+            <div class="top_rule1">
+                {{ state_form.stateName }}
+                <button type="submit" name="start_btn" value="1">
+                    <i class="fa fa-thumb-tack"></i> Proceed
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <br>
+    <hr>
+    {% endif %}
 </body>
 </html>
 

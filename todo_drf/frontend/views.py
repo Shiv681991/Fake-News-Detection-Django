@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .forms import locationForm, UploadFileForm, in_textForm
+from .forms import locationForm, UploadFileForm, in_textForm, stateForm
 from .apps import FrontendConfig
 import sys
 sys.path.append("/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf")
@@ -66,53 +66,45 @@ def dashboard_index(request):
     state_lstday_array, last_date = getIndiaGeoData(sHist_df)
     # Get the total "fake" counts for Indian cities and overall
     s_name_sort_list, totals_sort_list, overallFakeCount = getIndiaBarData(sHist_df)
+    context = {'state_lstday_array': state_lstday_array, 's_name_sort_list': s_name_sort_list,
+               'totals_sort_list': totals_sort_list, 'overallFakeCount': overallFakeCount,
+               'last_date': last_date}
+    return render(request,'frontend/dashboard_index.html',context)
 
 
+def trace_landing(request):
+    state_form = stateForm()
+    state_selected = False
+    context = {'state_form': state_form, 'stateFlag': state_selected}
+    return render(request, 'frontend/trace_1.html', context)
+
+def trace_1(request):
+    state_form = stateForm(request.POST)
+    loc = request.POST.get('stateName')
+    if loc:
+        state_selected = True
+    stateName = s_Code[loc]
+    top_10_feku_pred, top_10_feku_RT = getIndiaTopFakers(stateName)
+    int_lst = np.arange(1, 8)
     # Get the user details for top fake tweeters based on 'prediction'
-    top_10_feku_pred, top_10_feku_RT = getIndiaTopFakers()
     feku_list_pred = []
-    int_lst=np.arange(1,8)
     for feku in top_10_feku_pred:
-        feku_dict={}
-        feku_dict["Time_created"] = feku[0]
-        feku_dict["username"] = feku[1]
-        feku_dict["description"] = feku[2]
-        feku_dict["label"] = feku[3]
-        feku_dict["prob"] = feku[4]
-        feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar"+str(random.choices(int_lst, k=1)[0])+".png"
-        feku_list_pred.append(feku_dict)
-
-    feku_list_RT = []
-    for feku in top_10_feku_RT:
         feku_dict = {}
         feku_dict["Time_created"] = feku[0]
         feku_dict["username"] = feku[1]
         feku_dict["description"] = feku[2]
         feku_dict["label"] = feku[3]
-        feku_dict["retweetcount"] = feku[4]
+        feku_dict["prob"] = feku[4]
         feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
-        feku_list_RT.append(feku_dict)
+        feku_list_pred.append(feku_dict)
 
-
-
-
-    # print("Total sum is : {}".format(overallFakeCount))
-
-    context = {'state_lstday_array': state_lstday_array, 's_name_sort_list': s_name_sort_list, 'totals_sort_list': totals_sort_list, 'overallFakeCount': overallFakeCount,
-               'last_date': last_date, 'feku_list_pred': feku_list_pred, 'feku_list_RT': feku_list_RT}
-
-    return render(request,'frontend/dashboard_index.html',context)
-
-
-def trace_1(request):
-    top_10_feku_pred, top_10_feku_RT = getIndiaTopFakers()
-    int_lst = np.arange(1, 8)
+    # Get the user details for top fake tweeters based on 'retweet count'
     feku_list_RT = []
     fake_med_sec_list = []
     uname_med_sec_dict = dict()
     for ind, feku in enumerate(top_10_feku_RT):
-        print(f"Printing for user {ind}")
+        # print(f"Printing for user {ind}")
         feku_dict = {}
         feku_dict["Tweet_ID"] = feku[0]
         feku_dict["Time_created"] = feku[1]
@@ -120,7 +112,7 @@ def trace_1(request):
         feku_dict["description"] = feku[3]
         feku_dict["label"] = feku[4]
         feku_dict["retweetcount"] = feku[5]
-        feku_dict[" src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
+        feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
             random.choices(int_lst, k=1)[0]) + ".png"
         # print("Top RT feku Dictionary populated for this user, checking for retweeter IDs...")
         in_id = feku_dict["Tweet_ID"]
@@ -195,7 +187,7 @@ def trace_1(request):
     #     feku_dict["src"] = "https://bootdey.com/img/Content/avatar/avatar" + str(
     #         random.choices(int_lst, k=1)[0]) + ".png"
     #     feku_list_RT.append(feku_dict)
-    print(f"=====>Median for seconds diff for this session: \n{fake_med_sec_list}")
+    # print(f"=====>Median for seconds diff for this session: \n{fake_med_sec_list}")
     uname_med_sec_dict_sort = {k: v for k, v in sorted(uname_med_sec_dict.items(), key=lambda item: item[1])}
     # print("=======>uname_med_sec_dict_sort")
     uname_sort_list=[]
@@ -208,17 +200,15 @@ def trace_1(request):
     med_sec_sort_list_norm = [float(i) / m_max for i in med_sec_sort_list]
     # med_sec_sort_list_norm_inv = np.round(list(np.log(1/np.array(med_sec_sort_list_norm))+sys.float_info.epsilon), 2)
     med_sec_sort_list_norm_inv = list(np.log(1 / np.array(med_sec_sort_list_norm)) + sys.float_info.epsilon)
-    print(f"norm: {med_sec_sort_list_norm}")
-    print(f"norm inv: {med_sec_sort_list_norm_inv}")
     # print(f"norm: {med_sec_sort_list_norm}")
+    # print(f"norm inv: {med_sec_sort_list_norm_inv}")
+    #
     # # Dummy variables
     # uname_sort_list = ['name1', 'name2', 'name3', 'name4']
     # med_sec_sort_list_norm_inv = [0.6, 0.3, 0.2, 0.1]
     uname_med_sec_list_dict = {'username': uname_sort_list, 'med_sec_sort_list': med_sec_sort_list_norm_inv}
-    context = {'feku_list_RT': feku_list_RT, 'uname_med_sec_list_dict': uname_med_sec_list_dict}
+    context = {'state_form': state_form, 'feku_list_pred': feku_list_pred, 'feku_list_RT': feku_list_RT, 'uname_med_sec_list_dict': uname_med_sec_list_dict, 'stateFlag': state_selected, 'location': stateName}
     return render(request, 'frontend/trace_1.html', context)
-# id	date	username	tweet
-# Tweet_ID	username	description	location	following	followers	totaltweets	Time_created	Likes Count	retweetcount	text	hashtags	Link
 
 def get_city_df(in_state = None):
     lab_lst = ['real', 'fake']
@@ -226,7 +216,18 @@ def get_city_df(in_state = None):
     N = len(base_df)
     base_df_city = base_df[['Tweet_ID', 'Time_created', 'username', 'description', 'retweetcount']]
     df1 = base_df_city
+    # Assign the random labels
     df1['label'] = random.choices(lab_lst, weights=(0.7, 0.3), k=N)
+
+    # # Get the real/fake predictions
+    # label_list = []
+    # for item in df1['description']:
+    #     cur_res = proc_classification(item)
+    #     print(f"Result for\n{item}\n{cur_res}")
+    #     label_list.append(cur_res)
+    # df1['label'] = label_list
+
+
     hour_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).hour).tolist()
     day_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).day).tolist()
     month_list = df1['Time_created'].transform(lambda x: dateutil.parser.parse(x).month).tolist()
@@ -241,30 +242,27 @@ def get_city_df(in_state = None):
         randomproblist.append(n)
     df1['prob'] = randomproblist
 
-    # Creating a list of retweet values for the given dataframe
-    # half will be 0; remaining will be numbers
-    # print(f"Total {N}")
-
-    zeros = np.zeros(N // 2).tolist()
-    # print(f"Zeros: {len(zeros)}")
-    int_lst = np.arange(1, 21)
-    # print(int_lst)
-    rt_list = random.choices(int_lst, k=(N - N // 2))
-    # print(f"RT List: {len(rt_list)}")
-    new_rt_list = zeros + rt_list
-    random.shuffle(new_rt_list)
-    random.shuffle(new_rt_list)
-
-    # # Random RT generation list
-    # new_rt_list = [int(x) for x in new_rt_list]
-    # # print(new_rt_list[:20])
-    # df1['RT'] = new_rt_list
+    # # Creating a list of retweet values for the given dataframe
+    # # half will be 0; remaining will be numbers
+    # # print(f"Total {N}")
+    # zeros = np.zeros(N // 2).tolist()
+    # # print(f"Zeros: {len(zeros)}")
+    # int_lst = np.arange(1, 21)
+    # # print(int_lst)
+    # rt_list = random.choices(int_lst, k=(N - N // 2))
+    # # print(f"RT List: {len(rt_list)}")
+    # new_rt_list = zeros + rt_list
+    # random.shuffle(new_rt_list)
+    # random.shuffle(new_rt_list)
+    # # # Random RT generation list
+    # # new_rt_list = [int(x) for x in new_rt_list]
+    # # # print(new_rt_list[:20])
+    # # df1['RT'] = new_rt_list
     return df1
 
 
-def getIndiaTopFakers():
-    stateName = 'Delhi'
-    df1 = get_city_df(stateName)
+def getIndiaTopFakers(in_state):
+    df1 = get_city_df(in_state)
     top_10_feku_pred = df1[df1['label']=='fake'][['Time_created', 'username', 'description', 'label', 'prob']].sort_values(by='prob', ascending=False)[:10].values.tolist()
     top_10_feku_RT = df1[df1['label'] == 'fake'][['Tweet_ID', 'Time_created', 'username', 'description', 'label', 'retweetcount']].sort_values(by='retweetcount', ascending=False)[:10].values.tolist()
     return top_10_feku_pred, top_10_feku_RT

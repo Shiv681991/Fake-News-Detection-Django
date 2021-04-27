@@ -9,6 +9,7 @@ urlpatterns = [
 	path('dashboard_index', views.dashboard_index, name="dashboard_index"),
 	path('selectState',views.drillDownAState,name='drillDown'),
 	path('showRT',views.showRT,name='showRT'),
+	path('trace_landing',views.trace_landing,name='trace_landing'),
 	path('trace_1',views.trace_1,name='trace_1'),
 	path('render_manual_page', views.render_manual_page, name='render_manual_page'),
 	path('manual_check_now', views.manual_check_now, name='manual_check_now'),
