@@ -77,7 +77,7 @@ location_dict = {'Puducherry':"11.94,79.80,100km",
 
 cur_city = "Delhi"
 pool_size = 5
-path = r'C:\Users\AD20168019\Desktop\Tweepy_Scripts\statewise_tweets'
+path = '/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/statewise_tweets/'
 def get_tweets(city_c,city):
     print('yes')
     db = pd.DataFrame(columns=['Tweet_ID', 'username', 'description', 'location', 'following',
@@ -133,7 +133,7 @@ def get_tweets(city_c,city):
         db.loc[len(db)] = ith_tweet
         i = i + 1
     print(city)
-    filename = city+'_Tweets'+'.csv'
+    filename = path+city+'_Tweets'+'.csv'
     db.to_csv(filename)
 
 state_wise = (list(location_dict.values()))

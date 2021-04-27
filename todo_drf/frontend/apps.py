@@ -108,7 +108,7 @@ class FrontendConfig(AppConfig):
         prd_dev = np.argmax(pred_dev, axis=1)
         # print(prd_dev)
         if prd_dev[0] == 1:
-            lab = 'Not-Fake'
+            lab = 'real'
         else:
-            lab = 'Fake'
+            lab = 'fake'
         return lab
