@@ -186,13 +186,13 @@
                                 <li><span class="caret"><table align="center" width="100%">
                                        <tr>
                                            <td width="5%"><img align="center" width="60px" src={{ feku.src }} alt=""></td>
-                                           <td width="10%" align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>
-                                           <td width="5%" align="center">{{ feku.time }}</td>
-                                           <td width="50%">{{ feku.tweet }}</td>
+                                           <td width="10%" align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>
+                                           <td width="5%" align="center">{{ feku.Time_created }}</td>
+                                           <td width="50%">{{ feku.description }}</td>
                                            <td width="5%" align="center" style="color: red">{{ feku.label }}</td>
-                                           <td width="5%" align="center">{{ feku.RT }}</td>
+                                           <td width="5%" align="center">{{ feku.retweetcount }}</td>
 <!--                                           <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
-<!--                                            <input type="hidden" id="tweet_id" value={{ feku.id }} name="trace"></td>-->
+<!--                                            <input type="hidden" id="tweet_id" value={{ feku.Tweet_ID }} name="trace"></td>-->
                                         </tr>
                                     </table></span>
                                     <ul class="nested">
@@ -205,13 +205,13 @@
                             </ul>
 <!--                           <tr>-->
 <!--                               <td><img align="center" width="60px" src={{ feku.src }} alt=""></td>-->
-<!--                               <td align="center"><a href="https://twitter.com/{{ feku.uname }}">{{ feku.uname }}</a></td>-->
+<!--                               <td align="center"><a href="https://twitter.com/{{ feku.username }}">{{ feku.username }}</a></td>-->
 <!--                               <td align="center">{{ feku.time }}</td>-->
-<!--                               <td>{{ feku.tweet }}</td>-->
+<!--                               <td>{{ feku.description }}</td>-->
 <!--                               <td align="center" style="color: red">{{ feku.label }}</td>-->
-<!--                               <td align="center">{{ feku.RT }}</td>-->
+<!--                               <td align="center">{{ feku.retweetcount }}</td>-->
 <!--                               <td align="center"><input type="submit" value=Trace name="trace_vis" style="width:100px;">-->
-<!--                                <input type="hidden" id="tweet_id" value={{ feku.id }} name="trace"></td>-->
+<!--                                <input type="hidden" id="tweet_id" value={{ feku.Tweet_ID }} name="trace"></td>-->
 <!--                           </tr>-->
 
 
@@ -488,7 +488,7 @@
 
         // The data for our dataset
         data: {
-            labels: {{ uname_med_sec_list_dict.uname|safe }},
+            labels: {{ uname_med_sec_list_dict.username|safe }},
             datasets: [{
                 data: {{ uname_med_sec_list_dict.med_sec_sort_list|safe }},
                 label: 'Virality index',
