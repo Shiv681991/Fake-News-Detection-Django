@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Integration-1 state-wise data (Sai Srinivas (Wipro))">
-      <change afterPath="$PROJECT_DIR$/mptweets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pipeline_stats.py" afterDir="false" />
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Integration-2 state-wise data + FE modifications">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/trace_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/mptweets.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/pipeline_stats.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +26,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="trace_update" />
+        <entry key="$PROJECT_DIR$" value="Integration-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -218,6 +205,10 @@
       <workItem from="1619266569036" duration="22255000" />
       <workItem from="1619434391387" duration="2115000" />
       <workItem from="1619501634154" duration="21534000" />
+      <workItem from="1619555022733" duration="367000" />
+      <workItem from="1619586535262" duration="3181000" />
+      <workItem from="1620106000102" duration="1432000" />
+      <workItem from="1621091181451" duration="1967000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -345,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619533647757</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Integration-2 state-wise data + FE modifications">
+      <created>1619555241395</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1619555241395</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +389,8 @@
     <MESSAGE value="Adding the manual.html page." />
     <MESSAGE value="Updating the Retweet display (trace)" />
     <MESSAGE value="Integration-1 state-wise data (Sai Srinivas (Wipro))" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integration-1 state-wise data (Sai Srinivas (Wipro))" />
+    <MESSAGE value="Integration-2 state-wise data + FE modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integration-2 state-wise data + FE modifications" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$demo_Fakenews_test14mar21.coverage" NAME="demo_Fakenews_test14mar21 Coverage Results" MODIFIED="1616703994952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
