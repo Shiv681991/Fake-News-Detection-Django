@@ -95,20 +95,35 @@ def define_text_model(length, vocabulary_size, embedding_matrix):
     # model.summary()
     return model
 
-
 class FrontendConfig(AppConfig):
     name = 'frontend'
+class FrontendAppConfig(AppConfig):
+    def __init__(self):
+        name = 'frontend'
 
     def text_FNF_classify(in_txt):
+        res_list = []
         model_FNF = define_text_model(150, vocabulary_size, embedding_matrix)
         model_FNF.load_weights(
             "/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/api/models/aug_caps_weights_FND_CNN_trnval_HELIOS.h5")
 
         pred_dev = model_FNF.predict(pad_sequences(tokenizer.texts_to_sequences(in_txt), maxlen=150))
+        # print(np.shape(pred_dev))
+        # print(pred_dev)
         prd_dev = np.argmax(pred_dev, axis=1)
         # print(prd_dev)
-        if prd_dev[0] == 1:
-            lab = 'real'
-        else:
-            lab = 'fake'
-        return lab
+        for i in prd_dev:
+            if i==1:
+                res_list.append('real')
+            else:
+                res_list.append('fake')
+        # print(res_list)
+        prob_list = np.round(np.max(pred_dev, axis=1), decimals=2)
+        # prob=0
+        # print(prob_list)
+        # if prd_dev[0] == 1:
+        #     lab = 'real'
+        # else:
+        #     lab = 'fake'
+        print(res_list, prob_list)
+        return res_list, prob_list

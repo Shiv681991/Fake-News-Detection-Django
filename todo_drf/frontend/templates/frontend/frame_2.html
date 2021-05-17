@@ -212,7 +212,7 @@
 				<br>
 				<p>Tweet</p>
 				<p id="tweet"></p>
-				<h1 id="tweet_res" align="center" style="color: red; font-weight: bold">Fake or not fake</h1>
+				<h1 id="tweet_res" align="center" style="color: red; font-weight: bold">Fake or not fake</h1><h1 id="res_prob" align="center" style="color: blue; font-weight: bold"></h1>
 			</div>
 		</div>
 	</div>
@@ -273,6 +273,7 @@
 				// document.getElementById('url_res').innerText=''
 				document.getElementById('tweet').innerText = '';
 				document.getElementById('tweet_res').innerText = '';
+				document.getElementById('res_prob').innerText = '';
 				// console.log('Classification option selected')
 			}
 			else {
@@ -281,6 +282,7 @@
 				// document.getElementById('list-wrapper2').innerText=''
 				document.getElementById('tweet').innerText = '';
 				document.getElementById('tweet_res').innerText = '';
+				document.getElementById('res_prob').innerText = '';
 				// console.log('Entailment option selected')
 			}
 
@@ -302,6 +304,7 @@
 				// document.getElementById('verd_box').value = data;
 				document.getElementById('tweet').innerText = data['Tweet'];
 				document.getElementById('tweet_res').innerText = data['Result'];
+				document.getElementById('res_prob').innerText = data['prob'].toFixed(2);;
 				// document.getElementById('url_res').innerHTML = data['o_lst'][0];
 				if (cur_opt==2){
 					// document.getElementById("div3_head").innerText='Resources to be shown';
