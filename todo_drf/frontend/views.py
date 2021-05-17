@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .forms import locationForm, UploadFileForm, in_textForm, stateForm
-from .apps import FrontendConfig
+from .apps import FrontendAppConfig
 import sys
 sys.path.append("/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf")
 from api.apps import PredictorConfig
@@ -716,8 +716,10 @@ def start_disp(request):
     return render(request, temp, response)
 
 def proc_classification(in_text):
-    result = FrontendConfig.text_FNF_classify(in_text)
-    return result
+    res, pro = FrontendAppConfig.text_FNF_classify([in_text])
+    result = res[0]
+    prob = pro[0]
+    return result, prob
 
 def proc_entailment(in_text):
     print("===========>Entailment module called")
@@ -735,9 +737,9 @@ def contact_F2B_CLS(request, in_text):
     # -------Result_class = get_classification_results()
     # -------Result_ent = get_entailment_results()
 
-    Result = proc_classification(in_text)
+    Result, prob = proc_classification(in_text)
     # out_list = ["URL1", "URL2", "URL3", "URL4", "URL5", "URL6", "URL7", "URL8", "URL9","URL10"]
-    Res_Json = {'Tweet': in_text, 'Result': Result}
+    Res_Json = {'Tweet': in_text, 'Result': Result, 'prob': prob}
     return Response(Res_Json)
 
 
