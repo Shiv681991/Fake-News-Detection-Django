@@ -31,6 +31,7 @@ from keras.layers import Activation
 from keras.engine import Layer
 from keras.layers import Dense, Input, Embedding, Dropout, Bidirectional, GRU, Flatten, SpatialDropout1D
 # ========================================================
+# from here until app config studd
 # Text based classification
 Fold_PATH = '/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/api/Data_text'
 # df = pd.read_excel('Data_text/Fakenews/English_TrainVal.xlsx')
@@ -125,5 +126,5 @@ class FrontendAppConfig(AppConfig):
         #     lab = 'real'
         # else:
         #     lab = 'fake'
-        print(res_list, prob_list)
+        # print(res_list, prob_list)
         return res_list, prob_list

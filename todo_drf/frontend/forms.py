@@ -1,25 +1,25 @@
 from django import forms
 
-LOCATIONS = (
-    ('OTR', 'Other'),
-    ('AMR', 'Amritsar'),
-    ('SNR', 'Sri Nagar'),
-    ('CHN', 'Chandigadh'),
-    ('DLI', 'Delhi'),
-    ('LKO', 'Lucknow'),
-    ('VNS', 'Varanasi'),
-    ('JPR', 'Jaipur'),
-    ('AMD', 'Ahmedabad'),
-    ('KPR', 'Kanpur'),
-    ('IDR', 'Indore'),
-    ('KTA', 'Kolkata'),
-    ('RCH', 'Ranchi'),
-    ('PNE', 'Pune'),
-    ('MBI', 'Mumbai'),
-    ('GWT', 'Guwahati'),
-    ('HBD', 'Hyderabad'),
-    ('BLR', 'Bangalore')
-)
+# LOCATIONS = (
+#     ('OTR', 'Other'),
+#     ('AMR', 'Amritsar'),
+#     ('SNR', 'Sri Nagar'),
+#     ('CHN', 'Chandigadh'),
+#     ('DLI', 'Delhi'),
+#     ('LKO', 'Lucknow'),
+#     ('VNS', 'Varanasi'),
+#     ('JPR', 'Jaipur'),
+#     ('AMD', 'Ahmedabad'),
+#     ('KPR', 'Kanpur'),
+#     ('IDR', 'Indore'),
+#     ('KTA', 'Kolkata'),
+#     ('RCH', 'Ranchi'),
+#     ('PNE', 'Pune'),
+#     ('MBI', 'Mumbai'),
+#     ('GWT', 'Guwahati'),
+#     ('HBD', 'Hyderabad'),
+#     ('BLR', 'Bangalore')
+# )
 
 STATES = (('in-py', "Puducherry"),
          ('in-ld', "Lakshadweep"),
@@ -59,7 +59,7 @@ STATES = (('in-py', "Puducherry"),
 
 
 class locationForm(forms.Form):
-    location = forms.ChoiceField(choices=LOCATIONS, required=True)
+    location = forms.ChoiceField(choices=STATES, required=True)
 
 class stateForm(forms.Form):
     stateName = forms.ChoiceField(choices=STATES, required=True)

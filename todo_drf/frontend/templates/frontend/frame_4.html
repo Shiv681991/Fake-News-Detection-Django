@@ -200,8 +200,8 @@
                 {#var file_name = `/static/frontend/Pictures_Delhi/`+img_name#}
                 {#var im_con = `<img src="${file_name}" width="50px" />`#}
                 var tweet = list[i].tweet
-                var FNF = list[i].FNF
-                var prob = list[i].prob
+                var FNF = list[i].res_cls
+                var prob = list[i].prob_cls.toFixed(2)
                 var u1 = list[i].u1.split(',')[0]
                 var u1_prob = list[i].u1.split(',')[1]
                 var u2 = list[i].u2.split(',')[0]
@@ -224,7 +224,7 @@
                 var u10_prob = list[i].u10.split(',')[1]
 
                 var tag_str = [];
-                if (FNF=="Fake"){
+                if (FNF=="fake"){
                     tag_str.push(`<span style="background-color: red;font-weight:bold; color: white">${FNF}</span>`)
                 }
                 else {
@@ -334,12 +334,115 @@
 			{#var wrapper = document.getElementById('list-wrapper')#}
 			//wrapper.innerHTML = ''
             var loc_var = document.getElementById('loc_element').value
-			if (loc_var === 'DEMO'){
-                url = 'http://127.0.0.1:8000/api/entaillist/'
+            console.log("=============>Loc var: ", loc_var)
+            if (loc_var === 'in-py'){
+				url = 'http://127.0.0.1:8000/api/entail_py_list/'
+			}
+			else if (loc_var === 'in-ld'){
+                url = 'http://127.0.0.1:8000/api/entail_ld_list/'
             }
-			else if (loc_var === 'DLI'){
-                url = 'http://127.0.0.1:8000/api/entail_dli_list/'
+			else if (loc_var === 'in-wb'){
+                url = 'http://127.0.0.1:8000/api/entail_wb_list/'
             }
+			else if (loc_var === 'in-or'){
+                url = 'http://127.0.0.1:8000/api/entail_or_list/'
+            }
+			else if (loc_var === 'in-br'){
+                url = 'http://127.0.0.1:8000/api/entail_br_list/'
+            }
+			else if (loc_var === 'in-sk'){
+                url = 'http://127.0.0.1:8000/api/entail_sk_list/'
+            }
+			else if (loc_var === 'in-ct'){
+                url = 'http://127.0.0.1:8000/api/entail_ct_list/'
+            }
+			else if (loc_var === 'in-tn'){
+                url = 'http://127.0.0.1:8000/api/entail_tn_list/'
+            }
+			else if (loc_var === 'in-mp'){
+                url = 'http://127.0.0.1:8000/api/entail_mp_list/'
+            }
+			else if (loc_var === 'in-2984'){
+                url = 'http://127.0.0.1:8000/api/entail_gj_list/'
+            }
+			else if (loc_var === 'in-ga'){
+                url = 'http://127.0.0.1:8000/api/entail_ga_list/'
+            }
+			else if (loc_var === 'in-nl'){
+                url = 'http://127.0.0.1:8000/api/entail_nl_list/'
+            }
+			else if (loc_var === 'in-mn'){
+                url = 'http://127.0.0.1:8000/api/entail_mn_list/'
+            }
+			else if (loc_var === 'in-ar'){
+                url = 'http://127.0.0.1:8000/api/entail_ar_list/'
+            }
+			else if (loc_var === 'in-mz'){
+                url = 'http://127.0.0.1:8000/api/entail_mz_list/'
+            }
+			else if (loc_var === 'in-tr'){
+                url = 'http://127.0.0.1:8000/api/entail_tr_list/'
+            }
+			else if (loc_var === 'in-3464'){
+                url = 'http://127.0.0.1:8000/api/entail_dd_list/'
+            }
+			else if (loc_var === 'in-dl'){
+                url = 'http://127.0.0.1:8000/api/entail_dl_list/'
+            }
+			else if (loc_var === 'in-hr'){
+                url = 'http://127.0.0.1:8000/api/entail_hr_list/'
+            }
+			else if (loc_var === 'in-ch'){
+                url = 'http://127.0.0.1:8000/api/entail_ch_list/'
+            }
+			else if (loc_var === 'in-hp'){
+                url = 'http://127.0.0.1:8000/api/entail_hp_list/'
+            }
+			else if (loc_var === 'in-jk'){
+                url = 'http://127.0.0.1:8000/api/entail_jk_list/'
+            }
+			else if (loc_var === 'in-kl'){
+                url = 'http://127.0.0.1:8000/api/entail_kl_list/'
+            }
+			else if (loc_var === 'in-ka'){
+                url = 'http://127.0.0.1:8000/api/entail_ka_list/'
+            }
+			else if (loc_var === 'in-dn'){
+                url = 'http://127.0.0.1:8000/api/entail_dn_list/'
+            }
+			else if (loc_var === 'in-mh'){
+                url = 'http://127.0.0.1:8000/api/entail_mh_list/'
+            }
+			else if (loc_var === 'in-as'){
+                url = 'http://127.0.0.1:8000/api/entail_as_list/'
+            }
+			else if (loc_var === 'in-ap'){
+                url = 'http://127.0.0.1:8000/api/entail_ap_list/'
+            }
+			else if (loc_var === 'in-as'){
+                url = 'http://127.0.0.1:8000/api/entail_as_list/'
+            }
+			else if (loc_var === 'in-pb'){
+                url = 'http://127.0.0.1:8000/api/entail_pb_list/'
+            }
+			else if (loc_var === 'in-rj'){
+                url = 'http://127.0.0.1:8000/api/entail_rj_list/'
+            }
+			else if (loc_var === 'in-up'){
+                url = 'http://127.0.0.1:8000/api/entail_up_list/'
+            }
+			else if (loc_var === 'in-ut'){
+                url = 'http://127.0.0.1:8000/api/entail_ut_list/'
+            }
+			else if (loc_var === 'in-jh'){
+                url = 'http://127.0.0.1:8000/api/entail_jh_list/'
+            }
+			// if (loc_var === 'DEMO'){
+            //     url = 'http://127.0.0.1:8000/api/entaillist/'
+            // }
+			// else if (loc_var === 'DLI'){
+            //     url = 'http://127.0.0.1:8000/api/entail_dli_list/'
+            // }
 
 			fetch(url)
 			.then((resp) => resp.json())
