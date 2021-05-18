@@ -264,14 +264,11 @@
 			-- Remove extra data on re-render
 			-- CSRF Token
 		*/
-		function checkTweet(in_text, in_tid, uri_in){
-			console.log("======>URL sourced: ", uri_in)
+		function checkTweet(in_text){
 			var cur_opt;
 			if (document.activeElement.id == "cls_btn"){
 				cur_opt=1;
-				// Frontend API call
-				// url1 = 'http://127.0.0.1:8000/frontend/contact_F2B_CLS/'
-				url1 = 'http://127.0.0.1:8000/api/entail_dl_list_res/'
+				url1 = 'http://127.0.0.1:8000/frontend/contact_F2B_CLS/'
 				// document.getElementById("div3_head").innerText='';
 				// document.getElementById('url_res').innerText=''
 				document.getElementById('tweet').innerText = '';
@@ -288,7 +285,7 @@
 				document.getElementById('res_prob').innerText = '';
 				// console.log('Entailment option selected')
 			}
-			// console.log("=========>tweet id recieved for the fetch module: ", in_tid)
+
 			// in_text = "intensive #lockdown in tamil nadu to begin from june 19 watch: https://t.co/1bwvev1pdf"
 			in_text1 = in_text.replace('#', '');
 			// in_text1 = in_text;
@@ -299,10 +296,7 @@
 			// in_text2 = in_text1.replace(regexp1, '')
 			in_text3 = in_text1.replace(regexp1, '')
 			// console.log("-----Passed tweet: ", in_text3)
-			// For appending the input tweet text to process on demand
-			// fetch(url1.concat(in_text3))
-			// fetch(url1)
-			fetch(url1.concat(in_tid.toString()))
+			fetch(url1.concat(in_text3))
 			.then((resp) => resp.json())
 			.then(function(data){
 				// console.log('Returened data:', data['Tweet'])
@@ -310,7 +304,7 @@
 				// document.getElementById('verd_box').value = data;
 				document.getElementById('tweet').innerText = data['Tweet'];
 				document.getElementById('tweet_res').innerText = data['Result'];
-				document.getElementById('res_prob').innerText = data['prob'].toFixed(2);
+				document.getElementById('res_prob').innerText = data['prob'].toFixed(2);;
 				// document.getElementById('url_res').innerHTML = data['o_lst'][0];
 				if (cur_opt==2){
 					// document.getElementById("div3_head").innerText='Resources to be shown';
@@ -468,7 +462,7 @@
 
 
 
-        function rend(i, list, l_var, url_in) {
+        function rend(i, list, l_var) {
             setTimeout(function () {
                 try {
                     document.getElementById(`data-row-${i}`).remove()
@@ -476,73 +470,70 @@
 
                 }
 
-                // var dc_tag = list[i].direct_claim
-                // var idc_tag = list[i].indirect_claim
-                // var op_tag = list[i].opinion
-                // var qt_tag = list[i].quote
-                // var nc_tag = list[i].not_claim
+                var dc_tag = list[i].direct_claim
+                var idc_tag = list[i].indirect_claim
+                var op_tag = list[i].opinion
+                var qt_tag = list[i].quote
+                var nc_tag = list[i].not_claim
 
                 final_disp = []
 
-                // var tag_list = [dc_tag, idc_tag, op_tag, qt_tag, nc_tag];
-                // var tag_names = ["Direct Claim", "Indirect Claim", "Opinion", "Quote", "Not Claim"];
-				//
-                // var cnt = 0;
-                // var j;
-                // for (j=0; j<5; j++ ){
-                //     if (tag_list[j]=='yes'){
-                //         final_disp.push(tag_names[j])
-                //     }
-                // }
+                var tag_list = [dc_tag, idc_tag, op_tag, qt_tag, nc_tag];
+                var tag_names = ["Direct Claim", "Indirect Claim", "Opinion", "Quote", "Not Claim"];
+
+                var cnt = 0;
+                var j;
+                for (j=0; j<5; j++ ){
+                    if (tag_list[j]=='yes'){
+                        final_disp.push(tag_names[j])
+                    }
+                }
 
                 {#console.log({'Cur List': list[i]});#}
-                // var tag_str = [];
+                var tag_str = [];
 
-                // if (final_disp.length===0){
-                //     tag_str.push(`<span style="background-color: palevioletred;font-weight:bold">Unknown </span>`)
-                // }
-                // else{
-                //     for (var k = 0; k<final_disp.length; k++){
-                //     {#console.log({'Tag': final_disp[k]})#}
-                //         var cur_tag = final_disp[k]
-                //         if (cur_tag=="Direct Claim"){
-                //             tag_str.push(`<span style="background-color: deepskyblue;font-weight:bold">${cur_tag} ${list[i].direct_claim_probability.toFixed(2)}</span>`)
-                //         }
-                //         else if (cur_tag=="Indirect Claim"){
-                //             tag_str.push(`<span style="background-color: sandybrown;font-weight:bold">${cur_tag} ${list[i].indirect_claim_probability.toFixed(2)}</span>`)
-                //         }
-                //         else if (cur_tag=="Opinion"){
-                //             tag_str.push(`<span style="background-color:greenyellow;font-weight:bold">${cur_tag} ${list[i].opinion_probability.toFixed(2)}</span>`)
-                //         }
-                //         else if (cur_tag=="Quote"){
-                //             tag_str.push(`<span style="background-color:yellow;font-weight:bold">${cur_tag} ${list[i].quote_probability.toFixed(2)}</span>`)
-                //         }
-                //         else {
-                //             tag_str.push(`<span style="background-color:palevioletred;font-weight:bold">${cur_tag} ${list[i].not_claim_probability.toFixed(2)}</span>`)
-                //         }
-                //     }
-                // }
+                if (final_disp.length===0){
+                    tag_str.push(`<span style="background-color: palevioletred;font-weight:bold">Unknown </span>`)
+                }
+                else{
+                    for (var k = 0; k<final_disp.length; k++){
+                    {#console.log({'Tag': final_disp[k]})#}
+                        var cur_tag = final_disp[k]
+                        if (cur_tag=="Direct Claim"){
+                            tag_str.push(`<span style="background-color: deepskyblue;font-weight:bold">${cur_tag} ${list[i].direct_claim_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Indirect Claim"){
+                            tag_str.push(`<span style="background-color: sandybrown;font-weight:bold">${cur_tag} ${list[i].indirect_claim_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Opinion"){
+                            tag_str.push(`<span style="background-color:greenyellow;font-weight:bold">${cur_tag} ${list[i].opinion_probability.toFixed(2)}</span>`)
+                        }
+                        else if (cur_tag=="Quote"){
+                            tag_str.push(`<span style="background-color:yellow;font-weight:bold">${cur_tag} ${list[i].quote_probability.toFixed(2)}</span>`)
+                        }
+                        else {
+                            tag_str.push(`<span style="background-color:palevioletred;font-weight:bold">${cur_tag} ${list[i].not_claim_probability.toFixed(2)}</span>`)
+                        }
+                    }
+                }
 
 
                 var img_name = list[i].iids
-				var tid = list[i].id
-				// console.log("Tweet id: ", tid)
 
                 var file_name = `/static/frontend/`+l_var+`/`+img_name
                 // console.log({'IMG con': file_name})
 				// console.log("Tweet: ", list[i].tweets)
-				var cur_tweet = list[i].tweet;
+				var cur_tweet = list[i].tweets;
                 // console.log("Tweet: ", cur_tweet)
-                var cur_var = list[i].tweet;
+                var cur_var = list[i].tweets;
                 var im_con = `<img src="${file_name}" width="50px" />`
-                // var title = `<span class="title">${list[i].tweet} - ${tag_str}</span>`
-				var title = `<span class="title">${list[i].tweet}</span>`
+                var title = `<span class="title">${list[i].tweets} - ${tag_str}</span>`
                 var item = `
                     <div id="data-row-${i}" class="task_wrapper">
                         <table style="width:100%">
                           <tr>
                             <td>${im_con}</td>
-                            <td>${title} <button type="button" id="cls_btn" onclick="checkTweet('${cur_var}$', '${tid}', '${url_in}')">Check (CLS)</button> <button type="button" id="ent_btn" onclick="checkTweet('${cur_var}')">Check (ENT)</button> </td>
+                            <td>${title} <button type="button" id="cls_btn" onclick="checkTweet('${cur_var}')">Check (CLS)</button> <button type="button" id="ent_btn" onclick="checkTweet('${cur_var}')">Check (ENT)</button> </td>
                           </tr>
                         </table>
                     </div>
@@ -565,164 +556,62 @@
 			//wrapper.innerHTML = ''
             var url;
             var loc_var = document.getElementById('loc_element').value
-			if (loc_var === 'in-py'){
-				url = 'http://127.0.0.1:8000/api/entail_py_list/'
-			}
-			else if (loc_var === 'in-ld'){
-                url = 'http://127.0.0.1:8000/api/entail_ld_list/'
+			{% comment %}var url = 'http://127.0.0.1:8000/api/task-L3-list/'{% endcomment %}
+            if (loc_var === 'DEMO'){
+                url = 'http://127.0.0.1:8000/api/task-L3-list/'
             }
-			else if (loc_var === 'in-wb'){
-                url = 'http://127.0.0.1:8000/api/entail_wb_list/'
+            {% comment %}if (loc_var === 'AMD'){
+                url = 'http://127.0.0.1:8000/api/data_amd_list/'
             }
-			else if (loc_var === 'in-or'){
-                url = 'http://127.0.0.1:8000/api/entail_or_list/'
+            else if (loc_var === 'AMR'){
+                url = 'http://127.0.0.1:8000/api/data_amr_list/'
             }
-			else if (loc_var === 'in-br'){
-                url = 'http://127.0.0.1:8000/api/entail_br_list/'
+            else if (loc_var === 'BLR'){
+                url = 'http://127.0.0.1:8000/api/data_blr_list/'
             }
-			else if (loc_var === 'in-sk'){
-                url = 'http://127.0.0.1:8000/api/entail_sk_list/'
+            else if (loc_var === 'CHN'){
+                url = 'http://127.0.0.1:8000/api/data_chn_list/'
+            }{% endcomment %}
+            else if (loc_var === 'DLI'){
+                url = 'http://127.0.0.1:8000/api/data_dli_list/'
             }
-			else if (loc_var === 'in-ct'){
-                url = 'http://127.0.0.1:8000/api/entail_ct_list/'
+            {% comment %}
+            else if (loc_var === 'GWT'){
+                url = 'http://127.0.0.1:8000/api/data_gwt_list/'
             }
-			else if (loc_var === 'in-tn'){
-                url = 'http://127.0.0.1:8000/api/entail_tn_list/'
+            else if (loc_var === 'HBD'){
+                url = 'http://127.0.0.1:8000/api/data_hbd_list/'
             }
-			else if (loc_var === 'in-mp'){
-                url = 'http://127.0.0.1:8000/api/entail_mp_list/'
+            else if (loc_var === 'IDR'){
+                url = 'http://127.0.0.1:8000/api/data_idr_list/'
             }
-			else if (loc_var === 'in-2984'){
-                url = 'http://127.0.0.1:8000/api/entail_gj_list/'
+            else if (loc_var === 'JPR'){
+                url = 'http://127.0.0.1:8000/api/data_jpr_list/'
             }
-			else if (loc_var === 'in-ga'){
-                url = 'http://127.0.0.1:8000/api/entail_ga_list/'
+            else if (loc_var === 'KPR'){
+                url = 'http://127.0.0.1:8000/api/data_kpr_list/'
             }
-			else if (loc_var === 'in-nl'){
-                url = 'http://127.0.0.1:8000/api/entail_nl_list/'
+            else if (loc_var === 'KTA'){
+                url = 'http://127.0.0.1:8000/api/data_kta_list/'
             }
-			else if (loc_var === 'in-mn'){
-                url = 'http://127.0.0.1:8000/api/entail_mn_list/'
+            else if (loc_var === 'LKO'){
+                url = 'http://127.0.0.1:8000/api/data_lko_list/'
             }
-			else if (loc_var === 'in-ar'){
-                url = 'http://127.0.0.1:8000/api/entail_ar_list/'
+            else if (loc_var === 'MBI'){
+                url = 'http://127.0.0.1:8000/api/data_mbi_list/'
             }
-			else if (loc_var === 'in-mz'){
-                url = 'http://127.0.0.1:8000/api/entail_mz_list/'
+            else if (loc_var === 'PNE'){
+                url = 'http://127.0.0.1:8000/api/data_pne_list/'
             }
-			else if (loc_var === 'in-tr'){
-                url = 'http://127.0.0.1:8000/api/entail_tr_list/'
+            else if (loc_var === 'RCH'){
+                url = 'http://127.0.0.1:8000/api/data_rch_list/'
             }
-			else if (loc_var === 'in-3464'){
-                url = 'http://127.0.0.1:8000/api/entail_dd_list/'
+            else if (loc_var === 'SNR'){
+                url = 'http://127.0.0.1:8000/api/data_snr_list/'
             }
-			else if (loc_var === 'in-dl'){
-                url = 'http://127.0.0.1:8000/api/entail_dl_list/'
-            }
-			else if (loc_var === 'in-hr'){
-                url = 'http://127.0.0.1:8000/api/entail_hr_list/'
-            }
-			else if (loc_var === 'in-ch'){
-                url = 'http://127.0.0.1:8000/api/entail_ch_list/'
-            }
-			else if (loc_var === 'in-hp'){
-                url = 'http://127.0.0.1:8000/api/entail_hp_list/'
-            }
-			else if (loc_var === 'in-jk'){
-                url = 'http://127.0.0.1:8000/api/entail_jk_list/'
-            }
-			else if (loc_var === 'in-kl'){
-                url = 'http://127.0.0.1:8000/api/entail_kl_list/'
-            }
-			else if (loc_var === 'in-ka'){
-                url = 'http://127.0.0.1:8000/api/entail_ka_list/'
-            }
-			else if (loc_var === 'in-dn'){
-                url = 'http://127.0.0.1:8000/api/entail_dn_list/'
-            }
-			else if (loc_var === 'in-mh'){
-                url = 'http://127.0.0.1:8000/api/entail_mh_list/'
-            }
-			else if (loc_var === 'in-as'){
-                url = 'http://127.0.0.1:8000/api/entail_as_list/'
-            }
-			else if (loc_var === 'in-ap'){
-                url = 'http://127.0.0.1:8000/api/entail_ap_list/'
-            }
-			else if (loc_var === 'in-as'){
-                url = 'http://127.0.0.1:8000/api/entail_as_list/'
-            }
-			else if (loc_var === 'in-pb'){
-                url = 'http://127.0.0.1:8000/api/entail_pb_list/'
-            }
-			else if (loc_var === 'in-rj'){
-                url = 'http://127.0.0.1:8000/api/entail_rj_list/'
-            }
-			else if (loc_var === 'in-up'){
-                url = 'http://127.0.0.1:8000/api/entail_up_list/'
-            }
-			else if (loc_var === 'in-ut'){
-                url = 'http://127.0.0.1:8000/api/entail_ut_list/'
-            }
-			else if (loc_var === 'in-jh'){
-                url = 'http://127.0.0.1:8000/api/entail_jh_list/'
-            }
-			// {% comment %}var url = 'http://127.0.0.1:8000/api/task-L3-list/'{% endcomment %}
-            // if (loc_var === 'DEMO'){
-            //     url = 'http://127.0.0.1:8000/api/task-L3-list/'
-            // }
-            // {% comment %}if (loc_var === 'AMD'){
-            //     url = 'http://127.0.0.1:8000/api/data_amd_list/'
-            // }
-            // else if (loc_var === 'AMR'){
-            //     url = 'http://127.0.0.1:8000/api/data_amr_list/'
-            // }
-            // else if (loc_var === 'BLR'){
-            //     url = 'http://127.0.0.1:8000/api/data_blr_list/'
-            // }
-            // else if (loc_var === 'CHN'){
-            //     url = 'http://127.0.0.1:8000/api/data_chn_list/'
-            // }{% endcomment %}
-            // else if (loc_var === 'in-dl'){
-            //     url = 'http://127.0.0.1:8000/api/entail_dli_list/'
-            // }
-            // {% comment %}
-            // else if (loc_var === 'GWT'){
-            //     url = 'http://127.0.0.1:8000/api/data_gwt_list/'
-            // }
-            // else if (loc_var === 'HBD'){
-            //     url = 'http://127.0.0.1:8000/api/data_hbd_list/'
-            // }
-            // else if (loc_var === 'IDR'){
-            //     url = 'http://127.0.0.1:8000/api/data_idr_list/'
-            // }
-            // else if (loc_var === 'JPR'){
-            //     url = 'http://127.0.0.1:8000/api/data_jpr_list/'
-            // }
-            // else if (loc_var === 'KPR'){
-            //     url = 'http://127.0.0.1:8000/api/data_kpr_list/'
-            // }
-            // else if (loc_var === 'KTA'){
-            //     url = 'http://127.0.0.1:8000/api/data_kta_list/'
-            // }
-            // else if (loc_var === 'LKO'){
-            //     url = 'http://127.0.0.1:8000/api/data_lko_list/'
-            // }
-            // else if (loc_var === 'MBI'){
-            //     url = 'http://127.0.0.1:8000/api/data_mbi_list/'
-            // }
-            // else if (loc_var === 'PNE'){
-            //     url = 'http://127.0.0.1:8000/api/data_pne_list/'
-            // }
-            // else if (loc_var === 'RCH'){
-            //     url = 'http://127.0.0.1:8000/api/data_rch_list/'
-            // }
-            // else if (loc_var === 'SNR'){
-            //     url = 'http://127.0.0.1:8000/api/data_snr_list/'
-            // }
-            // else if (loc_var === 'VNS'){
-            //     url = 'http://127.0.0.1:8000/api/data_vns_list/'
-            // }{% endcomment %}
+            else if (loc_var === 'VNS'){
+                url = 'http://127.0.0.1:8000/api/data_vns_list/'
+            }{% endcomment %}
 
             {#console.log({'URL': url})#}
 
@@ -733,7 +622,7 @@
 
 				var list = data
 				for (var i in list){
-                    rend(i, list, loc_var, url);
+                    rend(i, list, loc_var);
 				}
 
 				if (list_snapshot.length > list.length){

@@ -83,15 +83,24 @@
 
 </head>
 <body>
-	<div class="container">
-        <div class="sticky"><strong>Final Verdict: Fake or Not</strong></div>
-{#        <p align="center"><strong>Final Verdict: Fake or Not</strong></p>#}
-		<div id="task-container">
-			<div id="list-wrapper">
-			
-			</div>	
+	<div id="form-wrapper">
+    <form action="{% url 'frontend:frame_4' %}" method="post">
+    {% csrf_token %}
+{#        <div align="left" style="margin-left: 35px">#}
+{##}
+{#    <!--        <input type="submit" class='btn btn-primary' value="Start" style="margin-left:5px;margin-top: 20px;border-radius:5px;width:100px">-->#}
+{#        </div>#}
+		<div class="top_rule">
+			<div class="top_rule1">
+				{{ form.location }}
+				<button type="submit" name="start_btn" value="1">
+					<i class="fa fa-thumb-tack"></i> START
+				</button>
+			</div>
 		</div>
+	</form>
 	</div>
+
 
 
 </body>

@@ -1,51 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Random">
-      <change afterPath="$PROJECT_DIR$/Archive/pipeline_stats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Archive/stat_numbers_scraped.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/AP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Arunachal_Pradesh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Assam_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Bihar_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Chandigarh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Chattisgarh_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Dadra_and_Nagar_Haveli_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Daman_and_Diu_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Delhi_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Goa_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Gujrat_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/HP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Haryana_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/J&amp;K_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Jharkhand_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Karnataka_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Kerela_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Lakshadweep_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/MP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Maharashtra_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Manipur_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Meghalaya_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Mizoram_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Nagaland_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Orissa_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Puducherry_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Punjab_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Rajasthan_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Sikkim_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/TN_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Tripura_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/UP_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/Uttaranchal_Tweets.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/State_Files_All/West_Bengal_Tweets.csv" afterDir="false" />
+    <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Stream and CHeck; Monitor Web updated for state inclusion">
+      <change afterPath="$PROJECT_DIR$/todo_drf/Archives/db_V3_deafultOK.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/api/Archives/migrations_V0_default/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/api/Archives/migrations_V0_default/0002_entail_dli.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/api/Archives/migrations_V0_default/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/api/populate_DB_states_results.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/Archive/frame_2_V0_4DataRevireresultext.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/.~lock.Delhi_Tweets.csv#" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6f604493-ca62-441f-bd61-4de186d8468d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6f604493-ca62-441f-bd61-4de186d8468d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pipeline_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline_stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/migrations/0002_entail_dli.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/frame_4_blank.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_blank.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/Nagaland_Tweets.csv" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Nagaland_Tweets.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/statewise_tweets/stat_numbers_scraped.csv" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/stat_numbers_scraped.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -68,7 +51,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Integration-1" />
+        <entry key="$PROJECT_DIR$" value="Random" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -108,7 +91,7 @@
       <recent name="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/Archive" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.pipeline_stats">
+  <component name="RunManager" selected="Python.populate_DB_states_results">
     <configuration name="apps" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="todo-django-rest-framework-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,6 +158,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="populate_DB_states_results" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="todo-django-rest-framework-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/todo_drf/api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/todo_drf/api/populate_DB_states_results.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="text_ml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="todo-django-rest-framework-master" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -199,10 +204,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.populate_DB_states_results" />
+        <item itemvalue="Python.apps" />
         <item itemvalue="Python.pipeline_stats" />
         <item itemvalue="Python.demo_Fakenews_test14mar21" />
         <item itemvalue="Python.text_ml" />
-        <item itemvalue="Python.apps" />
       </list>
     </recent_temporary>
   </component>
@@ -274,7 +280,8 @@
       <workItem from="1619586535262" duration="3181000" />
       <workItem from="1620106000102" duration="1432000" />
       <workItem from="1621091181451" duration="3053000" />
-      <workItem from="1621216473170" duration="16729000" />
+      <workItem from="1621216473170" duration="49823000" />
+      <workItem from="1621313967622" duration="335000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -416,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621093626221</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update for better classification and stat update">
+      <created>1621276203638</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1621276203638</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,12 +478,15 @@
     <MESSAGE value="Integration-1 state-wise data (Sai Srinivas (Wipro))" />
     <MESSAGE value="Integration-2 state-wise data + FE modifications" />
     <MESSAGE value="Random" />
-    <option name="LAST_COMMIT_MESSAGE" value="Random" />
+    <MESSAGE value="Update for better classification and stat update" />
+    <MESSAGE value="Stream and CHeck; Monitor Web updated for state inclusion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stream and CHeck; Monitor Web updated for state inclusion" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$populate_DB_states_results.coverage" NAME="populate_DB_states_results Coverage Results" MODIFIED="1621299648627" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$demo_Fakenews_test14mar21.coverage" NAME="demo_Fakenews_test14mar21 Coverage Results" MODIFIED="1616703994952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$text_ml.coverage" NAME="text_ml Coverage Results" MODIFIED="1615118265872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
     <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$pipeline_stats.coverage" NAME="pipeline_stats Coverage Results" MODIFIED="1621270293718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1615022834170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
+    <SUITE FILE_PATH="coverage/todo_django_rest_framework_master$apps.coverage" NAME="apps Coverage Results" MODIFIED="1621298140239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/todo_drf/api" />
   </component>
 </project>

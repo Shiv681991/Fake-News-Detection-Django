@@ -1,4 +1,5 @@
 from django.apps import AppConfig
+from django.conf import settings
 from .demo_Fakenews_test14mar21 import start_entail
 # roberta = torch.hub.load('pytorch/fairseq', 'roberta.large.mnli')
 # roberta.eval()  # disable dropout for evaluation
@@ -194,6 +195,8 @@ from .demo_Fakenews_test14mar21 import start_entail
 #             tweetsenco.append(' '.join(words[j:j + i + 2]))
 #     return tweetsenco
 # # =======================================================
+# ---------------------------------------------------------------------------------------------------
+
 class ApiConfig(AppConfig):
     name = 'api'
 class PredictorConfig(AppConfig):
