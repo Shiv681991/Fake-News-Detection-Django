@@ -264,14 +264,23 @@
 			-- Remove extra data on re-render
 			-- CSRF Token
 		*/
-		function checkTweet(in_text, in_tid, uri_in){
-			console.log("======>URL sourced: ", uri_in)
+
+		// function checkTweet(in_text, in_tid, uri_in){
+		function checkTweet(in_tid, uri_in){
+			console.log("Final func: tweet check is called!")
+			// console.log(in_text)
+			// console.log(in_text, in_tid, uri_in)
+			cur_loc = uri_in.split('/').slice(-2)[0].split('_').slice(1)[0]
+			// console.log("======>Location: ",cur_loc)
+			// if (in_tid==6){
+			// 	url1 = 'http://127.0.0.1:8000/api/entail_'+cur_loc+'_list_res/'
+			// }
 			var cur_opt;
 			if (document.activeElement.id == "cls_btn"){
 				cur_opt=1;
 				// Frontend API call
 				// url1 = 'http://127.0.0.1:8000/frontend/contact_F2B_CLS/'
-				url1 = 'http://127.0.0.1:8000/api/entail_dl_list_res/'
+				url1 = 'http://127.0.0.1:8000/api/entail_'+cur_loc+'_list_res/'
 				// document.getElementById("div3_head").innerText='';
 				// document.getElementById('url_res').innerText=''
 				document.getElementById('tweet').innerText = '';
@@ -288,26 +297,26 @@
 				document.getElementById('res_prob').innerText = '';
 				// console.log('Entailment option selected')
 			}
-			// console.log("=========>tweet id recieved for the fetch module: ", in_tid)
-			// in_text = "intensive #lockdown in tamil nadu to begin from june 19 watch: https://t.co/1bwvev1pdf"
-			in_text1 = in_text.replace('#', '');
-			// in_text1 = in_text;
-			// in_text3 = "Hi_Passing text"
-			regexp1 = "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
-			// regexp2 = "/https?:\/\/t.co\/[a-zA-Z0-9]*/g"
-			// regexp2 = "https?:\/\/t\.co\/[-a-zA-Z0-9@:%._+~#=]+"
-			// in_text2 = in_text1.replace(regexp1, '')
-			in_text3 = in_text1.replace(regexp1, '')
-			// console.log("-----Passed tweet: ", in_text3)
+
+			// // console.log("=========>tweet id recieved for the fetch module: ", in_tid)
+			// // in_text = "intensive #lockdown in tamil nadu to begin from june 19 watch: https://t.co/1bwvev1pdf"
+			// in_text1 = in_text.replace('#', '');
+			// // in_text1 = in_text;
+			// // in_text3 = "Hi_Passing text"
+			// regexp1 = "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"
+			// // regexp2 = "/https?:\/\/t.co\/[a-zA-Z0-9]*/g"
+			// // regexp2 = "https?:\/\/t\.co\/[-a-zA-Z0-9@:%._+~#=]+"
+			// // in_text2 = in_text1.replace(regexp1, '')
+			// in_text3 = in_text1.replace(regexp1, '')
+			// // console.log("-----Passed tweet: ", in_text3)
 			// For appending the input tweet text to process on demand
-			// fetch(url1.concat(in_text3))
+
+			// Fetch
 			// fetch(url1)
+			// fetch(url1.concat(in_text3))
 			fetch(url1.concat(in_tid.toString()))
 			.then((resp) => resp.json())
 			.then(function(data){
-				// console.log('Returened data:', data['Tweet'])
-				// console.log('Returened data:', data['Result'])
-				// document.getElementById('verd_box').value = data;
 				document.getElementById('tweet').innerText = data['Tweet'];
 				document.getElementById('tweet_res').innerText = data['Result'];
 				document.getElementById('res_prob').innerText = data['prob'].toFixed(2);
@@ -463,6 +472,9 @@
         if (document.getElementById('proc_status').value){
             buildList()
         }*/
+		function rnd(min,max){
+            return Math.floor(Math.random()*(max-min+1)+min );
+        }
         buildList()
         var wrapper = document.getElementById('list-wrapper')
 
@@ -530,19 +542,39 @@
 
                 var file_name = `/static/frontend/`+l_var+`/`+img_name
                 // console.log({'IMG con': file_name})
-				// console.log("Tweet: ", list[i].tweets)
 				var cur_tweet = list[i].tweet;
                 // console.log("Tweet: ", cur_tweet)
-                var cur_var = list[i].tweet;
+                // var cur_var = list[i].tweet;
+				var cur_var = "";
+
+				// console.log("Tweet ID: ", tid)
+				// console.log("URL: ", url_in)
+				// if (tid==1){
+				// 	// cur_var = "Dummy tweet here"; //at 6
+				// 	console.log("Before Tweet: ", cur_var)
+				// 	cur_var = cur_var.replace(/\s+/g,'');
+				// 	cur_var = cur_var.replace('\n', ' ');
+				// 	console.log("After Tweet: ", cur_var)
+				// 	// checkTweet(cur_var, tid, url_in)
+				// }
+
+
+                // // Uncomment below for picking up profile pics from the local system
+                // var im_con = `<img src="${file_name}" width="50px" />`
+
+				// Code for dummy DPs
+                cur_ind = rnd(1,7).toString()
+                file_name = 'https://www.bootdey.com/img/Content/avatar/avatar'+cur_ind+'.png'
                 var im_con = `<img src="${file_name}" width="50px" />`
-                // var title = `<span class="title">${list[i].tweet} - ${tag_str}</span>`
+
+				// var title = `<span class="title">${list[i].tweet} - ${tag_str}</span>`
 				var title = `<span class="title">${list[i].tweet}</span>`
                 var item = `
                     <div id="data-row-${i}" class="task_wrapper">
                         <table style="width:100%">
                           <tr>
                             <td>${im_con}</td>
-                            <td>${title} <button type="button" id="cls_btn" onclick="checkTweet('${cur_var}$', '${tid}', '${url_in}')">Check (CLS)</button> <button type="button" id="ent_btn" onclick="checkTweet('${cur_var}')">Check (ENT)</button> </td>
+                            <td>${title} <button type="button" id="cls_btn" onclick="checkTweet('${tid}', '${url_in}')">Check (CLS)</button> <button type="button" id="ent_btn" onclick="checkTweet('${cur_var}$', '${tid}', '${url_in}')">Check (ENT)</button> </td>
                           </tr>
                         </table>
                     </div>

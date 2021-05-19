@@ -119,31 +119,48 @@
         <div align="center" class="sticky"><strong>Monitor Incoming Tweet Stream</strong></div>
 {#        <p align="center"><strong>Monitor Incoming Tweet Stream</strong></p>#}
 
-		<br>
 
-            <table id="faketable_monitor" align="center" width="100%">
-					<col style="width:7%">
-					<col style="width:70%">
-					<col style="width:10%">
-					<col style="width:2%">
-                <tr>
-                    <th colspan="2" style="text-align: center">Tweet</th>
-                    <th style="text-align: center">Label</th>
-                    <th style="text-align: right">Probability</th>
-                </tr>
-            </table>
-        <hr>
-        <div id="task-container">
-			<div id="list-wrapper">
 
-			</div>	
+	</div>
+    <div id="form-wrapper">
+    <form action="{% url 'frontend:frame_4' %}" method="post">
+    {% csrf_token %}
+		<div class="top_rule">
+			<div class="top_rule1">
+				{{ form.location }}
+				<button type="submit" name="start_btn" value="1">
+					<i class="fa fa-thumb-tack"></i> START
+				</button>
+			</div>
+			<div class="top_rule2">
+                <button type="submit" name="stop_btn" value="1">
+                    <i class="fa fa-thumb-tack"></i> STOP
+                </button>
+            </div>
 		</div>
+	</form>
+    <table id="faketable_monitor" align="center" width="100%">
+            <col style="width:7%">
+            <col style="width:70%">
+            <col style="width:10%">
+            <col style="width:2%">
+        <tr>
+            <th colspan="2" style="text-align: center">Tweet</th>
+            <th style="text-align: center">Label</th>
+            <th style="text-align: right">Probability</th>
+        </tr>
+    </table>
+    <hr>
+    <div id="task-container">
+        <div id="list-wrapper">
+
+        </div>
+    </div>
 {#        <input type="hidden" id='proc_status' value={{ proc_status }}>#}
         <input type="hidden" id="loc_element" value={{ loc }}>
 	</div>
-
-
-	<script type="text/javascript">
+</body>
+    <script type="text/javascript">
 		/*
 			KEY COMPONENTS:
 			"activeItem" = null until an edit button is clicked. Will contain object of item we are editing
@@ -186,6 +203,9 @@
         if (document.getElementById('proc_status').value){
             buildList()
         }*/
+        function rnd(min,max){
+            return Math.floor(Math.random()*(max-min+1)+min );
+        }
         buildList()
         var wrapper = document.getElementById('list-wrapper')
         function rend(i, list, l_var) {
@@ -231,10 +251,15 @@
                     tag_str.push(`<span style="background-color: limegreen;font-weight:bold">${FNF}</span>`)
                 }
 
-
-                var img_name = list[i].iids
-                var file_name = `/static/frontend/`+l_var+`/`+img_name
+                // Uncomment below for picking up profile pics from the local system
+                // var img_name = list[i].iids
+                // var file_name = `/static/frontend/`+l_var+`/`+img_name
                 // console.log({'img con': file_name})
+                // var im_con = `<img src="${file_name}" width="50px" />`
+
+                // Code for dummy DPs
+                cur_ind = rnd(1,7).toString()
+                file_name = 'https://www.bootdey.com/img/Content/avatar/avatar'+cur_ind+'.png'
                 var im_con = `<img src="${file_name}" width="50px" />`
 
                 // var title = `<span class="title"><strong>Tweet: </strong>${tweet} - ${tag_str} - ${prob}</span>`
@@ -463,5 +488,4 @@
 			})
 		}
 	</script>
-</body>
 </html>

@@ -15,12 +15,12 @@ import random
 import dateutil
 from twython import Twython
 
-# from api.models import entail_dl as cur_db
+# from api.models import entail_jh as cur_db
 # # Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
 # # -----------------------------------------------
 # from tqdm import tqdm
-# f_name = 'Delhi'
-# in_file = 'path_to_csv_files/'+f_name+'_Tweets.csv'
+# f_name = 'Jharkhand'
+# in_file = 'path_to_statewise_tweets/'+f_name+'_Tweets.csv'
 # cur_df = pd.read_csv(in_file)
 # # print(cur_df.head())
 # res_list, prob_list = FrontendAppConfig.text_FNF_classify(cur_df['text'].tolist())
@@ -44,8 +44,8 @@ from twython import Twython
 #                   u7 = "URL dummy", u7res = tweet_data[1], u7prob = tweet_data[2], u8 = "URL dummy", u8res = tweet_data[1], u8prob = tweet_data[2],
 #                   u9 = "URL dummy", u9res = tweet_data[1], u9prob = tweet_data[2], u10 = "URL dummy", u10res = tweet_data[1], u10prob = tweet_data[2])
 #     t.save()
-# print("===========>DB populated!")
-# # -----------------------------------------------
+# print(f"===========>DB {f_name} populated!")
+# # # -----------------------------------------------
 
 
 
@@ -601,14 +601,36 @@ def frame_4_blank(request):
     return render(request, 'frontend/frame_4_blank.html', context)
 # Location INDEPENDENT (for demo pusposes) frame 4 display
 def frame_4(request):
-    print("Inside frame 4 for further evaluation:")
-    print(request.POST)
-    loc = request.POST.get('location')
-    # loc = 'DLI'
-    context = {'loc': loc, 'proc_status': True, 'first_disp': False}
-    # print("The data is:")
-    # print(l2_Data)
-    return render(request, 'frontend/frame_4.html', context)
+    loc_set = False
+    loc = None
+    if request.method == 'POST':
+        if request.POST.get("stop_btn"):
+            f_obj = locationForm()
+            response = {'f': 0, 'form': f_obj, 'loc': loc,
+                        'first_disp': False, 'proc_status': loc_set}
+            return render(request, 'frontend/frame_4_blank.html', response)
+        temp = 'frontend/frame_4.html'
+        loc_set = True
+        f_obj = locationForm(request.POST)
+        loc = request.POST.get('location')
+        response = {'f': 1, 'form': f_obj, 'loc': loc, 'first_disp': False, 'proc_status': loc_set}
+    else:
+        temp = 'frontend/frame_4_blank.html'
+        f_obj = locationForm()
+        response = {'f': 0, 'form': f_obj, 'loc': loc, 'first_disp': True, 'proc_status': loc_set}
+    return render(request, temp, response)
+
+    # # Earlier simpler implementation without stop
+    # # -------------------------------------------------------------
+    # print("Inside frame 4 for further evaluation:")
+    # print(request.POST)
+    # loc = request.POST.get('location')
+    # # loc = 'DLI'
+    # context = {'loc': loc, 'proc_status': True, 'first_disp': False}
+    # # print("The data is:")
+    # # print(l2_Data)
+    # return render(request, 'frontend/frame_4.html', context)
+
 # Location specific frame 4 display
 # def frame_4(request, uri):
 #     uri_content = uri.split('&')
@@ -693,22 +715,24 @@ def start_disp(request):
         if request.POST.get("stop_btn"):
             # print("===============>In the stop rule")
             f_obj1 = locationForm()
-            f_obj2 = UploadFileForm()
-            response = {'f1': 0, 'f2': 0, 'f3': 0, 'f4': 0, 'f5': 0, 'form1': f_obj1, 'form2': f_obj2, 'loc': loc, 'first_disp': False, 'loc_flag': loc_set}
+            # f_obj2 = UploadFileForm()
+            # response = {'f1': 0, 'f2': 0, 'f3': 0, 'f4': 0, 'f5': 0, 'form1': f_obj1, 'form2': f_obj2, 'loc': loc, 'first_disp': False, 'loc_flag': loc_set}
+            response = {'f1': 0, 'f2': 0, 'f3': 0, 'f4': 0, 'f5': 0, 'form1': f_obj1, 'loc': loc,
+                        'first_disp': False, 'loc_flag': loc_set}
             return render(request, 'frontend/prediction_V2_V0_First.html', response)
         loc_set=True
         f_obj1 = locationForm(request.POST)
-        f_obj2 = UploadFileForm(request.POST, request.FILES)
+        # f_obj2 = UploadFileForm(request.POST, request.FILES)
         # print("=============>File Name", request.POST.get('file', False))
-        f_len = len(request.POST.get('file', False))
+        # f_len = len(request.POST.get('file', False))
         loc = request.POST.get('location')
-        if f_obj2.is_valid():
-            print("File form is totally valid!")
-            if f_len!=0 and loc=='OTR':
-                loc = 'DEMO'
-                print('location set to DEMO')
-            else:
-                print('Location stays the same')
+        # if f_obj2.is_valid():
+        #     print("File form is totally valid!")
+        #     if f_len!=0 and loc=='OTR':
+        #         loc = 'DEMO'
+        #         print('location set to DEMO')
+        #     else:
+        #         print('Location stays the same')
         #     handle_uploaded_file(request.FILES['file'])
 
         # print("==============>Location", loc)
@@ -729,8 +753,11 @@ def start_disp(request):
         uri = urllib.parse.urlencode(my_dict)
         # 'fstat1': f_stat1, 'fstat2': f_stat2,
         # 'fstat3': f_stat3, 'cat_list1': cat_tag1, 'cat_list2': cat_tag2, 'cat_list3': cat_tag3
+        # response = {'f1': 1, 'f2': 1, 'f3': 1, 'f4': 1, 'f5': 1,
+        #             'form1': f_obj1, 'form2': f_obj2, 'uri': uri, 'loc_flag': loc_set,
+        #             'fstat1': lst1, 'fstat2': lst2, 'fstat3': lst3}
         response = {'f1': 1, 'f2': 1, 'f3': 1, 'f4': 1, 'f5': 1,
-                    'form1': f_obj1, 'form2': f_obj2, 'uri': uri, 'loc_flag': loc_set,
+                    'form1': f_obj1, 'uri': uri, 'loc_flag': loc_set,
                     'fstat1': lst1, 'fstat2': lst2, 'fstat3': lst3}
         # print("=========>Handling the POST here (loc)")
         # print()

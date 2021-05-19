@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-
+from datetime import datetime
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import *
@@ -285,9 +285,11 @@ def apiOverview(request):
 # Puducherry
 @api_view(['GET'])
 def entail_py_list_res(request, in_tid):
-	out_obj = entail_py.objects.get(id__exact=in_tid)
+	print(f"Running for Puducherry at {datetime.now()}")
+	out_obj = entail_py.objects.get(id__exact=int(in_tid))
+	print(f"Tweet: {out_obj.tweet}")
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
-	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls_cls}
+	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
 @api_view(['GET'])
 def entail_py_list(request):
@@ -299,7 +301,7 @@ def entail_py_list(request):
 # Lakshadweep
 @api_view(['GET'])
 def entail_ld_list_res(request, in_tid):
-	out_obj = entail_ld.objects.get(id__exact=in_tid)
+	out_obj = entail_ld.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -313,7 +315,7 @@ def entail_ld_list(request):
 # West_Bengal
 @api_view(['GET'])
 def entail_wb_list_res(request, in_tid):
-	out_obj = entail_wb.objects.get(id__exact=in_tid)
+	out_obj = entail_wb.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -327,7 +329,7 @@ def entail_wb_list(request):
 # Orissa
 @api_view(['GET'])
 def entail_or_list_res(request, in_tid):
-	out_obj = entail_or.objects.get(id__exact=in_tid)
+	out_obj = entail_or.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -341,7 +343,7 @@ def entail_or_list(request):
 # Bihar
 @api_view(['GET'])
 def entail_br_list_res(request, in_tid):
-	out_obj = entail_br.objects.get(id__exact=in_tid)
+	out_obj = entail_br.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -355,7 +357,7 @@ def entail_br_list(request):
 # Sikkim
 @api_view(['GET'])
 def entail_sk_list_res(request, in_tid):
-	out_obj = entail_sk.objects.get(id__exact=in_tid)
+	out_obj = entail_sk.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -369,7 +371,7 @@ def entail_sk_list(request):
 # Chattisgarh
 @api_view(['GET'])
 def entail_ct_list_res(request, in_tid):
-	out_obj = entail_ct.objects.get(id__exact=in_tid)
+	out_obj = entail_ct.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -383,7 +385,7 @@ def entail_ct_list(request):
 # TN
 @api_view(['GET'])
 def entail_tn_list_res(request, in_tid):
-	out_obj = entail_tn.objects.get(id__exact=in_tid)
+	out_obj = entail_tn.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -397,7 +399,7 @@ def entail_tn_list(request):
 # MP
 @api_view(['GET'])
 def entail_mp_list_res(request, in_tid):
-	out_obj = entail_mp.objects.get(id__exact=in_tid)
+	out_obj = entail_mp.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -411,7 +413,7 @@ def entail_mp_list(request):
 # Gujrat
 @api_view(['GET'])
 def entail_gj_list_res(request, in_tid):
-	out_obj = entail_gj.objects.get(id__exact=in_tid)
+	out_obj = entail_gj.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -425,7 +427,7 @@ def entail_gj_list(request):
 # Goa
 @api_view(['GET'])
 def entail_ga_list_res(request, in_tid):
-	out_obj = entail_ga.objects.get(id__exact=in_tid)
+	out_obj = entail_ga.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -439,7 +441,7 @@ def entail_ga_list(request):
 # Nagaland
 @api_view(['GET'])
 def entail_nl_list_res(request, in_tid):
-	out_obj = entail_nl.objects.get(id__exact=in_tid)
+	out_obj = entail_nl.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -453,7 +455,7 @@ def entail_nl_list(request):
 # Manipur
 @api_view(['GET'])
 def entail_mn_list_res(request, in_tid):
-	out_obj = entail_mn.objects.get(id__exact=in_tid)
+	out_obj = entail_mn.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -467,7 +469,7 @@ def entail_mn_list(request):
 # Arunachal_Pradesh
 @api_view(['GET'])
 def entail_ar_list_res(request, in_tid):
-	out_obj = entail_ar.objects.get(id__exact=in_tid)
+	out_obj = entail_ar.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -481,7 +483,7 @@ def entail_ar_list(request):
 # Mizoram
 @api_view(['GET'])
 def entail_mz_list_res(request, in_tid):
-	out_obj = entail_mz.objects.get(id__exact=in_tid)
+	out_obj = entail_mz.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -495,7 +497,7 @@ def entail_mz_list(request):
 # Tripura
 @api_view(['GET'])
 def entail_tr_list_res(request, in_tid):
-	out_obj = entail_tr.objects.get(id__exact=in_tid)
+	out_obj = entail_tr.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -509,7 +511,7 @@ def entail_tr_list(request):
 # Daman_and_Diu
 @api_view(['GET'])
 def entail_dd_list_res(request, in_tid):
-	out_obj = entail_dd.objects.get(id__exact=in_tid)
+	out_obj = entail_dd.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -523,14 +525,7 @@ def entail_dd_list(request):
 # Delhi
 @api_view(['GET'])
 def entail_dl_list_res(request, in_tid):
-	print("====================> inside the delhi module Success!")
-	print(type(in_tid))
-	print(in_tid)
-	print(type(int(in_tid)))
-	print(int(in_tid))
-
 	out_obj = entail_dl.objects.get(id__exact=int(in_tid))
-	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
 @api_view(['GET'])
@@ -543,7 +538,7 @@ def entail_dl_list(request):
 # Haryana
 @api_view(['GET'])
 def entail_hr_list_res(request, in_tid):
-	out_obj = entail_hr.objects.get(id__exact=in_tid)
+	out_obj = entail_hr.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -557,7 +552,7 @@ def entail_hr_list(request):
 # Chandigarh
 @api_view(['GET'])
 def entail_ch_list_res(request, in_tid):
-	out_obj = entail_ch.objects.get(id__exact=in_tid)
+	out_obj = entail_ch.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -571,7 +566,7 @@ def entail_ch_list(request):
 # HP
 @api_view(['GET'])
 def entail_hp_list_res(request, in_tid):
-	out_obj = entail_hp.objects.get(id__exact=in_tid)
+	out_obj = entail_hp.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -585,7 +580,7 @@ def entail_hp_list(request):
 # J&K
 @api_view(['GET'])
 def entail_jk_list_res(request, in_tid):
-	out_obj = entail_jk.objects.get(id__exact=in_tid)
+	out_obj = entail_jk.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -599,7 +594,7 @@ def entail_jk_list(request):
 # Kerela
 @api_view(['GET'])
 def entail_kl_list_res(request, in_tid):
-	out_obj = entail_kl.objects.get(id__exact=in_tid)
+	out_obj = entail_kl.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -613,7 +608,7 @@ def entail_kl_list(request):
 # Karnataka
 @api_view(['GET'])
 def entail_ka_list_res(request, in_tid):
-	out_obj = entail_ka.objects.get(id__exact=in_tid)
+	out_obj = entail_ka.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -627,7 +622,7 @@ def entail_ka_list(request):
 # Dadra_and_Nagar_Haveli
 @api_view(['GET'])
 def entail_dn_list_res(request, in_tid):
-	out_obj = entail_dn.objects.get(id__exact=in_tid)
+	out_obj = entail_dn.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -641,7 +636,7 @@ def entail_dn_list(request):
 # Maharashtra
 @api_view(['GET'])
 def entail_mh_list_res(request, in_tid):
-	out_obj = entail_mh.objects.get(id__exact=in_tid)
+	out_obj = entail_mh.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -655,7 +650,7 @@ def entail_mh_list(request):
 # Assam
 @api_view(['GET'])
 def entail_as_list_res(request, in_tid):
-	out_obj = entail_as.objects.get(id__exact=in_tid)
+	out_obj = entail_as.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -669,7 +664,7 @@ def entail_as_list(request):
 # AP
 @api_view(['GET'])
 def entail_ap_list_res(request, in_tid):
-	out_obj = entail_ap.objects.get(id__exact=in_tid)
+	out_obj = entail_ap.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -683,7 +678,7 @@ def entail_ap_list(request):
 # Meghalaya
 @api_view(['GET'])
 def entail_ml_list_res(request, in_tid):
-	out_obj = entail_ml.objects.get(id__exact=in_tid)
+	out_obj = entail_ml.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -697,7 +692,7 @@ def entail_ml_list(request):
 # Punjab
 @api_view(['GET'])
 def entail_pb_list_res(request, in_tid):
-	out_obj = entail_pb.objects.get(id__exact=in_tid)
+	out_obj = entail_pb.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -711,7 +706,7 @@ def entail_pb_list(request):
 # Rajasthan
 @api_view(['GET'])
 def entail_rj_list_res(request, in_tid):
-	out_obj = entail_rj.objects.get(id__exact=in_tid)
+	out_obj = entail_rj.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -725,7 +720,7 @@ def entail_rj_list(request):
 # UP
 @api_view(['GET'])
 def entail_up_list_res(request, in_tid):
-	out_obj = entail_up.objects.get(id__exact=in_tid)
+	out_obj = entail_up.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -739,7 +734,7 @@ def entail_up_list(request):
 # Uttaranchal
 @api_view(['GET'])
 def entail_ut_list_res(request, in_tid):
-	out_obj = entail_ut.objects.get(id__exact=in_tid)
+	out_obj = entail_ut.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
@@ -753,7 +748,7 @@ def entail_ut_list(request):
 # Jharkhand
 @api_view(['GET'])
 def entail_jh_list_res(request, in_tid):
-	out_obj = entail_jh.objects.get(id__exact=in_tid)
+	out_obj = entail_jh.objects.get(id__exact=int(in_tid))
 	print(f"=======>Returned item from DB: {out_obj.res_cls}")
 	context = {'Tweet': out_obj.tweet, 'Result': out_obj.res_cls, 'prob': out_obj.prob_cls}
 	return Response(context)
