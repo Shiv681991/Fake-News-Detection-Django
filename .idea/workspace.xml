@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="133862d5-9b2d-45f5-a6f8-264b6039e236" name="Default Changelist" comment="Stream and Check; Monitor Web - updated for: error removed">
+      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/.~lock.stat_numbers_scraped.csv#" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo_drf/statewise_tweets/Archive/stat_numbers_scraped_V1_Proc_OK.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/prediction_V2_V0_First.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_drill.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/templates/frontend/dashboard_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_drf/frontend/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/todo_drf/frontend/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +261,9 @@
       <workItem from="1620106000102" duration="1432000" />
       <workItem from="1621091181451" duration="3053000" />
       <workItem from="1621216473170" duration="49823000" />
-      <workItem from="1621313967622" duration="25033000" />
+      <workItem from="1621313967622" duration="25618000" />
+      <workItem from="1621404031737" duration="2780000" />
+      <workItem from="1621440187775" duration="13786000" />
     </task>
     <task id="LOCAL-00001" summary="First add">
       <created>1617059192751</created>
@@ -419,7 +426,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621385088154</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Stream and Check; Monitor Web - updated for: error removed">
+      <created>1621391902758</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1621391902758</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

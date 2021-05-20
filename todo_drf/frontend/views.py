@@ -1,3 +1,5 @@
+import glob
+
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -14,42 +16,9 @@ import numpy as np
 import random
 import dateutil
 from twython import Twython
-
-# from api.models import entail_jh as cur_db
-# # Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
-# # -----------------------------------------------
 # from tqdm import tqdm
-# f_name = 'Jharkhand'
-# in_file = 'path_to_statewise_tweets/'+f_name+'_Tweets.csv'
-# cur_df = pd.read_csv(in_file)
-# # print(cur_df.head())
-# res_list, prob_list = FrontendAppConfig.text_FNF_classify(cur_df['text'].tolist())
-# cur_df['Verdict'] = res_list
-# cur_df['Prob'] = prob_list
-# # print(cur_df.head())
-# # print(cur_df.keys())
-# df_2 = cur_df[['description', 'Verdict', 'Prob']]
-# # print(df_2.head())
-# cur_list = df_2.values.tolist()
-# # print(np.shape(cur_list))
-# # cur_list.append()
-# # cur_list = []
-# cur_db.objects.all().delete()
-# # print("==========>Size of the L1 list", len(l1_list))
-# for ind, tweet_data in enumerate(cur_list):
-#     t = cur_db(tweet = tweet_data[0], res_cls = tweet_data[1], prob_cls = tweet_data[2], res_ent = tweet_data[1], prob_ent = tweet_data[2], iids = "Dummy Image ID",
-#                   u1 = "URL dummy", u1res = tweet_data[1], u1prob = tweet_data[2], u2 = "URL dummy", u2res = tweet_data[1], u2prob = tweet_data[2],
-#                   u3 = "URL dummy", u3res = tweet_data[1], u3prob = tweet_data[2], u4 = "URL dummy", u4res = tweet_data[1], u4prob = tweet_data[2],
-#                   u5 = "URL dummy", u5res = tweet_data[1], u5prob = tweet_data[2], u6 = "URL dummy", u6res = tweet_data[1], u6prob = tweet_data[2],
-#                   u7 = "URL dummy", u7res = tweet_data[1], u7prob = tweet_data[2], u8 = "URL dummy", u8res = tweet_data[1], u8prob = tweet_data[2],
-#                   u9 = "URL dummy", u9res = tweet_data[1], u9prob = tweet_data[2], u10 = "URL dummy", u10res = tweet_data[1], u10prob = tweet_data[2])
-#     t.save()
-# print(f"===========>DB {f_name} populated!")
-# # # -----------------------------------------------
-
-
-
-# Create your views here.
+from api.models import *
+# Task, Tweets, Tweets_L1, Tweets_L2, Tweets_L3, entaildata, fact_dli
 # State-wise codes
 s_Code = {'in-py': "Puducherry",
          'in-ld': "Lakshadweep",
@@ -86,7 +55,81 @@ s_Code = {'in-py': "Puducherry",
          'in-ut': "Uttaranchal",
          'in-jh': "Jharkhand"}
 
+# # -------Content for pupulating the DB--------
+# s_obj_Code = {"Puducherry": entail_py,
+#          "Lakshadweep": entail_ld,
+#          "West_Bengal": entail_wb,
+#          "Orissa": entail_or,
+#          "Bihar": entail_br,
+#          "Sikkim": entail_sk,
+#          "Chattisgarh": entail_ct,
+#          "TN": entail_tn,
+#          "MP": entail_mp,
+#          "Gujrat": entail_gj,
+#          "Goa": entail_ga,
+#          "Nagaland": entail_nl,
+#          "Manipur": entail_mn,
+#          "Arunachal_Pradesh": entail_ar,
+#          "Mizoram": entail_mz,
+#          "Tripura": entail_tr,
+#          "Daman_and_Diu": entail_dd,
+#          "Delhi": entail_dl,
+#          "Haryana": entail_hr,
+#          "Chandigarh": entail_ch,
+#          "HP": entail_hp,
+#          "J&K": entail_jk,
+#          "Kerela": entail_kl,
+#          "Karnataka": entail_ka,
+#          "Dadra_and_Nagar_Haveli": entail_dn,
+#          "Maharashtra": entail_mh,
+#          "Assam": entail_as,
+#          "AP": entail_ap,
+#          "Meghalaya": entail_ml,
+#          "Punjab": entail_pb,
+#          "Rajasthan": entail_rj,
+#          "UP": entail_up,
+#          "Uttaranchal": entail_ut,
+#          "Jharkhand": entail_jh}
+#
+#
+# # -----------------------------------------------
+# file_list = glob.glob("path_to_statefiles/*.csv")
+# for idx, file in enumerate(file_list):
+#     cur_loc = '_'.join(file.split('/')[-1].split('_')[:-1])
+#     print(f"===========>DB {idx+1}: {cur_loc} in progress...")
+# # f_name = 'Puducherry'
+# # in_file = 'path_to_statefiles/statewise_tweets/'+f_name+'_Tweets.csv'
+#     cur_df = pd.read_csv(file)
+#     cur_df_V1 = cur_df.dropna()
+#     # print(cur_df_V1.head())
+#     res_list, prob_list = FrontendAppConfig.text_FNF_classify(cur_df_V1['text'].tolist())
+#     cur_df_V1['Verdict'] = res_list
+#     cur_df_V1['Prob'] = prob_list
+#     # print(cur_df.head())
+#     # print(cur_df.keys())
+#     df_2 = cur_df_V1[['description', 'Verdict', 'Prob']]
+#     # print(df_2.head())
+#     cur_list = df_2.values.tolist()
+#     # print(np.shape(cur_list))
+#     # cur_list.append()
+#     # cur_list = []
+#     cur_db = s_obj_Code[cur_loc]
+#     cur_db.objects.all().delete()
+#     # print("==========>Size of the L1 list", len(l1_list))
+#     for ind, tweet_data in enumerate(cur_list):
+#         t = cur_db(tweet = tweet_data[0], res_cls = tweet_data[1], prob_cls = tweet_data[2], res_ent = tweet_data[1], prob_ent = tweet_data[2], iids = "Dummy Image ID",
+#                       u1 = "URL dummy", u1res = tweet_data[1], u1prob = tweet_data[2], u2 = "URL dummy", u2res = tweet_data[1], u2prob = tweet_data[2],
+#                       u3 = "URL dummy", u3res = tweet_data[1], u3prob = tweet_data[2], u4 = "URL dummy", u4res = tweet_data[1], u4prob = tweet_data[2],
+#                       u5 = "URL dummy", u5res = tweet_data[1], u5prob = tweet_data[2], u6 = "URL dummy", u6res = tweet_data[1], u6prob = tweet_data[2],
+#                       u7 = "URL dummy", u7res = tweet_data[1], u7prob = tweet_data[2], u8 = "URL dummy", u8res = tweet_data[1], u8prob = tweet_data[2],
+#                       u9 = "URL dummy", u9res = tweet_data[1], u9prob = tweet_data[2], u10 = "URL dummy", u10res = tweet_data[1], u10prob = tweet_data[2])
+#         t.save()
+#     print(f"===========>Processed!")
+# # # -----------------------------------------------
 
+
+
+# Create your views here.
 
 def index(request):
     return render(request, 'frontend/prediction_V2_V0_blank.html')
@@ -97,10 +140,10 @@ def dashboard_index(request):
     # Get the last day "fake" counts for Indian cities
     state_lstday_array, last_date = getIndiaGeoData(sHist_df)
     # Get the total "fake" counts for Indian cities and overall
-    s_name_sort_list, totals_sort_list, overallFakeCount = getIndiaBarData(sHist_df)
+    s_name_sort_list, totals_sort_list, overallFakeCount, period = getIndiaBarData(sHist_df)
     context = {'state_lstday_array': state_lstday_array, 's_name_sort_list': s_name_sort_list,
                'totals_sort_list': totals_sort_list, 'overallFakeCount': overallFakeCount,
-               'last_date': last_date}
+               'last_date': last_date, 'period': period}
     return render(request,'frontend/dashboard_index.html',context)
 
 
@@ -304,6 +347,9 @@ def getIndiaGeoData(sHist_df):
     last_date = sHist_df.columns[-1]
     return (state_lstday_array, last_date)
 def getIndiaBarData(sHist_df):
+    start_time = sHist_df.columns[1]
+    stop_time = sHist_df.columns[-1]
+    period = start_time + ' to ' + stop_time
     tot_list = sHist_df[sHist_df.columns[1:]].sum(axis=1, skipna=True).tolist()
     s_tot_df = sHist_df['country_code'].to_frame(name='country_code')
     s_tot_df['totals'] = tot_list
@@ -315,7 +361,7 @@ def getIndiaBarData(sHist_df):
         s_name_sort_list.append(s_Code[state])
     totals_sort_list = s_tot_sort_df['totals'].tolist()
     overallFakeCount = np.sum(totals_sort_list)
-    return (s_name_sort_list, totals_sort_list, overallFakeCount)
+    return (s_name_sort_list, totals_sort_list, overallFakeCount, period)
 
 def showRT(request):
     print(request.POST.dict())
@@ -478,11 +524,12 @@ def drillDownAState(request):
                   {'label': 'Monthly Fake Tweets', 'data': monthly_df['fake'].values.tolist(), 'borderColor': '#ff6384',
                    'backgroundColor': '#ff6384', 'fill': 'false'}]
     sHist_df = pd.read_csv('/home/shivam/PycharmProjects/Django/Django_Warehouse/todo-django-rest-framework-master/todo_drf/statewise_tweets/stat_numbers_scraped.csv', index_col=[0])
-    s_name_sort_list, totals_sort_list, overallFakeCount = getIndiaBarData(sHist_df)
+    s_name_sort_list, totals_sort_list, overallFakeCount, period = getIndiaBarData(sHist_df)
     context={'axisvalues':daily_df['timestamp'].values.tolist(),
              'axisvalues_m':monthly_df['timestamp'].values.tolist(), 'axisvalues_h':hourly_df['timestamp'].values.tolist(),
              'data_tweet': data_tweet, 'data_tweet_m': data_tweet_m, 'data_tweet_h': data_tweet_h, "stateName":stateName,
-             's_name_sort_list': s_name_sort_list, 'totals_sort_list': totals_sort_list, 'overallFakeCount': overallFakeCount}
+             's_name_sort_list': s_name_sort_list, 'totals_sort_list': totals_sort_list, 'overallFakeCount': overallFakeCount,
+             'period': period}
     return render(request,'frontend/dashboard_drill.html',context)
 def stat(request):
     return render(request, 'frontend/statistics.html')
