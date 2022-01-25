@@ -192,18 +192,11 @@ def trace_1(request):
         # print("Top RT feku Dictionary populated for this user, checking for retweeter IDs...")
         in_id = feku_dict["Tweet_ID"]
         # print(f"Checking for the tweet: {in_id} with type {type(in_id)}")
-        CONSUMER_KEY = "Vw1I28kAqmtlR6bxxWC4XRotQ"
-        CONSUMER_SECRET = "5BWJpsp7I7flL7A2s6UHKbfkc1CNcJun0oTcBQLpbbAYf5bLux"
-        OAUTH_TOKEN = "2457738439-exMpEGlgXiCGMIkdPZ55UzjYZnTDUMWQjJGo6at"
-        OAUTH_TOKEN_SECRET = "AYG1URNodgVYONyCXyIgsPBiuwWRLCzy7D29WO0kRNFQE"
-        # CONSUMER_KEY = "cM593dZzYf2E5iWAWAY5DLYh1"
-        # CONSUMER_SECRET = "mtbmruUaGbyct7E1gE9jFBiosL0IoLHsvDCVhnfFru3I8oBRFA"
-        # OAUTH_TOKEN = "4827039441-TGPGL0EOa0Eflp2LoEGgelaIhd5IijBzYi4A5aL"
-        # OAUTH_TOKEN_SECRET = "T9M1ynlEW89mqlolZjbcHo08InzLbKgcqPNxMd0UFg7Aj"
-        # CONSUMER_KEY = "gp8cEMcGZafEqB9RfOiHrLEod"
-        # CONSUMER_SECRET = "uo78v5nFF3cjc2gSjkpPDL3XpIqUvXZ5qJ7FIMx3VNVOkIJPRX"
-        # OAUTH_TOKEN = "4827125495-Ujpubs7jfxyDanohxq2PtpeRXFnqladYBNuMdEd"
-        # OAUTH_TOKEN_SECRET = "0FMAcYWtLJvQYzf7LJjKQwbzrKEJDtLEa99iyRNGUNBWK"
+        CONSUMER_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+        CONSUMER_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        OAUTH_TOKEN = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        OAUTH_TOKEN_SECRET = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        
         twitter = Twython(
             CONSUMER_KEY, CONSUMER_SECRET,
             OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
